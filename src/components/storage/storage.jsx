@@ -1,8 +1,16 @@
-import { Sun, Thermometer, Wind } from "lucide-react"
-
+      import { Sun, Thermometer, Wind } from "lucide-react"
+import { X } from "lucide-react"
+import Link from "next/link"
 export default function StorageGuide() {
   return (
     <div className="bg-black text-white p-6 max-w-md mx-auto">
+
+<Link href="/">
+
+      <div className="absolute top-10   cursor-pointer right-10">
+        <X className="w-6 h-6 text-white" />
+      </div>
+</Link>
       <div className="space-y-8">
         <div className="space-y-2">
           <h1 className="text-3xl font-bold">
