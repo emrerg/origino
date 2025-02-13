@@ -7,6 +7,8 @@ import OliveStats from '@/components/olive-stats/olive-stats';
 import StorageCard from '@/components/storage/storage';
 import BuyNextHarvest from '@/components/buy-harvast/BuyNextHarvest';
 import BuyInStock from '@/components/Stock/Stock';
+import StorageMainLayout from '@/components/StorageMainLayout/StorageMainLayout';
+
 const ProcessCard = ({ title, data }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -114,7 +116,7 @@ export default function HomePage() {
         <OliveStats />
       </div>
       <div className='px-5 mt-5'>
-        <StorageCard />
+      <StorageMainLayout/>
       </div>
       <div className='px-5 mt-5'>
         <BuyNextHarvest />

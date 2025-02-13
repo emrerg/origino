@@ -1,33 +1,34 @@
 import { useEffect, useRef } from 'react';
-import mapboxgl from 'mapbox-gl'; // Import Mapbox GL JS
+import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 // Set Mapbox access token
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
 export default function MapComponent() {
-  const mapContainer = useRef(null); // Ref for the map container
-  const map = useRef(null); // Ref for the map instance
+  const mapContainer = useRef(null);
+  const map = useRef(null);
 
   // Initialize the map when the component mounts
   useEffect(() => {
-    if (map.current) return; // Initialize the map only once
+    if (map.current) return;
 
     // Create the map instance
     map.current = new mapboxgl.Map({
-      container: mapContainer.current, // Container ID
-      style: 'mapbox://styles/mapbox/streets-v11', // Map style
-      center: [29.0587, 40.1885], // Center on Bursa, Türkiye
-      zoom: 12, // Initial zoom level
+      container: mapContainer.current,
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [29.0587, 40.1885],
+      zoom: 12,
     });
 
     // Wait for the map to load before adding the marker and path
     map.current.on('load', () => {
       // Add a marker
       const marker = new mapboxgl.Marker({
-        color: '#FF0000', // Red marker
-        scale: 0.8, // Adjust size
+        color: '#FF0000',
+        scale: 0.8,
       })
-        .setLngLat([29.0587, 40.1885]) // Marker position (Bursa, Türkiye)
+        .setLngLat([29.0587, 40.1885])
         .addTo(map.current);
 
       // Create a popup
@@ -52,8 +53,8 @@ export default function MapComponent() {
             geometry: {
               type: 'LineString',
               coordinates: [
-                [29.0587, 40.1885], // Start point (Bursa, Türkiye)
-                [29.0687, 40.1985], // End point (nearby location)
+                [29.0587, 40.1885],
+                [29.0687, 40.1985],
               ],
             },
           },
@@ -63,8 +64,8 @@ export default function MapComponent() {
           'line-cap': 'round',
         },
         paint: {
-          'line-color': '#3887be', // Blue line
-          'line-width': 5, // Line width
+          'line-color': '#3887be',
+          'line-width': 5,
         },
       });
     });

@@ -5,7 +5,7 @@ export default function StoriesPage() {
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6">Stories</h1>
       {/* Add your stories content here */}
-      <Stories stories={['', '','']}/>
+      <Stories stories={['https://www.youtube.com/watch?v=MzwVnUBCip4', 'https://www.youtube.com/watch?v=MzwVnUBCip4','https://www.youtube.com/watch?v=MzwVnUBCip4']}/>
     </div>
   );
 } 
