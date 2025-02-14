@@ -14,19 +14,19 @@ const Accordion = ({ items }) => {
       {items.map((item, index) => (
         <div key={index} className="rounded-xl overflow-hidden shadow-md bg-green-800">
           <button
-            className="w-full flex justify-between items-center px-5 py-4 text-white font-semibold"
+            className="w-full flex justify-between items-center px-5 py-4 text-[#00B517] font-semibold"
             onClick={() => toggleAccordion(index)}
           >
             <div className="flex items-center gap-2">
-              {item.title === "Picked" && <User size={18} />}
-              {item.title === "Pressed" && <Factory size={18} />}
-              {item.title === "Packed" && <Package size={18} />}
+              {item.title === "Picked" && <User size={18} color="#00B517" />}
+              {item.title === "Pressed" && <Factory size={18} color="#00B517" />}
+              {item.title === "Packed" && <Package size={18} color="#00B517" />}
               <span>{item.title}</span>
             </div>
-            {activeIndex === index ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+            {activeIndex === index ? <ChevronUp size={20} color="#00B517" /> : <ChevronDown size={20} color="#00B517" />}
           </button>
           {activeIndex === index && (
-            <div className="p-5 bg-green-700 text-white text-sm space-y-3">
+            <div className="p-5 bg-green-700 text-[#00B517] text-sm space-y-3">
               {item.content}
             </div>
           )}

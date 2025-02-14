@@ -3,11 +3,12 @@ import { AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import HeroSection from '@/components/HeroSection/HeroSection';
 import TestingQuality from '@/components/testing-and-quality';
-import OliveStats from '@/components/olive-stats/olive-stats';
 import StorageCard from '@/components/storage/storage';
 import BuyNextHarvest from '@/components/buy-harvast/BuyNextHarvest';
 import BuyInStock from '@/components/Stock/Stock';
 import StorageMainLayout from '@/components/StorageMainLayout/StorageMainLayout';
+import ProcessedSection from '@/components/processed-section';
+import OliveStats from '@/components/olive-stats/OliveStats';
 
 const ProcessCard = ({ title, data }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,25 +21,25 @@ const ProcessCard = ({ title, data }) => {
       >
         <div className="flex items-center gap-2">
           {title === 'Picked' && (
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#00B517]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
           )}
           {title === 'Pressed' && (
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#00B517]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           )}
           {title === 'Packed' && (
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#00B517]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8" />
             </svg>
           )}
-          <span className="text-white font-semibold">{title}</span>
+          <span className="text-[#00B517] font-semibold">{title}</span>
         </div>
         <svg 
           xmlns="http://www.w3.org/2000/svg" 
-          className={`h-6 w-6 text-white transform transition-transform ${isOpen ? 'rotate-180' : ''}`} 
+          className={`h-6 w-6 text-[#00B517] transform transition-transform ${isOpen ? 'rotate-180' : ''}`} 
           fill="none" 
           viewBox="0 0 24 24" 
           stroke="currentColor"
@@ -48,23 +49,23 @@ const ProcessCard = ({ title, data }) => {
       </div>
       
       {isOpen && (
-        <div className="text-white space-y-2">
+        <div className="text-[#00B517] space-y-2">
           <div>
-            <p className="text-sm text-gray-300">HARVEST DATE</p>
+            <p className="text-sm text-[#00B517]">HARVEST DATE</p>
             <p>{data.harvestDate}</p>
           </div>
           <div>
-            <p className="text-sm text-gray-300">GROVE LOCATION</p>
+            <p className="text-sm text-[#00B517]">GROVE LOCATION</p>
             <p>{data.groveLocation}</p>
           </div>
           {data.additionalInfo && Object.entries(data.additionalInfo).map(([key, value]) => (
             <div key={key}>
-              <p className="text-sm text-gray-300">{key.toUpperCase()}</p>
+              <p className="text-sm text-[#00B517]">{key.toUpperCase()}</p>
               <p>{value}</p>
             </div>
           ))}
           <div className="mt-4">
-            <a href="#" className="text-green-400 text-sm">See the {title.toLowerCase()} details →</a>
+            <a href="#" className="text-[#00B517] text-sm">See the {title.toLowerCase()} details →</a>
           </div>
         </div>
       )}
@@ -102,7 +103,10 @@ export default function HomePage() {
   return (
     <AnimatePresence mode="wait">
       <HeroSection />
-      <div className="w-full bg-[#009621] py-12">
+      <ProcessedSection />
+      <TestingQuality />
+      <OliveStats />
+      {/* <div className="w-full bg-[#009621] py-12">
         <div className="max-w-2xl mx-auto px-4 space-y-3">
           <ProcessCard title="Picked" data={processData.picked} />
           <ProcessCard title="Pressed" data={processData.pressed} />
@@ -123,7 +127,7 @@ export default function HomePage() {
       </div>
       <div className='px-5 mt-[-200px]'>
         <BuyInStock />
-      </div>
+      </div> */}
 
     </AnimatePresence>
   );

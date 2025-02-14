@@ -1,14 +1,15 @@
 'use client'
 import Image from "next/image"
-import { ArrowRight } from "lucide-react"
-import { Card } from "@/components/ui/card"
 import Link from "next/link"
+import { FaLeaf } from 'react-icons/fa'
+import { HiArrowRight } from 'react-icons/hi2'
 
 export default function TestingQuality() {
   return (
-    <Card className="max-w-md mx-auto overflow-hidden bg-white">
-      <div className="relative">
-        <div className="relative h-[300px] w-full">
+    <div className="w-full bg-white">
+      <div className="max-w-[640px] mx-auto">
+        {/* Background Image */}
+        <div className="relative w-full h-[480px]">
           <Image
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-11%20at%209.25.39%E2%80%AFPM-fiJrj0MGf7dwwdEff05sVNNjWQ3Orx.png"
             alt="Olive branches with olives"
@@ -16,45 +17,44 @@ export default function TestingQuality() {
             className="object-cover grayscale"
             priority
           />
-          <div className="absolute top-6 left-6">
-            <div className="bg-blue-600 p-4 rounded-lg w-[60px] h-[60px] flex items-center justify-center">
-              <svg
-                viewBox="0 0 24 24"
-                className="w-8 h-8 text-emerald-400"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8z" />
-                <path d="M12 6c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" />
-              </svg>
+          {/* Blue Box with Leaf Icon */}
+          <div className="absolute left-8 top-8">
+            <div className="bg-[rgb(0,0,255)] w-[72px] h-[72px] flex items-center justify-center">
+              <FaLeaf className="text-[#4CAF50] w-9 h-9" />
             </div>
           </div>
-        </div>
-      </div>
-
-      <div className="p-6 space-y-6">
-        <h1 className="text-3xl font-bold tracking-tight">Testing & Quality</h1>
-
-        <div className="space-y-4">
-          <h2 className="text-2xl font-bold leading-tight">How do you distinguish quality olive oil from others?</h2>
-
-          <p className="text-gray-600">
-            Two measurable values:
-            <br />
-            <span className="font-medium">Free acidity</span> and <span className="font-medium">Polyphenols</span>
-          </p>
+          {/* Title Overlay */}
+          <div className="absolute left-8 top-[120px]">
+            <h1 className="text-[56px] leading-[1.1] font-bold text-white">
+              Testing<br />&amp; Quality
+            </h1>
+          </div>
         </div>
 
-        <Link
-          href="/test-results"
-          className="inline-flex items-center text-lg font-medium hover:text-gray-900 transition-colors"
-        >
-          Review test results
-          <ArrowRight className="ml-2 w-5 h-5" />
-        </Link>
+        {/* Content Section */}
+        <div className="px-8 pt-12 pb-16 space-y-10">
+          <h2 className="text-[40px] leading-[1.2] font-bold text-black">
+            How do you distinguish quality olive oil from others?
+          </h2>
+
+          <div className="space-y-3">
+            <p className="text-[24px] text-black">Two measurable values:</p>
+            <p className="text-[32px]">
+              <span className="font-bold">Free acidity</span>
+              <span className="font-normal"> and </span>
+              <span className="font-bold">Polyphenols</span>
+            </p>
+          </div>
+
+          <Link 
+            href="/test-results" 
+            className="inline-flex items-center gap-3 text-[24px] hover:opacity-80 transition-opacity"
+          >
+            <span>Review test results</span>
+            <HiArrowRight className="w-7 h-7" />
+          </Link>
+        </div>
       </div>
-    </Card>
+    </div>
   )
 }
-
