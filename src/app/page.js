@@ -106,6 +106,8 @@ export default function HomePage() {
       <ProcessedSection />
       <TestingQuality />
       <OliveStats />
+      <StorageMainLayout/>
+
       {/* <div className="w-full bg-[#009621] py-12">
         <div className="max-w-2xl mx-auto px-4 space-y-3">
           <ProcessCard title="Picked" data={processData.picked} />
