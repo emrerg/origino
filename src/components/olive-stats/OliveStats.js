@@ -1,48 +1,150 @@
-import React, { useState } from 'react';
-import './OliveStats.css';
+'use client'
+import { useState } from 'react'
+import { ChevronUp } from 'lucide-react'
+import Image from 'next/image'
+import Acidity from "@/components/Images/acidity.svg"
+import polycide from "@/components/Images/polycide.svg"
 
-const OliveStats = () => {
-  const [isAcidityOpen, setAcidityOpen] = useState(false);
-  const [isPolyphenolsOpen, setPolyphenolsOpen] = useState(false);
 
-  const toggleAcidity = () => setAcidityOpen(!isAcidityOpen);
-  const togglePolyphenols = () => setPolyphenolsOpen(!isPolyphenolsOpen);
+export default function OliveStats() {
+  const [isAcidityOpen, setAcidityOpen] = useState(true)
+  const [isPolyphenolsOpen, setPolyphenolsOpen] = useState(true)
 
   return (
-    <div className="olive-stats">
-      <div className="accordion">
-        <div className="accordion-header" onClick={toggleAcidity}>
-          Free Acidity
-        </div>
+    <div className="w-full max-w-md mx-auto">
+      {/* Free Acidity Section */}
+      <div className="w-full">
+        <button
+          onClick={() => setAcidityOpen(!isAcidityOpen)}
+          className="w-full bg-[#0000FF] text-white py-4 px-6 flex items-center justify-between"
+        >
+          <div className="flex items-center gap-3">
+           <Image src={Acidity} alt="Acidity" width={20} height={20} />
+            <span className="text-[#4AFF00] text-xl">Free Acidity</span>
+          </div>
+          <ChevronUp className="w-6 h-6 text-[#4AFF00]" />
+        </button>
+
         {isAcidityOpen && (
-          <div className="accordion-content">
-            <p>The less the better...</p>
-            <ul>
-              <li>0% - Premium Quality</li>
-              <li>0.35% - Most boutique olive oils</li>
-              <li>0.4% - Required for "Extra Virgin" label</li>
-              <li>0.8% - Most supermarket olive oils</li>
-            </ul>
+          <div className="bg-[#F5F5F5] px-6  py-4">
+            <h3 className="text-2xl mb-12">The less the better...</h3>
+            <div className="relative pl-[70px]">
+              {/* Vertical Line */}
+              <div className="absolute left-20 top-0 bottom-0 w-[2px]" 
+                style={{
+                  background: 'linear-gradient(180deg, #4AFF00 0%, #FFB800 50%, #FF0000 100%)'
+                }}
+              />
+              
+              {/* Data Points */}
+              <div className="space-y-8  ml-1">
+                <div className="flex items-start">
+                  <span className="absolute left-0 text-xl">0%</span>
+                  <div className="w-4 h-[2px] bg-[#4AFF00] relative -left-[1px] top-3" />
+                  <div className="ml-6">
+                    <p className="text-xl font-serif">origino</p>
+                    <p className="text-base">Premium Quality</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <span className="absolute left-0 text-xl">0.35%</span>
+                  <div className="w-4 h-[2px] bg-[#4AFF00] relative -left-[1px] top-3" />
+                  <div className="ml-6">
+                    <p className="text-base">Most boutique<br />olive oils</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <span className="absolute left-0 text-xl">0.4%</span>
+                  <div className="w-4 h-[2px] bg-[#4AFF00] relative -left-[1px] top-3" />
+                  <div className="ml-6">
+                    <p className="text-base">Required for "Extra<br />Virgin" label</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <span className="absolute left-0 text-xl">0.8%</span>
+                  <div className="w-4 h-[2px] bg-[#FFB800] relative -left-[1px] top-3" />
+                  <div className="ml-6">
+                    <p className="text-base">Most supermarket<br />olive oils</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <span className="absolute left-0 text-xl">2%</span>
+                  <div className="w-4 h-[2px] bg-[#FF0000] relative -left-[1px] top-3" />
+                  <div className="ml-6">
+                    <p className="text-base">Most supermarket<br />olive oils</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </div>
-      <div className="accordion">
-        <div className="accordion-header" onClick={togglePolyphenols}>
-          Polyphenols
-        </div>
+
+      {/* Polyphenols Section */}
+      <div className="w-full mt-1">
+        <button
+          onClick={() => setPolyphenolsOpen(!isPolyphenolsOpen)}
+          className="w-full bg-[#0000FF] text-white py-4 px-6 flex items-center justify-between"
+        >
+          <div className="flex items-center gap-3">
+          <Image src={polycide} alt="Acidity" width={20} height={20} />
+
+            <span className="text-[#4AFF00] text-xl">Polyphenols</span>
+          </div>
+          <ChevronUp className="w-6 h-6 text-[#4AFF00]" />
+        </button>
+
         {isPolyphenolsOpen && (
-          <div className="accordion-content">
-            <p>The more the better...</p>
-            <ul>
-              <li>280mg/kg - Required value to claim health benefits</li>
-              <li>250mg/kg - Most boutique olive oils</li>
-              <li>0mg/lt - Most supermarket olive oils</li>
-            </ul>
+          <div className="bg-[#F5F5F5] p-6 ">
+            <h3 className="text-2xl">The more the better...</h3>
+            <p className="text-base text-[#666666] mb-12">Measured as milligrams in 1 kg</p>
+            <div className="relative pl-[90px]">
+              {/* Up Arrow */}
+              <div className="absolute left-[85px] -top-8">
+                <svg width="24" height="24" viewBox="0 0 24 24" className="text-[#4AFF00]">
+                  <path d="M12 20V4M12 4L6 10M12 4L18 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              </div>
+              
+              {/* Vertical Line */}
+              <div className="absolute left-24 top-0 bottom-0 w-[2px]" 
+                style={{
+                  background: 'linear-gradient(180deg, #4AFF00 0%, #FFB800 50%, #FF0000 100%)'
+                }}
+              />
+              
+              {/* Data Points */}
+              <div className="space-y-8">
+                <div className="flex items-start">
+                  <span className="absolute left-0 text-xl whitespace-nowrap">280<span className="text-sm">mg/kg</span></span>
+                  <div className="w-4 h-[2px] bg-[#4AFF00] relative -left-[1px] top-3" />
+                  <p className="ml-6 text-xl font-serif">origino</p>
+                </div>
+
+                <div className="flex items-start">
+                  <span className="absolute left-0 text-xl whitespace-nowrap">250<span className="text-sm">mg/kg</span></span>
+                  <div className="w-4 h-[2px] bg-[#FFB800] relative -left-[1px] top-3" />
+                  <div className="ml-6">
+                    <p className="text-base">Required value to<br />claim health benefits</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <span className="absolute left-0 text-xl whitespace-nowrap">0<span className="text-sm">mg/lt</span></span>
+                  <div className="w-4 h-[2px] bg-[#FF0000] relative -left-[1px] top-3" />
+                  <div className="ml-6">
+                    <p className="text-base text-[#FFB800]">Most boutique<br />olive oils</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </div>
     </div>
-  );
-};
-
-export default OliveStats;
+  )
+}

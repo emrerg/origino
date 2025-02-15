@@ -1,9 +1,17 @@
 import Image from "next/image"
 import Link from "next/link"
-import stock from "../Images/stock.svg"
+import stock from "../Images/stockImage.svg"
+import harvast from "../Images/buy-harvast.svg"
+
 
 export default function BuyInStock() {
   return (
+
+    <>
+    <div className="flex justify-center items-center">
+
+    <Image src={harvast} alt="Origino Olive Oil"  />
+    </div>
     <Link href="/buy-now" className="group flex flex-col items-center gap-6 p-4">
       {/* Product Image Container */}
       <div className="relative h-[300px] w-[200px] transition-transform duration-300 group-hover:scale-105">
@@ -21,6 +29,7 @@ export default function BuyInStock() {
         OR BUY WHILE IN STOCK
       </button>
     </Link>
+    </>
   )
 }
 

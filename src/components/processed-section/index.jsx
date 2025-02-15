@@ -17,7 +17,7 @@ const ProcessedSection = () => {
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto p-4">
+    <div className="w-full max-w-3xl mx-auto px-4 pt-4 pb-20  bg-[#008c28] ">
       {/* Picked Section */}
       <div className="mb-4 rounded-lg overflow-hidden">
         <div 
@@ -50,7 +50,7 @@ const ProcessedSection = () => {
                 <h3 className="text-lg opacity-70 text-[#59E631]  ">HEAD CULTIVATOR</h3>
                 <p className="text-2xl text-white  ">Turker Yalcinkaya (42)</p>
               </div>
-              <button className="w-full text-center py-4 text-lg hover:opacity-80 transition-opacity">
+              <button className="w-full text-end py-4 text-lg hover:opacity-80 transition-opacity">
                 See the picking stories →
               </button>
             </div>
@@ -92,7 +92,7 @@ const ProcessedSection = () => {
                 <h3 className="text-lg opacity-70 text-[#59E631]  ">PRESS METHOD</h3>
                 <p className="text-2xl text-white  ">First Cold Press</p>
               </div>
-              <button className="w-full text-center py-4 text-lg hover:opacity-80 transition-opacity">
+              <button className="w-full text-end py-4 text-lg hover:opacity-80 transition-opacity">
                 See the pressing stories →
               </button>
             </div>
@@ -134,7 +134,7 @@ const ProcessedSection = () => {
                 <h3 className="text-lg opacity-70 text-[#59E631]  ">PACKAGING TYPE</h3>
                 <p className="text-2xl text-white  ">Glass Bottle</p>
               </div>
-              <button className="w-full text-center py-4 text-lg hover:opacity-80 transition-opacity">
+              <button className="w-full text-end py-4 text-lg hover:opacity-80  border-t  border-[#006837]  transition-opacity">
                 See the packing stories →
               </button>
             </div>
