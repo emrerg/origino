@@ -9,6 +9,7 @@ import BuyInStock from '@/components/Stock/Stock';
 import StorageMainLayout from '@/components/StorageMainLayout/StorageMainLayout';
 import ProcessedSection from '@/components/processed-section';
 import OliveStats from '@/components/olive-stats/OliveStats';
+import Footer from '@/components/footer/Footer'
 
 const ProcessCard = ({ title, data }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -105,30 +106,16 @@ export default function HomePage() {
       <HeroSection />
       <ProcessedSection />
       <TestingQuality />
-      <OliveStats />
-      {/* <div className="w-full bg-[#009621] py-12">
-        <div className="max-w-2xl mx-auto px-4 space-y-3">
-          <ProcessCard title="Picked" data={processData.picked} />
-          <ProcessCard title="Pressed" data={processData.pressed} />
-          <ProcessCard title="Packed" data={processData.packed} />
-        </div>
-      </div>
-      <div>
-        <TestingQuality />
-      </div>
       <div className='px-5 mt-5'>
         <OliveStats />
       </div>
       <div className='px-5 mt-5'>
-      <StorageMainLayout/>
+        <StorageMainLayout/>
       </div>
-      <div className='px-5 mt-5'>
-        <BuyNextHarvest />
-      </div>
-      <div className='px-5 mt-[-200px]'>
+      <div className='mt-5'>
         <BuyInStock />
-      </div> */}
-
+      </div>
+      <Footer />
     </AnimatePresence>
   );
 }
