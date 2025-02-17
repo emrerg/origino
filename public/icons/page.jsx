@@ -4,12 +4,7 @@ import { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Image from 'next/image';
-
-// Import SVG icons directly
-import Pressed1 from '@/components/Images/pressed1.svg';
-import Pressed2 from '@/components/Images/pressed2.svg';
-import Packed1 from '@/components/Images/packed1.svg';
-import Packed2 from '@/components/Images/packed2.svg';
+import Pressed1 from "@components/icons/pressed1.svg"
 
 // Initialize Mapbox access token
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
@@ -61,15 +56,15 @@ const locations = {
   ]
 };
 
-// Update the icons configuration
+// Add SVG imports
 const locationIcons = {
   pressed: {
-    icon1: Pressed1,
-    icon2: Pressed2
+    icon1: '/icons/pressed1.svg',
+    icon2: '/icons/pressed2.svg'
   },
   packed: {
-    icon1: Packed1,
-    icon2: Packed2
+    icon1: '/icons/packed1.svg',
+    icon2: '/icons/packed2.svg'
   }
 };
 
@@ -143,18 +138,16 @@ export default function MapPage() {
               <div class="popup-content">
                 <p>${feature.properties.stop}</p>
                 <div class="popup-icons">
-                  <div class="icon">
-                    <img 
-                      src="${locationIcons[feature.properties.stop]?.icon1.src}" 
-                      alt="${feature.properties.stop} icon 1"
-                    />
-                  </div>
-                  <div class="icon">
-                    <img 
-                      src="${locationIcons[feature.properties.stop]?.icon2.src}" 
-                      alt="${feature.properties.stop} icon 2"
-                    />
-                  </div>
+                  <img 
+                    src="${locationIcons[feature.properties.stop]?.icon1 || '/icons/location.svg'}" 
+                    alt="${feature.properties.stop} icon 1" 
+                    class="icon"
+                  />
+                  <img 
+                    src="${locationIcons[feature.properties.stop]?.icon2 || '/icons/info.svg'}" 
+                    alt="${feature.properties.stop} icon 2" 
+                    class="icon"
+                  />
                 </div>
               </div>
             `);
@@ -230,13 +223,13 @@ export default function MapPage() {
           background: rgba(0, 255, 0, 0.1);
           border: 1px solid rgba(0, 255, 0, 0.3);
           border-radius: 2px;
+          filter: brightness(1.2);
         }
 
         .icon img {
           width: 100%;
           height: 100%;
           object-fit: contain;
-          filter: brightness(2) sepia(100%) hue-rotate(50deg) saturate(1000%);
         }
 
         /* Custom marker colors based on type */
