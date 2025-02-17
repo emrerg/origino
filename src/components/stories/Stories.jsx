@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react"
 import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { event } from '@/lib/gtag'
 
 /**
  * @typedef {Object} Reel
@@ -120,7 +121,12 @@ export default function Stories() {
           console.log(`Video ${index} state changed to: ${event.data}`)
           if (event.data === 0) {
             console.log('Video ended, going to next')
+            handleVideoProgress(1, index)
             goToNext()
+          } else if (event.data === window.YT.PlayerState.PLAYING) {
+            handleStoryInteraction('play_video', index)
+          } else if (event.data === window.YT.PlayerState.PAUSED) {
+            handleStoryInteraction('pause_video', index)
           }
         },
         onError: (event) => {
@@ -158,6 +164,7 @@ export default function Stories() {
   }
 
   const goToNext = () => {
+    handleStoryInteraction('next_story', currentIndex)
     console.log('Going to next video, current index:', currentIndex)
     const nextIndex = (currentIndex + 1) % reels.length
     console.log('Next index will be:', nextIndex)
@@ -170,6 +177,7 @@ export default function Stories() {
   }
 
   const goToPrevious = () => {
+    handleStoryInteraction('previous_story', currentIndex)
     // Use modulo for previous as well to allow circular navigation
     const prevIndex = (currentIndex - 1 + reels.length) % reels.length
     setCurrentIndex(prevIndex)
@@ -181,34 +189,72 @@ export default function Stories() {
     setIsVisible(false)
   }
 
+  const handleStoryInteraction = (action, storyIndex) => {
+    event({
+      action: action,
+      category: 'story_engagement',
+      label: `story_${storyIndex + 1}`,
+      value: storyIndex
+    })
+  }
+
+  const handleVideoProgress = (progress, storyIndex) => {
+    event({
+      action: 'video_progress',
+      category: 'story_engagement',
+      label: `story_${storyIndex + 1}`,
+      value: Math.floor(progress * 100)
+    })
+  }
+
   if (!isVisible) return null
 
   const currentReel = reels[currentIndex]
 
   return (
-    <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
+    <div 
+      className="fixed inset-0 bg-black z-50" 
+      role="dialog"
+      aria-modal="true"
+      aria-label="Story viewer"
+    >
       <div className="relative w-full h-full">
         {/* Close button */}
         <button
           className="absolute top-4 right-4 z-20 text-white hover:bg-white/20 p-2 rounded-full"
           onClick={handleClose}
+          aria-label="Close stories"
         >
           <X className="h-6 w-6" />
         </button>
 
         {/* Video Container */}
         <div className="relative w-full h-full">
-          <div id="player-container" className="w-full h-full" />
+          <div 
+            id="player-container" 
+            className="w-full h-full"
+            aria-label={`Story ${currentIndex + 1} of ${reels.length}: ${reels[currentIndex].title}`}
+          />
 
           {/* Navigation overlay */}
           <div className="absolute inset-0 flex items-center justify-between">
-            <div className="w-1/2 h-full cursor-pointer" onClick={goToPrevious} />
-            <div className="w-1/2 h-full cursor-pointer" onClick={goToNext} />
+            <button 
+              className="w-1/2 h-full cursor-pointer" 
+              onClick={goToPrevious}
+              aria-label="Previous story"
+            />
+            <button 
+              className="w-1/2 h-full cursor-pointer" 
+              onClick={goToNext}
+              aria-label="Next story"
+            />
           </div>
 
           {/* Title and Progress Bar Overlay */}
-          <div className="absolute bottom-0 left-0 right-0 p-4 space-y-4">
-            {/* Title with Icon in pill */}
+          <div 
+            className="absolute bottom-0 left-0 right-0 p-4 space-y-4"
+            aria-live="polite"
+          >
             <div className="inline-flex items-center">
               <div className="bg-black/50 backdrop-blur-sm rounded-lg px-4 py-2 flex items-center space-x-2">
                 {currentReel.title === "Picked" && (
@@ -226,12 +272,21 @@ export default function Stories() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8" />
                   </svg>
                 )}
-                <span className="text-white text-lg">{currentReel.title}</span>
+                <span className="text-white text-lg" role="status">
+                  {currentReel.title} - {currentReel.location}
+                </span>
               </div>
             </div>
 
             {/* Progress bars */}
-            <div className="flex gap-1">
+            <div 
+              className="flex gap-1" 
+              role="progressbar" 
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow={progress}
+              aria-label={`Story progress: ${Math.round(progress)}%`}
+            >
               {reels.map((_, index) => (
                 <div key={index} className="h-1 flex-1 bg-white/30 rounded-full overflow-hidden">
                   <div

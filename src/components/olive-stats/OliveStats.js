@@ -4,29 +4,56 @@ import { ChevronUp } from 'lucide-react'
 import Image from 'next/image'
 import Acidity from "@/components/Images/acidity.svg"
 import polycide from "@/components/Images/polycide.svg"
-
+import { event } from '@/lib/gtag'
 
 export default function OliveStats() {
   const [isAcidityOpen, setAcidityOpen] = useState(true)
   const [isPolyphenolsOpen, setPolyphenolsOpen] = useState(true)
+
+  const handleStatToggle = (statType, isOpen) => {
+    event({
+      action: isOpen ? 'expand_stat' : 'collapse_stat',
+      category: 'stats_interaction',
+      label: statType
+    })
+  }
 
   return (
     <div className="w-full max-w-md mx-auto">
       {/* Free Acidity Section */}
       <div className="w-full">
         <button
-          onClick={() => setAcidityOpen(!isAcidityOpen)}
+          onClick={() => {
+            setAcidityOpen(!isAcidityOpen)
+            handleStatToggle('acidity', !isAcidityOpen)
+          }}
           className="w-full bg-[#0000FF] text-white py-4 px-6 flex items-center justify-between"
+          aria-expanded={isAcidityOpen}
+          aria-controls="acidity-content"
         >
           <div className="flex items-center gap-3">
-           <Image src={Acidity} alt="Acidity" width={20} height={20} />
+            <Image 
+              src={Acidity} 
+              alt="" 
+              width={20} 
+              height={20} 
+              aria-hidden="true"
+            />
             <span className="text-[#4AFF00] text-xl">Free Acidity</span>
           </div>
-          <ChevronUp className="w-6 h-6 text-[#4AFF00]" />
+          <ChevronUp 
+            className="w-6 h-6 text-[#4AFF00]" 
+            aria-hidden="true"
+          />
         </button>
 
         {isAcidityOpen && (
-          <div className="bg-[#F5F5F5] px-6  py-4">
+          <div 
+            id="acidity-content"
+            className="bg-[#F5F5F5] px-6 py-4"
+            role="region"
+            aria-label="Free Acidity Details"
+          >
             <h3 className="text-2xl mb-12">The less the better...</h3>
             <div className="relative pl-[70px]">
               {/* Vertical Line */}
@@ -87,19 +114,37 @@ export default function OliveStats() {
       {/* Polyphenols Section */}
       <div className="w-full mt-1">
         <button
-          onClick={() => setPolyphenolsOpen(!isPolyphenolsOpen)}
+          onClick={() => {
+            setPolyphenolsOpen(!isPolyphenolsOpen)
+            handleStatToggle('polyphenols', !isPolyphenolsOpen)
+          }}
           className="w-full bg-[#0000FF] text-white py-4 px-6 flex items-center justify-between"
+          aria-expanded={isPolyphenolsOpen}
+          aria-controls="polyphenols-content"
         >
           <div className="flex items-center gap-3">
-          <Image src={polycide} alt="Acidity" width={20} height={20} />
-
+            <Image 
+              src={polycide} 
+              alt="" 
+              width={20} 
+              height={20} 
+              aria-hidden="true"
+            />
             <span className="text-[#4AFF00] text-xl">Polyphenols</span>
           </div>
-          <ChevronUp className="w-6 h-6 text-[#4AFF00]" />
+          <ChevronUp 
+            className="w-6 h-6 text-[#4AFF00]" 
+            aria-hidden="true"
+          />
         </button>
 
         {isPolyphenolsOpen && (
-          <div className="bg-[#F5F5F5] p-6 ">
+          <div 
+            id="polyphenols-content"
+            className="bg-[#F5F5F5] p-6 "
+            role="region"
+            aria-label="Polyphenols Details"
+          >
             <h3 className="text-2xl">The more the better...</h3>
             <p className="text-base text-[#666666] mb-12">Measured as milligrams in 1 kg</p>
             <div className="relative pl-[90px]">
