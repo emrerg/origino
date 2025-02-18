@@ -5,9 +5,10 @@ import { GiOlive } from 'react-icons/gi';
 import { LuPackage2 } from 'react-icons/lu';
 import { IoChevronUpOutline, IoChevronDownOutline } from 'react-icons/io5';
 import Image from 'next/image';
-import picked from '../../components/Images/picked.svg'
-import pressed from '../../components/Images/pressed.svg';
-import packed from '../../components/Images/Packed.svg';
+import picked from '../../components/Images/picked.png'
+import pressed from '../../components/Images/prssed.png';
+import packed from '../../components/Images/packed.png';
+import { IoChevronForwardSharp } from "react-icons/io5";
 
 const ProcessedSection = () => {
   const [openAccordion, setOpenAccordion] = useState('picked');
@@ -17,7 +18,7 @@ const ProcessedSection = () => {
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto px-4 pt-4 pb-20  bg-[#008c28] ">
+    <div className="w-full max-w-full  mx-auto px-4 pt-4 pb-20  bg-[#008c28] ">
       {/* Picked Section */}
       <div className="mb-4 rounded-lg overflow-hidden">
         <div 
@@ -42,8 +43,16 @@ const ProcessedSection = () => {
               </div>
               <div>
                 <h3 className="text-lg opacity-70 text-[#59E631]  ">GROVE LOCATION</h3>
-                <p className="text-2xl flex items-center  text-white  justify-between">
+                <p className="text-2xl flex items-start  text-white  justify-between">
                   Northwest of Iznik Lake, Bursa, Turkiye
+
+                  <div className='mt-2'>
+
+                  <IoChevronForwardSharp className="text-[#59E631] " 
+                  fill="#59E631"
+                  size={20}
+                  />
+                  </div>
                 </p>
               </div>
               <div>
@@ -83,9 +92,16 @@ const ProcessedSection = () => {
               </div>
               <div>
                 <h3 className="text-lg opacity-70 text-[#59E631]  ">PRESS LOCATION</h3>
-                <p className="text-2xl flex items-center  text-white  justify-between">
+                <p className="text-2xl flex items-start  text-white  justify-between">
                   Northwest of Iznik Lake, Bursa, Turkiye
-                  <IoChevronDownOutline className="text-xl" />
+               
+                  <div className='mt-2'>
+
+                  <IoChevronForwardSharp className="text-[#59E631] " 
+                  fill="#59E631"
+                  size={20}
+                  />
+                  </div>
                 </p>
               </div>
               <div>
@@ -125,9 +141,16 @@ const ProcessedSection = () => {
               </div>
               <div>
                 <h3 className="text-lg opacity-70">PACK LOCATION</h3>
-                <p className="text-2xl flex items-center  text-white  justify-between">
+                <p className="text-2xl flex items-start  text-white  justify-between">
                   Northwest of Iznik Lake, Bursa, Turkiye
-                  <IoChevronDownOutline className="text-xl" />
+                
+                  <div className='cursor-pointer mt-2'>
+
+                  <IoChevronForwardSharp className="text-[#59E631] " 
+                  fill="#59E631"
+                  size={20}
+                  />
+                  </div>
                 </p>
               </div>
               <div>

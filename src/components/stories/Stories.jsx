@@ -23,30 +23,23 @@ const reels = [
   {
     id: "1",
     type: "video",
-    videoId: "7_K3gzTatl0",
+    src: "https://origino-journey.s3.us-east-2.amazonaws.com/picking-videos/picking-video-2.MOV",
     title: "Picked",
     location: "Northwest of Iznik Lake, Bursa, Turkiye"
   },
   {
     id: "2",
     type: "video",
-    videoId: "dQw4w9WgXcQ",
+    src: "https://origino-journey.s3.us-east-2.amazonaws.com/pressing-videos/pressing-video-1.MOV",
     title: "Pressed",
     location: "Miras Olive Oil Mill, Bursa, Turkiye"
   },
   {
     id: "3",
     type: "video",
-    videoId: "dNzdc-5ivKA",
+    src: "https://origino-journey.s3.us-east-2.amazonaws.com/packing-videos/packing-video-1.MOV",
     title: "Packed",
     location: "Biziz Foods Ltd, Bursa, Turkiye"
-  },
-  {
-    id: "4",
-    type: "video",
-    videoId: "rk5Y0q4HUso",
-    title: "Picked",
-    location: "Northwest of Iznik Lake, Bursa, Turkiye"
   }
 ]
 
@@ -54,139 +47,62 @@ export default function Stories() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(true)
   const [progress, setProgress] = useState(0)
-  const playerRef = useRef(null)
+  const videoRef = useRef(null)
   const progressInterval = useRef(null)
 
-  const initializeYouTubePlayer = () => {
-    if (!window.YT) {
-      const tag = document.createElement('script')
-      tag.src = 'https://www.youtube.com/iframe_api'
-      const firstScriptTag = document.getElementsByTagName('script')[0]
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
-
-      window.onYouTubeIframeAPIReady = () => {
-        loadVideo(currentIndex)
-      }
-    } else {
-      loadVideo(currentIndex)
-    }
-  }
-
   useEffect(() => {
-    initializeYouTubePlayer()
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.error("Video playback failed:", error)
+      })
+      
+      updateProgress()
+    }
+
     return () => {
-      if (playerRef.current) {
-        playerRef.current.destroy()
-      }
       if (progressInterval.current) {
         clearInterval(progressInterval.current)
       }
     }
-  }, [])
+  }, [currentIndex])
 
-  const loadVideo = (index) => {
-    if (progressInterval.current) {
-      clearInterval(progressInterval.current)
-    }
-
-    if (playerRef.current) {
-      playerRef.current.destroy()
-      playerRef.current = null
-    }
-
-    console.log(`Loading video ${index}: ${reels[index].videoId}`)
-
-    playerRef.current = new window.YT.Player(`player-container`, {
-      videoId: reels[index].videoId,
-      height: '100%',
-      width: '100%',
-      playerVars: {
-        autoplay: 1,
-        controls: 0,
-        rel: 0,
-        showinfo: 0,
-        modestbranding: 1,
-        playsinline: 1,
-        mute: 1,
-        enablejsapi: 1,
-        loop: 0
-      },
-      events: {
-        onReady: (event) => {
-          console.log(`Video ${index} ready`)
-          event.target.playVideo()
-          updateProgress(event.target)
-        },
-        onStateChange: (event) => {
-          console.log(`Video ${index} state changed to: ${event.data}`)
-          if (event.data === 0) {
-            console.log('Video ended, going to next')
-            handleVideoProgress(1, index)
-            goToNext()
-          } else if (event.data === window.YT.PlayerState.PLAYING) {
-            handleStoryInteraction('play_video', index)
-          } else if (event.data === window.YT.PlayerState.PAUSED) {
-            handleStoryInteraction('pause_video', index)
-          }
-        },
-        onError: (event) => {
-          console.error(`Error loading video ${index}:`, event)
-          goToNext()
-        }
-      }
-    })
-  }
-
-  const updateProgress = (player) => {
+  const updateProgress = () => {
     if (progressInterval.current) {
       clearInterval(progressInterval.current)
     }
 
     progressInterval.current = setInterval(() => {
-      try {
-        if (player && typeof player.getCurrentTime === 'function' && typeof player.getDuration === 'function') {
-          const currentTime = player.getCurrentTime()
-          const duration = player.getDuration()
-          if (duration > 0) {
-            const calculatedProgress = (currentTime / duration) * 100
-            setProgress(calculatedProgress)
-
-            if (duration - currentTime <= 0.5) {
-              console.log('Video near end, preparing next')
-              goToNext()
-            }
-          }
+      if (videoRef.current) {
+        const currentTime = videoRef.current.currentTime
+        const duration = videoRef.current.duration
+        if (duration > 0) {
+          setProgress((currentTime / duration) * 100)
         }
-      } catch (error) {
-        console.error('Error updating progress:', error)
       }
     }, 100)
   }
 
   const goToNext = () => {
     handleStoryInteraction('next_story', currentIndex)
-    console.log('Going to next video, current index:', currentIndex)
     const nextIndex = (currentIndex + 1) % reels.length
-    console.log('Next index will be:', nextIndex)
     setCurrentIndex(nextIndex)
     setProgress(0)
-    
-    setTimeout(() => {
-      loadVideo(nextIndex)
-    }, 100)
   }
 
   const goToPrevious = () => {
     handleStoryInteraction('previous_story', currentIndex)
-    // Use modulo for previous as well to allow circular navigation
     const prevIndex = (currentIndex - 1 + reels.length) % reels.length
     setCurrentIndex(prevIndex)
     setProgress(0)
-    loadVideo(prevIndex)
   }
 
   const handleClose = () => {
     setIsVisible(false)
+  }
+
+  const handleVideoEnd = () => {
+    handleVideoProgress(1, currentIndex)
+    goToNext()
   }
 
   const handleStoryInteraction = (action, storyIndex) => {
@@ -230,10 +146,15 @@ export default function Stories() {
 
         {/* Video Container */}
         <div className="relative w-full h-full">
-          <div 
-            id="player-container" 
-            className="w-full h-full"
-            aria-label={`Story ${currentIndex + 1} of ${reels.length}: ${reels[currentIndex].title}`}
+          <video
+            ref={videoRef}
+            className="w-full h-full object-cover"
+            src={currentReel.src}
+            autoPlay
+            playsInline
+            muted
+            onEnded={handleVideoEnd}
+            aria-label={`Story ${currentIndex + 1} of ${reels.length}: ${currentReel.title}`}
           />
 
           {/* Navigation overlay */}

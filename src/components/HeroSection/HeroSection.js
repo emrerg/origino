@@ -10,7 +10,7 @@ export default function HeroSection() {
       
        
     <div 
-      className="flex items-center relative justify-center pb-[50px] px-5" 
+      className="flex items-center relative justify-center pb-[20px] px-5" 
       style={{ 
         background: 'linear-gradient(to bottom, #00B517 80%, rgb(0,139,40) 20%)'
       }}

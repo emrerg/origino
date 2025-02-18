@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
-import stock from "../Images/stockImage.svg"
-import harvast from "../Images/buy-harvast.svg"
+import stock from "../Images/stock.png"
+import harvast from "../Images/buy-harvast.png"
 
 
 export default function BuyInStock() {

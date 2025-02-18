@@ -5,6 +5,9 @@ import Image from 'next/image'
 import Acidity from "@/components/Images/acidity.svg"
 import polycide from "@/components/Images/polycide.svg"
 import { event } from '@/lib/gtag'
+import freeAcidity from '../../components/Images/freeAcidity.png'
+import Polyphenols from '../../components/Images/polyphenola.png'
+
 
 export default function OliveStats() {
   const [isAcidityOpen, setAcidityOpen] = useState(true)
@@ -33,7 +36,7 @@ export default function OliveStats() {
         >
           <div className="flex items-center gap-3">
             <Image 
-              src={Acidity} 
+              src={freeAcidity} 
               alt="" 
               width={20} 
               height={20} 
@@ -124,7 +127,7 @@ export default function OliveStats() {
         >
           <div className="flex items-center gap-3">
             <Image 
-              src={polycide} 
+              src={Polyphenols} 
               alt="" 
               width={20} 
               height={20} 
