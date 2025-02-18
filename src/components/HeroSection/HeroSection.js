@@ -1,5 +1,5 @@
 import { ArrowDown } from "lucide-react"
-import hithere from "../../components/Images/hithere.svg"
+import hithere from "../../components/Images/bg.png"
 import Image from "next/image"
 
 export default function HeroSection() {
