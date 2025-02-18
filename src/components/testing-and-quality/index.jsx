@@ -116,7 +116,7 @@ export default function TestingQuality() {
 
             <div className="mt-6 h-[calc(100vh-200px)] overflow-hidden px-6">
               <iframe
-                src="/pdf/report.pdf#toolbar=0"
+                src="https://origino-journey.s3.us-east-2.amazonaws.com/test-analysis-report.pdf"
                 className="w-full h-full rounded-lg"
                 title="Test Report PDF Document"
                 aria-label="Test results document"
