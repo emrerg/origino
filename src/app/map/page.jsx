@@ -3,303 +3,117 @@
 import { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import Image from 'next/image';
-
-// Import SVG icons directly
-import Pressed1 from '@/components/Images/pressed1.svg';
-import Pressed2 from '@/components/Images/pressed2.svg';
-import Packed1 from '@/components/Images/packed1.svg';
-import Packed2 from '@/components/Images/packed2.svg';
 
 // Initialize Mapbox access token
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
-const locations = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "title": "Miras Olive Mill",
-        "description": "",
-        "stop": "pressed"
-      },
-      "geometry": {
-        "coordinates": [29.324942, 40.49092],
-        "type": "Point"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "title": "Biziz Foods",
-        "description": "",
-        "stop": "packed"
-      },
-      "geometry": {
-        "coordinates": [28.866167, 40.333245],
-        "type": "Point"
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "title": "Masatlik Grove",
-        "description": "",
-        "stop": "picked"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [[
-          [29.352229, 40.538776],
-          [29.352471, 40.538798],
-          // ... rest of the polygon coordinates
-          [29.352229, 40.538776]
-        ]]
-      }
-    }
-  ]
-};
-
-// Update the icons configuration
-const locationIcons = {
-  pressed: {
-    icon1: Pressed1,
-    icon2: Pressed2
-  },
-  packed: {
-    icon1: Packed1,
-    icon2: Packed2
-  }
-};
-
 export default function MapPage() {
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const markers = useRef([]);
+  const marker = useRef(null);
+
+  // Miras Olive Oil Mill coordinates
+  const longitude = 29.0600;
+  const latitude = 40.1828;
 
   useEffect(() => {
-    if (map.current) return;
+    if (map.current) return; // Initialize map only once
 
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/navigation-night-v1',
-      center: [29.324942, 40.49092], // Center on Miras Olive Mill
-      zoom: 10,
-      pitch: 0,
-      bearing: 0
+      style: 'mapbox://styles/mapbox/satellite-v9', // Satellite style for green appearance
+      center: [longitude, latitude],
+      zoom: 15
     });
 
+    // Add navigation controls
+    map.current.addControl(new mapboxgl.NavigationControl());
+
     map.current.on('load', () => {
-      // Add green overlay
-      map.current.addLayer({
-        id: 'theme-overlay',
-        type: 'background',
-        paint: {
-          'background-color': '#006837',
-          'background-opacity': 0.3
-        }
-      });
+      // Add custom marker
+      const el = document.createElement('div');
+      el.className = 'custom-marker';
+      
+      marker.current = new mapboxgl.Marker(el)
+        .setLngLat([longitude, latitude])
+        .setPopup(
+          new mapboxgl.Popup({ offset: 25 })
+            .setHTML('<div class="popup-content"><h3>Miras Olive Oil Mill</h3><p>Pressed</p></div>')
+        )
+        .addTo(map.current);
 
-      // Add polygon for olive grove
-      map.current.addSource('grove', {
+      // Add routes or additional layers if needed
+      map.current.addSource('route', {
         type: 'geojson',
-        data: locations.features.find(f => f.properties.stop === 'picked')
-      });
-
-      map.current.addLayer({
-        id: 'grove-fill',
-        type: 'fill',
-        source: 'grove',
-        paint: {
-          'fill-color': '#006837',
-          'fill-opacity': 0.4
+        data: {
+          type: 'Feature',
+          properties: {},
+          geometry: {
+            type: 'LineString',
+            coordinates: [
+              [29.0590, 40.1828],
+              [29.0600, 40.1828],
+              [29.0610, 40.1828]
+            ]
+          }
         }
       });
 
       map.current.addLayer({
-        id: 'grove-outline',
+        id: 'route',
         type: 'line',
-        source: 'grove',
+        source: 'route',
+        layout: {
+          'line-join': 'round',
+          'line-cap': 'round'
+        },
         paint: {
           'line-color': '#00FF00',
-          'line-width': 0
+          'line-width': 3
         }
       });
-
-      // Updated marker creation
-      locations.features
-        .filter(feature => feature.geometry.type === 'Point')
-        .forEach(feature => {
-          const el = document.createElement('div');
-          el.className = `custom-marker ${feature.properties.stop}`;
-          
-          const popup = new mapboxgl.Popup({
-            offset: 25,
-            closeButton: false,
-            className: 'custom-popup'
-          })
-            .setHTML(`
-              <div class="popup-content">
-                <p>${feature.properties.stop}</p>
-                <div class="popup-icons">
-                  <div class="icon">
-                    <img 
-                      src="${locationIcons[feature.properties.stop]?.icon1.src}" 
-                      alt="${feature.properties.stop} icon 1"
-                    />
-                  </div>
-                  <div class="icon">
-                    <img 
-                      src="${locationIcons[feature.properties.stop]?.icon2.src}" 
-                      alt="${feature.properties.stop} icon 2"
-                    />
-                  </div>
-                </div>
-              </div>
-            `);
-
-          const marker = new mapboxgl.Marker(el)
-            .setLngLat(feature.geometry.coordinates)
-            .setPopup(popup)
-            .addTo(map.current);
-
-          markers.current.push(marker);
-        });
     });
   }, []);
 
   return (
     <div className="map-container">
       <div ref={mapContainer} className="map" />
-      <style jsx global>{`
+      <style jsx>{`
         .map-container {
           width: 100%;
           height: 100vh;
           position: relative;
         }
-        
         .map {
           width: 100%;
           height: 100%;
         }
-
-        /* Updated popup styling */
-        .mapboxgl-popup {
-          filter: none;
-        }
-
-        .mapboxgl-popup-content {
-          background: #s0000004D;
-          padding: 0;
-          border: none;
-          box-shadow: none;
-        }
-
-        .popup-content {
-          background: rgba(0, 0, 0, 0.85);
-          border-radius: 2px;
-          padding: 6px 10px;
-          min-width: 100px;
-          backdrop-filter: blur(4px);
-        }
-
-        .popup-content p {
-          color: #00FF00;
-          font-size: 12px;
-          font-weight: 500;
-          margin: 0 0 6px 0;
-          text-transform: uppercase;
-          text-align: left;
-          letter-spacing: 0.5px;
-        }
-
-        .popup-icons {
-          display: flex;
-          gap: 4px;
-          margin-top: 2px;
-        }
-
-        .icon {
-          width: 16px;
-          height: 16px;
-          padding: 2px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: rgba(0, 255, 0, 0.1);
-          border: 1px solid rgba(0, 255, 0, 0.3);
-          border-radius: 2px;
-        }
-
-        .icon img {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-          filter: brightness(2) sepia(100%) hue-rotate(50deg) saturate(1000%);
-        }
-
-        /* Custom marker colors based on type */
-        .custom-marker.pressed {
-          background-color: rgba(89, 230, 49, 0.6);
-          box-shadow: 0 0 10px rgba(89, 230, 49, 0.4);
-        }
-
-        .custom-marker.packed {
-          background-color: rgba(89, 230, 49, 0.6);
-          box-shadow: 0 0 10px rgba(89, 230, 49, 0.4);
-        }
-
-        /* Remove popup tip */
-        .mapboxgl-popup-tip {
-          display: none;
-        }
-
-        /* Custom marker styling */
-        .custom-marker {
-          width: 8px;
-          height: 8px;
-          border: 1px solid rgba(0, 255, 0, 0.8);
+        :global(.custom-marker) {
+          background-image: url('/marker-icon.png');
+          background-size: cover;
+          width: 30px;
+          height: 30px;
           border-radius: 50%;
           cursor: pointer;
-          background-color: rgba(0, 255, 0, 0.4);
-          box-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
+          background-color: #ffffff;
+          border: 2px solid #00FF00;
         }
-
-        .custom-marker.pressed,
-        .custom-marker.packed {
-          background-color: rgba(0, 255, 0, 0.6);
+        :global(.popup-content) {
+          padding: 10px;
+          text-align: center;
         }
-
-        /* Remove Mapbox controls and branding */
-        .mapboxgl-ctrl-top-right,
-        .mapboxgl-ctrl-bottom-left,
-        .mapboxgl-ctrl-bottom-right {
-          display: none !important;
+        :global(.popup-content h3) {
+          margin: 0;
+          font-size: 16px;
+          font-weight: bold;
         }
-
-        /* Night vision scan effect */
-        .map::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: linear-gradient(
-            to bottom,
-            transparent 50%,
-            rgba(0, 255, 0, 0.02) 50%
-          );
-          background-size: 100% 4px;
-          pointer-events: none;
-          animation: scan 10s linear infinite;
-          opacity: 0.3;
+        :global(.popup-content p) {
+          margin: 5px 0 0;
+          font-size: 14px;
         }
-
-        @keyframes scan {
-          0% { background-position: 0 0; }
-          100% { background-position: 0 100%; }
+        :global(.mapboxgl-popup-content) {
+          padding: 15px;
+          border-radius: 8px;
         }
       `}</style>
     </div>

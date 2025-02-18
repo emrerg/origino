@@ -6,18 +6,17 @@ import TestingQuality from '@/components/testing-and-quality';
 import StorageCard from '@/components/storage/storage';
 import BuyNextHarvest from '@/components/buy-harvast/BuyNextHarvest';
 import BuyInStock from '@/components/Stock/Stock';
-import StorageMainLayout from '../components/StorageMainLayout/StorageMainLayout';
+import StorageMainLayout from '@/components/StorageMainLayout/StorageMainLayout';
 import ProcessedSection from '@/components/processed-section';
 import OliveStats from '@/components/olive-stats/OliveStats';
 import Footer from '@/components/footer/Footer'
 import { useGoogleAnalytics } from '@/hooks/useGoogleAnalytics'
-import SearchWrapper from '@/components/SearchWrapper'
 
 export default function HomePage() {
   useGoogleAnalytics()
 
   return (
-    <SearchWrapper>
+    <>
       <HeroSection />
       <ProcessedSection />
       <TestingQuality />
@@ -31,6 +30,6 @@ export default function HomePage() {
         <BuyInStock />
       </div>
       <Footer />
-    </SearchWrapper>
+    </>
   )
 }
