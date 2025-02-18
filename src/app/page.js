@@ -18,17 +18,25 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+
+      <div >
       <ProcessedSection />
+      </div>
+
+      <div className=' mt-5'>
       <TestingQuality />
+      </div>
       <div className='px-5 mt-5'>
         <OliveStats />
       </div>
-      <div className='px-5 mt-5'>
+      <div className=' mt-5 flex justify-center items-center'>
         <StorageMainLayout/>
       </div>
       <div className='mt-5'>
         <BuyInStock />
       </div>
+
+      
       <Footer />
     </>
   )
