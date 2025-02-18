@@ -6,6 +6,7 @@ import { HiArrowRight } from 'react-icons/hi2'
 import { X } from "lucide-react"
 import Testing from '../../components/Images/testQuality.svg'
 import { event } from '@/lib/gtag'
+import testQuality from '../../components/Images/testQuality.png'
 
 export default function TestingQuality() {
   const [showPdf, setShowPdf] = useState(false)
@@ -38,7 +39,7 @@ export default function TestingQuality() {
             aria-label="Olive branches with olives in grayscale"
           >
             <Image
-              src={Testing}
+              src={testQuality}
               alt="Decorative olive branches with olives"
               fill
               className="object- grayscale"
@@ -115,7 +116,7 @@ export default function TestingQuality() {
 
             <div className="mt-6 h-[calc(100vh-200px)] overflow-hidden px-6">
               <iframe
-                src="/pdf/report.pdf#toolbar=0"
+                src="https://origino-journey.s3.us-east-2.amazonaws.com/test-analysis-report.pdf"
                 className="w-full h-full rounded-lg"
                 title="Test Report PDF Document"
                 aria-label="Test results document"

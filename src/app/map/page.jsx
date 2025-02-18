@@ -1,8 +1,10 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { useSearchParams } from 'next/navigation';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { journeyStops } from './journeyStops';
 
 // Initialize Mapbox access token
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
@@ -10,19 +12,31 @@ mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 export default function MapPage() {
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const marker = useRef(null);
-
-  // Miras Olive Oil Mill coordinates
-  const longitude = 29.0600;
-  const latitude = 40.1828;
+  const searchParams = useSearchParams();
+  const section = searchParams.get('section');
 
   useEffect(() => {
-    if (map.current) return; // Initialize map only once
+    if (map.current) return;
+
+    // Find the coordinates for the selected section
+    const stop = journeyStops.features.find(
+      feature => feature.properties.stop === section
+    );
+
+    let coordinates;
+    if (stop) {
+      coordinates = stop.geometry.type === 'Point' 
+        ? stop.geometry.coordinates
+        : stop.geometry.coordinates[0][0]; // For polygon, take first point
+    } else {
+      // Default coordinates if section not found
+      coordinates = [29.0600, 40.1828];
+    }
 
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/satellite-v9', // Satellite style for green appearance
-      center: [longitude, latitude],
+      style: 'mapbox://styles/mapbox/satellite-streets-v12',
+      center: coordinates,
       zoom: 15
     });
 
@@ -30,50 +44,99 @@ export default function MapPage() {
     map.current.addControl(new mapboxgl.NavigationControl());
 
     map.current.on('load', () => {
-      // Add custom marker
-      const el = document.createElement('div');
-      el.className = 'custom-marker';
-      
-      marker.current = new mapboxgl.Marker(el)
-        .setLngLat([longitude, latitude])
-        .setPopup(
-          new mapboxgl.Popup({ offset: 25 })
-            .setHTML('<div class="popup-content"><h3>Miras Olive Oil Mill</h3><p>Pressed</p></div>')
-        )
-        .addTo(map.current);
+      // Add marker for point locations
+      if (stop && stop.geometry.type === 'Point') {
+        const el = document.createElement('div');
+        el.className = 'custom-marker';
+        
+        new mapboxgl.Marker(el)
+          .setLngLat(coordinates)
+          .setPopup(
+            new mapboxgl.Popup({ offset: 25 })
+              .setHTML(`
+                <div class="popup-content">
+                  <h3>${stop.properties.title}</h3>
+                  <p>${stop.properties.description}</p>
+                </div>
+              `)
+          )
+          .addTo(map.current);
+      }
 
-      // Add routes or additional layers if needed
-      map.current.addSource('route', {
-        type: 'geojson',
-        data: {
-          type: 'Feature',
-          properties: {},
-          geometry: {
-            type: 'LineString',
-            coordinates: [
-              [29.0590, 40.1828],
-              [29.0600, 40.1828],
-              [29.0610, 40.1828]
-            ]
+      // Add polygon for grove area
+      if (stop && stop.geometry.type === 'Polygon') {
+        map.current.addSource('grove', {
+          type: 'geojson',
+          data: stop
+        });
+
+        map.current.addLayer({
+          id: 'grove-fill',
+          type: 'fill',
+          source: 'grove',
+          paint: {
+            'fill-color': '#00FF00',
+            'fill-opacity': 0.3
           }
-        }
-      });
+        });
 
-      map.current.addLayer({
-        id: 'route',
-        type: 'line',
-        source: 'route',
-        layout: {
-          'line-join': 'round',
-          'line-cap': 'round'
-        },
-        paint: {
-          'line-color': '#00FF00',
-          'line-width': 3
-        }
-      });
+        map.current.addLayer({
+          id: 'grove-outline',
+          type: 'line',
+          source: 'grove',
+          paint: {
+            'line-color': '#00FF00',
+            'line-width': 2
+          }
+        });
+
+        // Add popup for polygon
+        const popup = new mapboxgl.Popup({
+          closeButton: false,
+          closeOnClick: false
+        })
+          .setHTML(`
+            <div class="popup-content">
+              <h3>${stop.properties.title}</h3>
+              <p>${stop.properties.description}</p>
+            </div>
+          `);
+
+        // Show popup on polygon hover
+        map.current.on('mouseenter', 'grove-fill', (e) => {
+          map.current.getCanvas().style.cursor = 'pointer';
+          
+          // Get the center of the polygon for popup placement
+          const bounds = new mapboxgl.LngLatBounds();
+          stop.geometry.coordinates[0].forEach(coord => {
+            bounds.extend(coord);
+          });
+          
+          popup.setLngLat(bounds.getCenter())
+            .addTo(map.current);
+        });
+
+        // Remove popup on mouse leave
+        map.current.on('mouseleave', 'grove-fill', () => {
+          map.current.getCanvas().style.cursor = '';
+          popup.remove();
+        });
+
+        // Add click handler for polygon
+        map.current.on('click', 'grove-fill', () => {
+          const bounds = new mapboxgl.LngLatBounds();
+          stop.geometry.coordinates[0].forEach(coord => {
+            bounds.extend(coord);
+          });
+          
+          map.current.fitBounds(bounds, {
+            padding: 50,
+            duration: 1000
+          });
+        });
+      }
     });
-  }, []);
+  }, [section]);
 
   return (
     <div className="map-container">

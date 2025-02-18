@@ -18,193 +18,174 @@ import { event } from '@/lib/gtag'
  * @property {string} date
  */
 
-/** @type {Reel[]} */
-const reels = [
-  {
-    id: "1",
-    type: "video",
-    videoId: "7_K3gzTatl0",
-    title: "Picked",
-    location: "Northwest of Iznik Lake, Bursa, Turkiye"
-  },
-  {
-    id: "2",
-    type: "video",
-    videoId: "dQw4w9WgXcQ",
-    title: "Pressed",
-    location: "Miras Olive Oil Mill, Bursa, Turkiye"
-  },
-  {
-    id: "3",
-    type: "video",
-    videoId: "dNzdc-5ivKA",
-    title: "Packed",
-    location: "Biziz Foods Ltd, Bursa, Turkiye"
-  },
-  {
-    id: "4",
-    type: "video",
-    videoId: "rk5Y0q4HUso",
-    title: "Picked",
-    location: "Northwest of Iznik Lake, Bursa, Turkiye"
-  }
-]
+const videoSets = {
+  picked: [
+    {
+      id: "1",
+      type: "video",
+      src: "https://origino-journey.s3.us-east-2.amazonaws.com/picking-videos/picking-video-2.MOV",
+      title: "Picked",
+      location: "Northwest of Iznik Lake, Bursa, Turkiye"
+    },
+    {
+      id: "2",
+      type: "video",
+      src: "https://origino-journey.s3.us-east-2.amazonaws.com/picking-videos/picking-video-3.MOV",
+      title: "Picked",
+      location: "Northwest of Iznik Lake, Bursa, Turkiye"
+    },
+    {
+      id: "3",
+      type: "video",
+      src: "https://origino-journey.s3.us-east-2.amazonaws.com/picking-videos/picking-video-4.MOV",
+      title: "Picked",
+      location: "Northwest of Iznik Lake, Bursa, Turkiye"
+    },
+    {
+      id: "4",
+      type: "video",
+      src: "https://origino-journey.s3.us-east-2.amazonaws.com/picking-videos/picking-video-5.MOV",
+      title: "Picked",
+      location: "Northwest of Iznik Lake, Bursa, Turkiye"
+    }
+  ],
+  pressed: [
+    {
+      id: "1",
+      type: "video",
+      src: "https://origino-journey.s3.us-east-2.amazonaws.com/pressing-videos/pressing-video-1.MOV",
+      title: "Pressed",
+      location: "Biziz Foods Ltd, Bursa, Turkiye"
+    },
+    {
+      id: "2",
+      type: "video",
+      src: "https://origino-journey.s3.us-east-2.amazonaws.com/pressing-videos/pressing-video-2.MOV",
+      title: "Pressed",
+      location: "Biziz Foods Ltd, Bursa, Turkiye"
+    },
+    {
+      id: "3",
+      type: "video",
+      src: "https://origino-journey.s3.us-east-2.amazonaws.com/pressing-videos/pressing-video-3.MOV",
+      title: "Pressed",
+      location: "Biziz Foods Ltd, Bursa, Turkiye"
+    },
+    {
+      id: "4",
+      type: "video",
+      src: "https://origino-journey.s3.us-east-2.amazonaws.com/pressing-videos/pressing-video-4.MOV",
+      title: "Pressed",
+      location: "Biziz Foods Ltd, Bursa, Turkiye"
+    },
+    {
+      id: "5",
+      type: "video",
+      src: "https://origino-journey.s3.us-east-2.amazonaws.com/pressing-videos/pressing-video-5.MOV",
+      title: "Pressed",
+      location: "Biziz Foods Ltd, Bursa, Turkiye"
+    }
+  ]
+}
 
-export default function Stories() {
+export default function Stories({ section = 'picked', onClose }) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(true)
   const [progress, setProgress] = useState(0)
-  const playerRef = useRef(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const videoRef = useRef(null)
   const progressInterval = useRef(null)
 
-  const initializeYouTubePlayer = () => {
-    if (!window.YT) {
-      const tag = document.createElement('script')
-      tag.src = 'https://www.youtube.com/iframe_api'
-      const firstScriptTag = document.getElementsByTagName('script')[0]
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
-
-      window.onYouTubeIframeAPIReady = () => {
-        loadVideo(currentIndex)
-      }
-    } else {
-      loadVideo(currentIndex)
-    }
-  }
+  const reels = videoSets[section] || []
 
   useEffect(() => {
-    initializeYouTubePlayer()
-    return () => {
-      if (playerRef.current) {
-        playerRef.current.destroy()
+    if (!videoSets[section]) {
+      console.error(`No videos found for section: ${section}`);
+      setError(`No videos available for ${section} section`);
+      return;
+    }
+
+    const loadAndPlayVideo = async () => {
+      if (videoRef.current) {
+        try {
+          setIsLoading(true)
+          setError(null)
+
+          // Reset video
+          videoRef.current.currentTime = 0
+          await videoRef.current.load()
+
+          // Try to play
+          await videoRef.current.play()
+          setIsLoading(false)
+          updateProgress()
+        } catch (error) {
+          console.error("Video playback failed:", error)
+          setError("Failed to play video")
+          setIsLoading(false)
+        }
       }
+    }
+
+    loadAndPlayVideo()
+
+    return () => {
       if (progressInterval.current) {
         clearInterval(progressInterval.current)
       }
-    }
-  }, [])
-
-  const loadVideo = (index) => {
-    if (progressInterval.current) {
-      clearInterval(progressInterval.current)
-    }
-
-    if (playerRef.current) {
-      playerRef.current.destroy()
-      playerRef.current = null
-    }
-
-    console.log(`Loading video ${index}: ${reels[index].videoId}`)
-
-    playerRef.current = new window.YT.Player(`player-container`, {
-      videoId: reels[index].videoId,
-      height: '100%',
-      width: '100%',
-      playerVars: {
-        autoplay: 1,
-        controls: 0,
-        rel: 0,
-        showinfo: 0,
-        modestbranding: 1,
-        playsinline: 1,
-        mute: 1,
-        enablejsapi: 1,
-        loop: 0
-      },
-      events: {
-        onReady: (event) => {
-          console.log(`Video ${index} ready`)
-          event.target.playVideo()
-          updateProgress(event.target)
-        },
-        onStateChange: (event) => {
-          console.log(`Video ${index} state changed to: ${event.data}`)
-          if (event.data === 0) {
-            console.log('Video ended, going to next')
-            handleVideoProgress(1, index)
-            goToNext()
-          } else if (event.data === window.YT.PlayerState.PLAYING) {
-            handleStoryInteraction('play_video', index)
-          } else if (event.data === window.YT.PlayerState.PAUSED) {
-            handleStoryInteraction('pause_video', index)
-          }
-        },
-        onError: (event) => {
-          console.error(`Error loading video ${index}:`, event)
-          goToNext()
-        }
+      if (videoRef.current) {
+        videoRef.current.pause()
       }
-    })
-  }
+    }
+  }, [currentIndex, section])
 
-  const updateProgress = (player) => {
+  const updateProgress = () => {
     if (progressInterval.current) {
       clearInterval(progressInterval.current)
     }
 
     progressInterval.current = setInterval(() => {
-      try {
-        if (player && typeof player.getCurrentTime === 'function' && typeof player.getDuration === 'function') {
-          const currentTime = player.getCurrentTime()
-          const duration = player.getDuration()
+      if (videoRef.current) {
+        try {
+          const currentTime = videoRef.current.currentTime
+          const duration = videoRef.current.duration
           if (duration > 0) {
-            const calculatedProgress = (currentTime / duration) * 100
-            setProgress(calculatedProgress)
-
-            if (duration - currentTime <= 0.5) {
-              console.log('Video near end, preparing next')
-              goToNext()
-            }
+            setProgress((currentTime / duration) * 100)
           }
+        } catch (error) {
+          console.error("Error updating progress:", error)
         }
-      } catch (error) {
-        console.error('Error updating progress:', error)
       }
     }, 100)
   }
 
   const goToNext = () => {
-    handleStoryInteraction('next_story', currentIndex)
-    console.log('Going to next video, current index:', currentIndex)
-    const nextIndex = (currentIndex + 1) % reels.length
-    console.log('Next index will be:', nextIndex)
-    setCurrentIndex(nextIndex)
+    if (currentIndex < reels.length - 1) {
+      setCurrentIndex(currentIndex + 1)
+    } else {
+      handleClose()
+    }
     setProgress(0)
-    
-    setTimeout(() => {
-      loadVideo(nextIndex)
-    }, 100)
   }
 
   const goToPrevious = () => {
-    handleStoryInteraction('previous_story', currentIndex)
-    // Use modulo for previous as well to allow circular navigation
-    const prevIndex = (currentIndex - 1 + reels.length) % reels.length
-    setCurrentIndex(prevIndex)
-    setProgress(0)
-    loadVideo(prevIndex)
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1)
+      setProgress(0)
+    }
   }
 
   const handleClose = () => {
+    if (videoRef.current) {
+      videoRef.current.pause()
+    }
     setIsVisible(false)
+    if (onClose) onClose()
   }
 
-  const handleStoryInteraction = (action, storyIndex) => {
-    event({
-      action: action,
-      category: 'story_engagement',
-      label: `story_${storyIndex + 1}`,
-      value: storyIndex
-    })
-  }
-
-  const handleVideoProgress = (progress, storyIndex) => {
-    event({
-      action: 'video_progress',
-      category: 'story_engagement',
-      label: `story_${storyIndex + 1}`,
-      value: Math.floor(progress * 100)
-    })
+  const handleVideoEnd = () => {
+    goToNext()
   }
 
   if (!isVisible) return null
@@ -212,14 +193,8 @@ export default function Stories() {
   const currentReel = reels[currentIndex]
 
   return (
-    <div 
-      className="fixed inset-0 bg-black z-50" 
-      role="dialog"
-      aria-modal="true"
-      aria-label="Story viewer"
-    >
+    <div className="fixed inset-0 bg-black z-50">
       <div className="relative w-full h-full">
-        {/* Close button */}
         <button
           className="absolute top-4 right-4 z-20 text-white hover:bg-white/20 p-2 rounded-full"
           onClick={handleClose}
@@ -228,15 +203,36 @@ export default function Stories() {
           <X className="h-6 w-6" />
         </button>
 
-        {/* Video Container */}
         <div className="relative w-full h-full">
-          <div 
-            id="player-container" 
-            className="w-full h-full"
-            aria-label={`Story ${currentIndex + 1} of ${reels.length}: ${reels[currentIndex].title}`}
+          {isLoading && (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-white">Loading...</div>
+            </div>
+          )}
+          
+          {error && (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-white bg-red-500 p-4 rounded">{error}</div>
+            </div>
+          )}
+
+          <video
+            ref={videoRef}
+            className="w-full h-full object-cover"
+            src={currentReel?.src}
+            playsInline
+            muted
+            preload="auto"
+            onEnded={handleVideoEnd}
+            onError={(e) => {
+              console.error("Video error:", e)
+              setError("Failed to load video")
+              setIsLoading(false)
+            }}
+            onLoadStart={() => setIsLoading(true)}
+            onLoadedData={() => setIsLoading(false)}
           />
 
-          {/* Navigation overlay */}
           <div className="absolute inset-0 flex items-center justify-between">
             <button 
               className="w-1/2 h-full cursor-pointer" 
@@ -250,43 +246,26 @@ export default function Stories() {
             />
           </div>
 
-          {/* Title and Progress Bar Overlay */}
-          <div 
-            className="absolute bottom-0 left-0 right-0 p-4 space-y-4"
-            aria-live="polite"
-          >
+          <div className="absolute bottom-0 left-0 right-0 p-4 space-y-4">
             <div className="inline-flex items-center">
               <div className="bg-black/50 backdrop-blur-sm rounded-lg px-4 py-2 flex items-center space-x-2">
-                {currentReel.title === "Picked" && (
+                {currentReel?.title === "Picked" && (
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 )}
-                {currentReel.title === "Pressed" && (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                )}
-                {currentReel.title === "Packed" && (
+                {currentReel?.title === "Pressed" && (
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8" />
                   </svg>
                 )}
-                <span className="text-white text-lg" role="status">
-                  {currentReel.title} - {currentReel.location}
+                <span className="text-white">
+                  {currentReel?.title} - {currentReel?.location}
                 </span>
               </div>
             </div>
 
-            {/* Progress bars */}
-            <div 
-              className="flex gap-1" 
-              role="progressbar" 
-              aria-valuemin="0"
-              aria-valuemax="100"
-              aria-valuenow={progress}
-              aria-label={`Story progress: ${Math.round(progress)}%`}
-            >
+            <div className="flex gap-1">
               {reels.map((_, index) => (
                 <div key={index} className="h-1 flex-1 bg-white/30 rounded-full overflow-hidden">
                   <div
