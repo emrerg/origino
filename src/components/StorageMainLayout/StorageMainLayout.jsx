@@ -3,7 +3,7 @@ import Link from "next/link"
 
 export default function StorageMainLayout() {
   return (
-    <div className="bg-black text-white max-w-md p-8 space-y-6">
+    <div className="bg-black text-white  px-16 py-4 space-y-6">
       <div className="space-y-2">
         <h1 className="text-6xl font-bold leading-none tracking-tight">
           <span className="block">Sto</span>

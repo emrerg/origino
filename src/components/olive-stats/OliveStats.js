@@ -5,6 +5,9 @@ import Image from 'next/image'
 import Acidity from "@/components/Images/acidity.svg"
 import polycide from "@/components/Images/polycide.svg"
 import { event } from '@/lib/gtag'
+import freeAcidity from '../../components/Images/freeAcidity.png'
+import Polyphenols from '../../components/Images/polyphenola.png'
+
 
 export default function OliveStats() {
   const [isAcidityOpen, setAcidityOpen] = useState(true)
@@ -33,7 +36,7 @@ export default function OliveStats() {
         >
           <div className="flex items-center gap-3">
             <Image 
-              src={Acidity} 
+              src={freeAcidity} 
               alt="" 
               width={20} 
               height={20} 
@@ -42,7 +45,9 @@ export default function OliveStats() {
             <span className="text-[#4AFF00] text-xl">Free Acidity</span>
           </div>
           <ChevronUp 
-            className="w-6 h-6 text-[#4AFF00]" 
+            className={`w-6 h-6 text-[#4AFF00] transition-transform duration-200 ${
+              !isAcidityOpen ? 'rotate-180' : ''
+            }`}
             aria-hidden="true"
           />
         </button>
@@ -124,7 +129,7 @@ export default function OliveStats() {
         >
           <div className="flex items-center gap-3">
             <Image 
-              src={polycide} 
+              src={Polyphenols} 
               alt="" 
               width={20} 
               height={20} 
@@ -133,7 +138,9 @@ export default function OliveStats() {
             <span className="text-[#4AFF00] text-xl">Polyphenols</span>
           </div>
           <ChevronUp 
-            className="w-6 h-6 text-[#4AFF00]" 
+            className={`w-6 h-6 text-[#4AFF00] transition-transform duration-200 ${
+              !isPolyphenolsOpen ? 'rotate-180' : ''
+            }`}
             aria-hidden="true"
           />
         </button>
