@@ -15,7 +15,7 @@
     "@jridgewell/gen-mapping" "^0.3.5"
     "@jridgewell/trace-mapping" "^0.3.24"
 
-"@axe-core/react@^4.10.1":
+"@axe-core/react@^4.7.3":
   version "4.10.1"
   resolved "https://registry.npmjs.org/@axe-core/react/-/react-4.10.1.tgz"
   integrity sha512-GRGx/3Gbce9WQYXgY0iZzqOaHIRXBNGyV+zoUhJzBuDeoTL+XoeY3u/9PzdIVyH0pbNs1n1RChfsmWBy6hzKPg==
