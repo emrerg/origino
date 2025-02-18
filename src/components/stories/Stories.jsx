@@ -49,40 +49,40 @@ const videoSets = {
       location: "Northwest of Iznik Lake, Bursa, Turkiye"
     }
   ],
-  packed: [
+  pressed: [
     {
       id: "1",
       type: "video",
       src: "https://origino-journey.s3.us-east-2.amazonaws.com/pressing-videos/pressing-video-1.MOV",
-      title: "Packed",
+      title: "Pressed",
       location: "Biziz Foods Ltd, Bursa, Turkiye"
     },
     {
       id: "2",
       type: "video",
       src: "https://origino-journey.s3.us-east-2.amazonaws.com/pressing-videos/pressing-video-2.MOV",
-      title: "Packed",
+      title: "Pressed",
       location: "Biziz Foods Ltd, Bursa, Turkiye"
     },
     {
       id: "3",
       type: "video",
       src: "https://origino-journey.s3.us-east-2.amazonaws.com/pressing-videos/pressing-video-3.MOV",
-      title: "Packed",
+      title: "Pressed",
       location: "Biziz Foods Ltd, Bursa, Turkiye"
     },
     {
       id: "4",
       type: "video",
       src: "https://origino-journey.s3.us-east-2.amazonaws.com/pressing-videos/pressing-video-4.MOV",
-      title: "Packed",
+      title: "Pressed",
       location: "Biziz Foods Ltd, Bursa, Turkiye"
     },
     {
       id: "5",
       type: "video",
       src: "https://origino-journey.s3.us-east-2.amazonaws.com/pressing-videos/pressing-video-5.MOV",
-      title: "Packed",
+      title: "Pressed",
       location: "Biziz Foods Ltd, Bursa, Turkiye"
     }
   ]
@@ -254,7 +254,7 @@ export default function Stories({ section = 'picked', onClose }) {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 )}
-                {currentReel?.title === "Packed" && (
+                {currentReel?.title === "Pressed" && (
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8" />
                   </svg>

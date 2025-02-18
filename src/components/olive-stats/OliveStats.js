@@ -45,7 +45,9 @@ export default function OliveStats() {
             <span className="text-[#4AFF00] text-xl">Free Acidity</span>
           </div>
           <ChevronUp 
-            className="w-6 h-6 text-[#4AFF00]" 
+            className={`w-6 h-6 text-[#4AFF00] transition-transform duration-200 ${
+              !isAcidityOpen ? 'rotate-180' : ''
+            }`}
             aria-hidden="true"
           />
         </button>
@@ -136,7 +138,9 @@ export default function OliveStats() {
             <span className="text-[#4AFF00] text-xl">Polyphenols</span>
           </div>
           <ChevronUp 
-            className="w-6 h-6 text-[#4AFF00]" 
+            className={`w-6 h-6 text-[#4AFF00] transition-transform duration-200 ${
+              !isPolyphenolsOpen ? 'rotate-180' : ''
+            }`}
             aria-hidden="true"
           />
         </button>
