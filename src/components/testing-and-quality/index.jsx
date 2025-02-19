@@ -6,7 +6,8 @@ import { HiArrowRight } from 'react-icons/hi2'
 import { X } from "lucide-react"
 import Testing from '../../components/Images/testQuality.svg'
 import { event } from '@/lib/gtag'
-import testQuality from '../../components/Images/testQuality.png'
+import testQuality from '../../components/Images/test-quality.png'
+import { FaArrowRight } from "react-icons/fa";
 
 export default function TestingQuality() {
   const [showPdf, setShowPdf] = useState(false)
@@ -34,29 +35,22 @@ export default function TestingQuality() {
       <div className="w-full bg-white px-5">
         <div className="max-w-[640px] mx-auto">
           <div 
-            className="relative w-full -5 h-[480px]"
-            role="img"
+            className="relative w-full -5 "
+            role="i"
             aria-label="Olive branches with olives in grayscale"
           >
             <Image
               src={testQuality}
               alt="Decorative olive branches with olives"
-              fill
-              className="object- grayscale"
+             
+              className="w-[353px] h-[393px]"
               priority
             />
-            <div 
-              className="absolute left-8 top-8"
-              aria-hidden="true"
-            >
-              <div className="bg-[rgb(0,0,255)] w-[72px] h-[72px] flex items-center justify-center">
-                <FaLeaf className="text-[#4CAF50] w-9 h-9" />
-              </div>
-            </div>
+         
           </div>
 
           <div className="px-4 pt-12 pb-5 space-y-10 my-5 bg-[#F5F5F5]">
-            <h2 className="text-[40px] leading-[40px] font-bold text-black">
+            <h2 className="text-[40px] leading-[40px] font-semibold text-black">
               How do you distinguish quality olive oil from others?
             </h2>
 
@@ -64,20 +58,20 @@ export default function TestingQuality() {
               <p className="text-[20px] leading-6 text-black font-normal">
                 Two measurable values:
               </p>
-              <p className="text-[24px] leading-6 text-black">
-                <span className="font-bold">Free acidity</span>
+              <p className="text-[20px] leading-3 text-black">
+                <span className="font-semibold">Free acidity</span>
                 <span className="font-normal"> and </span>
-                <span className="font-bold">Polyphenols</span>
+                <span className="font-semibold">Polyphenols</span>
               </p>
             </div>
 
             <button 
               onClick={handlePdfView}
-              className="inline-flex justify-end w-full items-end gap-3 text-[18px] leading-6 text-black font-semibold transition-opacity"
+              className="inline-flex justify-end w-full  border-t-[1px] border-t-white pt-4  items-end gap-3 text-[18px] leading-6 text-black font-semibold transition-opacity"
               aria-label="Review test results document"
             >
               <span>Review test results</span>
-              <HiArrowRight className="w-7 h-7" aria-hidden="true" />
+              <FaArrowRight className="w-7 h-7" aria-hidden="true" />
             </button>
           </div>
         </div>

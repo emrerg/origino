@@ -1,0 +1,122 @@
+@font-face {
+  font-family: 'CustomFont'; /* We'll update this with your actual font name */
+  src: url('/fonts/your-actual-font-file.woff2') format('woff2');
+  /* Add other font formats if you have them */
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
+@font-face {
+  font-family: 'NeueHaasDisplay';
+  src: url('../components/font/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayBlack.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NeueHaasDisplay';
+  src: url('../components/font/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayBlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NeueHaasDisplay';
+  src: url('../components/font/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NeueHaasDisplay';
+  src: url('../components/font/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayBoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NeueHaasDisplay';
+  src: url('../components/font/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayLight.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NeueHaasDisplay';
+  src: url('../components/font/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayLightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NeueHaasDisplay';
+  src: url('../components/font/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayMediu.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NeueHaasDisplay';
+  src: url('../components/font/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayMediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NeueHaasDisplay';
+  src: url('../components/font/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayRoman.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NeueHaasDisplay';
+  src: url('../components/font/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayRomanItalic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NeueHaasDisplay';
+  src: url('../components/font/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayThin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NeueHaasDisplay';
+  src: url('../components/font/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayThinItalic.ttf') format('truetype');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NeueHaasDisplay';
+  src: url('../components/font/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayXThin.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NeueHaasDisplay';
+  src: url('../components/font/neue-haas-grotesk-display-pro-cufonfonts/NeueHaasDisplayXXThin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+} 

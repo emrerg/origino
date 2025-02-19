@@ -30,7 +30,7 @@ export default function OliveStats() {
             setAcidityOpen(!isAcidityOpen)
             handleStatToggle('acidity', !isAcidityOpen)
           }}
-          className="w-full bg-[#0000FF] text-white py-4 px-6 flex items-center justify-between"
+          className="w-full bg-[#0000FF] min-h-[90px] text-white py-4 px-6 flex items-center justify-between"
           aria-expanded={isAcidityOpen}
           aria-controls="acidity-content"
         >
@@ -38,11 +38,11 @@ export default function OliveStats() {
             <Image 
               src={freeAcidity} 
               alt="" 
-              width={20} 
-              height={20} 
+              width={32} 
+              height={32} 
               aria-hidden="true"
             />
-            <span className="text-[#4AFF00] text-xl">Free Acidity</span>
+            <span className="text-[#38FF00] text-[24px] leading-6 font-semibold">Free Acidity</span>
           </div>
           <ChevronUp 
             className={`w-6 h-6 text-[#4AFF00] transition-transform duration-200 ${

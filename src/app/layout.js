@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google';
 import MainLayout from '@/components/layout/MainLayout';
 import './globals.css';
+import './fonts.css';
 import Script from 'next/script';
 import { GA_MEASUREMENT_ID } from '@/lib/gtag';
 import { A11yTester } from '@/components/A11yTester'
@@ -10,7 +11,12 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata = {
   title: 'Origino',
   description: 'A modern landing page built with Next.js and Tailwind CSS',
-  viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({ children }) {
@@ -34,7 +40,7 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body className={inter.className}>
+      <body className="font-custom">
         <a 
           href="#main-content" 
           className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-white focus:text-black"
