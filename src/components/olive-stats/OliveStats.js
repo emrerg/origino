@@ -4,7 +4,7 @@ import { ChevronUp } from 'lucide-react'
 import Image from 'next/image'
 import Acidity from "@/components/Images/acidity.svg"
 import polycide from "@/components/Images/polycide.svg"
-import { event } from '@/lib/gtag'
+import { event, events } from '@/lib/gtag'
 import freeAcidity from '../../components/Images/freeAcidity.png'
 import Polyphenols from '../../components/Images/polyphenola.png'
 
@@ -14,6 +14,11 @@ export default function OliveStats() {
   const [isPolyphenolsOpen, setPolyphenolsOpen] = useState(true)
 
   const handleStatToggle = (statType, isOpen) => {
+    if (statType === 'acidity') {
+      isOpen ? events.freeAcidityAccordionExpanded() : events.freeAcidityAccordionClosed();
+    } else if (statType === 'polyphenols') {
+      isOpen ? events.polyphenolsAccordionExpanded() : events.polyphenolsAccordionClosed();
+    }
     event({
       action: isOpen ? 'expand_stat' : 'collapse_stat',
       category: 'stats_interaction',
@@ -30,7 +35,7 @@ export default function OliveStats() {
             setAcidityOpen(!isAcidityOpen)
             handleStatToggle('acidity', !isAcidityOpen)
           }}
-          className="w-full bg-[#0000FF] text-white py-4 px-6 flex items-center justify-between"
+          className="w-full bg-[#0000FF] min-h-[90px] text-white py-4 px-6 flex items-center justify-between"
           aria-expanded={isAcidityOpen}
           aria-controls="acidity-content"
         >
@@ -38,11 +43,11 @@ export default function OliveStats() {
             <Image 
               src={freeAcidity} 
               alt="" 
-              width={20} 
-              height={20} 
+              width={32} 
+              height={32} 
               aria-hidden="true"
             />
-            <span className="text-[#4AFF00] text-xl">Free Acidity</span>
+            <span className="text-[#38FF00] text-[24px] leading-6 font-semibold">Free Acidity</span>
           </div>
           <ChevronUp 
             className={`w-6 h-6 text-[#4AFF00] transition-transform duration-200 ${
@@ -123,7 +128,7 @@ export default function OliveStats() {
             setPolyphenolsOpen(!isPolyphenolsOpen)
             handleStatToggle('polyphenols', !isPolyphenolsOpen)
           }}
-          className="w-full bg-[#0000FF] text-white py-4 px-6 flex items-center justify-between"
+          className="w-full bg-[#0000FF] text-white min-h-[90px] py-4 px-6 flex items-center justify-between"
           aria-expanded={isPolyphenolsOpen}
           aria-controls="polyphenols-content"
         >
@@ -131,11 +136,11 @@ export default function OliveStats() {
             <Image 
               src={Polyphenols} 
               alt="" 
-              width={20} 
-              height={20} 
+              width={32} 
+              height={32} 
               aria-hidden="true"
             />
-            <span className="text-[#4AFF00] text-xl">Polyphenols</span>
+            <span className="text-[#38FF00] text-[24px] leading-6 font-semibold">Polyphenols</span>
           </div>
           <ChevronUp 
             className={`w-6 h-6 text-[#4AFF00] transition-transform duration-200 ${

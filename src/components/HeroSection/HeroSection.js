@@ -27,14 +27,17 @@ export default function HeroSection() {
       <div className="pt-[160px]">
 
 
-      <div className="bg-white rounded-lg p-8 max-w-md w-full space-y-4 relative">
+      <div className="bg-white rounded-lg p-8 max-w-md w-full space-y-4 relative  flex flex-col justify-between h-[598px] ">
+        <div>
+
         <h1 className="text-[100px] leading-[80px] font-medium tracking-tight">
           Hi there!
         </h1>
         <p className="text-[32px] leading-[32px] font-medium">
           Your Origino® finally has reached its final destination.
         </p>
-        <div className="flex items-center gap-5 text-[#00B517] pt-[100px]">
+        </div>
+        <div className="flex items-center gap-5 max-w-[263px] text-[#29BA00] pt-[100px] text-[24px] leading-[24px] font-medium ">
           <ArrowDown className="w-12 h-12" />
           <p className="text-lg">And it&apos;s been an adventurous journey...</p>
         </div>

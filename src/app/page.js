@@ -1,4 +1,5 @@
 "use client"
+import { useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import HeroSection from '@/components/HeroSection/HeroSection';
@@ -11,9 +12,28 @@ import ProcessedSection from '@/components/processed-section';
 import OliveStats from '@/components/olive-stats/OliveStats';
 import Footer from '@/components/footer/Footer'
 import { useGoogleAnalytics } from '@/hooks/useGoogleAnalytics'
+import { events } from '@/lib/gtag';
 
 export default function HomePage() {
   useGoogleAnalytics()
+
+  useEffect(() => {
+    // Track page land
+    events.landed();
+
+    // Check if we should scroll to storage section
+    const shouldScrollToStorage = sessionStorage.getItem('returnToStorage');
+    if (shouldScrollToStorage) {
+      // Clear the flag
+      sessionStorage.removeItem('returnToStorage');
+      
+      // Scroll to storage section
+      const storageSection = document.getElementById('storage-section');
+      if (storageSection) {
+        storageSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, []);
 
   return (
     <>
@@ -32,7 +52,7 @@ export default function HomePage() {
       <div className=' mt-5 flex justify-center items-center'>
         <StorageMainLayout/>
       </div>
-      <div className='mt-5'>
+      <div className='mt-10'>
         <BuyInStock />
       </div>
 

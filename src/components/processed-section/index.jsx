@@ -10,6 +10,8 @@ import pressed from "../../components/Images/prssed.png";
 import packed from "../../components/Images/packed.png";
 import Stories from "../stories/Stories";
 import { useRouter } from 'next/navigation';
+import { FaArrowRight } from "react-icons/fa";
+import { events } from '@/lib/gtag';
 
 const ProcessedSection = () => {
   const router = useRouter();
@@ -18,6 +20,13 @@ const ProcessedSection = () => {
   const [currentSection, setCurrentSection] = useState(null);
 
   const toggleAccordion = (section) => {
+    if (section === "picked") {
+      events.pickedAccordionClosed();
+    } else if (section === "pressed") {
+      events.pressedAccordionClosed();
+    } else if (section === "packed") {
+      events.packedAccordionClosed();
+    }
     setOpenAccordion(openAccordion === section ? null : section);
   };
 
@@ -33,11 +42,11 @@ const ProcessedSection = () => {
 
   return (
     <>
-      <div className="w-full max-w-full  mx-auto px-4 pt-4 pb-20  bg-[#008c28] ">
+      <div className="w-full max-w-full  mx-auto px-4 pt-4 pb-10  bg-[#008c28] ">
         {/* Picked Section */}
-        <div className="mb-4 rounded-lg overflow-hidden">
+        <div className="mb-1  overflow-hidden">
           <div
-            className={`bg-[#004225] p-6 cursor-pointer flex items-center justify-between ${openAccordion === "picked" ? "rounded-t-lg" : "rounded-lg"}`}
+            className={`bg-[#004225] p-6 cursor-pointer flex items-center justify-between ${openAccordion === "picked" ? "" : ""}`}
             onClick={() => toggleAccordion("picked")}
           >
             <div className="flex items-center gap-4">
@@ -51,7 +60,7 @@ const ProcessedSection = () => {
             )}
           </div>
           {openAccordion === "picked" && (
-            <div className="bg-[#006837] p-6 rounded-b-lg">
+            <div className="bg-[#006837] p-6 ">
               <div className="space-y-4 text-[#59E631]">
                 <div>
                   <h3 className="text-lg opacity-70 text-[#59E631]  ">
@@ -84,10 +93,12 @@ const ProcessedSection = () => {
                   </p>
                 </div>
                 <button
-                  className="w-full text-end py-4 text-lg hover:opacity-80 transition-opacity"
+                  className="w-full text-end py-4 border-t-[1px]  flex items-center text-[18px] leading-6 font-medium  justify-end gap-4 border-t-[#008c28] text-lg hover:opacity-80 transition-opacity"
                   onClick={() => handleShowStories("picked")}
                 >
-                  See the picking stories →
+                  See the picking stories 
+                  <FaArrowRight  className="text-[#59E631]" />
+
                 </button>
               </div>
             </div>
@@ -95,9 +106,9 @@ const ProcessedSection = () => {
         </div>
 
         {/* Pressed Section */}
-        <div className="mb-4 rounded-lg overflow-hidden">
+        <div className="mb-1  overflow-hidden">
           <div
-            className={`bg-[#004225] p-6 cursor-pointer flex items-center justify-between ${openAccordion === "pressed" ? "rounded-t-lg" : "rounded-lg"}`}
+            className={`bg-[#004225] p-6 cursor-pointer flex items-center justify-between ${openAccordion === "pressed" ? "" : ""}`}
             onClick={() => toggleAccordion("pressed")}
           >
             <div className="flex items-center gap-4">
@@ -142,11 +153,13 @@ const ProcessedSection = () => {
                   </h3>
                   <p className="text-2xl text-white  ">First Cold Press</p>
                 </div>
-                <button className="w-full text-end py-4 text-lg hover:opacity-80 transition-opacity"
-                
-                onClick={() => handleShowStories("pressed")}
+                <button
+                  className="w-full text-end py-4 border-t-[1px]  flex items-center text-[18px] leading-6 font-medium  justify-end gap-4 border-t-[#008c28] text-lg hover:opacity-80 transition-opacity"
+                  onClick={() => handleShowStories("pressed")}
                 >
-                  See the pressing stories →
+                  See the pressing stories 
+                  <FaArrowRight  className="text-[#59E631]" />
+
                 </button>
               </div>
             </div>
@@ -154,9 +167,9 @@ const ProcessedSection = () => {
         </div>
 
         {/* Packed Section */}
-        <div className="mb-4 rounded-lg overflow-hidden">
+        <div className="  overflow-hidden">
           <div
-            className={`bg-[#004225] p-6 cursor-pointer flex items-center justify-between ${openAccordion === "packed" ? "rounded-t-lg" : "rounded-lg"}`}
+            className={`bg-[#004225] p-6 cursor-pointer flex items-center justify-between ${openAccordion === "packed" ? "" : ""}`}
             onClick={() => toggleAccordion("packed")}
           >
             <div className="flex items-center gap-4">
