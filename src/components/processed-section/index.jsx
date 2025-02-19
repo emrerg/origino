@@ -11,6 +11,7 @@ import packed from "../../components/Images/packed.png";
 import Stories from "../stories/Stories";
 import { useRouter } from 'next/navigation';
 import { FaArrowRight } from "react-icons/fa";
+import { events } from '@/lib/gtag';
 
 const ProcessedSection = () => {
   const router = useRouter();
@@ -19,6 +20,13 @@ const ProcessedSection = () => {
   const [currentSection, setCurrentSection] = useState(null);
 
   const toggleAccordion = (section) => {
+    if (section === "picked") {
+      events.pickedAccordionClosed();
+    } else if (section === "pressed") {
+      events.pressedAccordionClosed();
+    } else if (section === "packed") {
+      events.packedAccordionClosed();
+    }
     setOpenAccordion(openAccordion === section ? null : section);
   };
 

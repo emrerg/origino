@@ -5,7 +5,7 @@ import { FaLeaf } from 'react-icons/fa'
 import { HiArrowRight } from 'react-icons/hi2'
 import { X } from "lucide-react"
 import Testing from '../../components/Images/testQuality.svg'
-import { event } from '@/lib/gtag'
+import { events } from '@/lib/gtag'
 import testQuality from '../../components/Images/test-quality.png'
 import { FaArrowRight } from "react-icons/fa";
 
@@ -13,20 +13,12 @@ export default function TestingQuality() {
   const [showPdf, setShowPdf] = useState(false)
 
   const handlePdfView = () => {
-    event({
-      action: 'view_test_results',
-      category: 'document_interaction',
-      label: 'test_results_pdf'
-    })
+    events.testResultsClicked();
     setShowPdf(true)
   }
 
   const handlePdfClose = () => {
-    event({
-      action: 'close_test_results',
-      category: 'document_interaction',
-      label: 'test_results_pdf'
-    })
+    events.testResultsClosed();
     setShowPdf(false)
   }
 

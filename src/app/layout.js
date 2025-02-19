@@ -11,6 +11,22 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata = {
   title: 'Origino',
   description: 'A modern landing page built with Next.js and Tailwind CSS',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/android-chrome-512x512.png', type: 'image/png', sizes: '512x512' }
+    ],
+    apple: [
+      { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' }
+    ],
+    other: [
+      {
+        rel: 'apple-touch-icon',
+        url: '/android-chrome-512x512.png'
+      }
+    ]
+  },
+  manifest: '/site.webmanifest'
 };
 
 export const viewport = {
@@ -23,6 +39,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        <link rel="icon" href="/android-chrome-512x512.png" sizes="any" />
+        <link
+          rel="icon"
+          href="/android-chrome-512x512.png"
+          type="image/png"
+          sizes="512x512"
+        />
+        <link
+          rel="apple-touch-icon"
+          href="/android-chrome-512x512.png"
+          sizes="512x512"
+        />
         <Script
           strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}

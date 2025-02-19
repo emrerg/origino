@@ -12,11 +12,15 @@ import ProcessedSection from '@/components/processed-section';
 import OliveStats from '@/components/olive-stats/OliveStats';
 import Footer from '@/components/footer/Footer'
 import { useGoogleAnalytics } from '@/hooks/useGoogleAnalytics'
+import { events } from '@/lib/gtag';
 
 export default function HomePage() {
   useGoogleAnalytics()
 
   useEffect(() => {
+    // Track page land
+    events.landed();
+
     // Check if we should scroll to storage section
     const shouldScrollToStorage = sessionStorage.getItem('returnToStorage');
     if (shouldScrollToStorage) {

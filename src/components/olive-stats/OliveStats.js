@@ -4,7 +4,7 @@ import { ChevronUp } from 'lucide-react'
 import Image from 'next/image'
 import Acidity from "@/components/Images/acidity.svg"
 import polycide from "@/components/Images/polycide.svg"
-import { event } from '@/lib/gtag'
+import { event, events } from '@/lib/gtag'
 import freeAcidity from '../../components/Images/freeAcidity.png'
 import Polyphenols from '../../components/Images/polyphenola.png'
 
@@ -14,6 +14,11 @@ export default function OliveStats() {
   const [isPolyphenolsOpen, setPolyphenolsOpen] = useState(true)
 
   const handleStatToggle = (statType, isOpen) => {
+    if (statType === 'acidity') {
+      isOpen ? events.freeAcidityAccordionExpanded() : events.freeAcidityAccordionClosed();
+    } else if (statType === 'polyphenols') {
+      isOpen ? events.polyphenolsAccordionExpanded() : events.polyphenolsAccordionClosed();
+    }
     event({
       action: isOpen ? 'expand_stat' : 'collapse_stat',
       category: 'stats_interaction',
