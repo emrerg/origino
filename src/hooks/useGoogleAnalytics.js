@@ -1,11 +1,19 @@
 'use client'
 
 import { usePathname, useSearchParams } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, Suspense } from 'react'
 import { pageview } from '@/lib/gtag'
 
 export function useGoogleAnalytics() {
   const pathname = usePathname()
+  return (
+    <Suspense fallback={null}>
+      <SearchParamsAnalytics pathname={pathname} />
+    </Suspense>
+  )
+}
+
+function SearchParamsAnalytics({ pathname }) {
   const searchParams = useSearchParams()
 
   useEffect(() => {
@@ -13,4 +21,6 @@ export function useGoogleAnalytics() {
       pageview(pathname + searchParams.toString())
     }
   }, [pathname, searchParams])
-} 
+  
+  return null
+}
