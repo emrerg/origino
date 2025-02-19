@@ -80,12 +80,12 @@ export default function TestingQuality() {
       {/* PDF Modal */}
       {showPdf && (
         <div 
-          className="fixed inset-0 bg-[#171717] z-50 flex items-center justify-center"
+          className="fixed inset-0  z-50 flex items-center justify-center"
           role="dialog"
           aria-modal="true"
           aria-labelledby="pdf-title"
         >
-          <div className="relative w-full h-full max-w-md mx-auto bg-white rounded-[32px] overflow-hidden">
+          <div className="relative w-full h-full max-w-md mx-auto bg-white  overflow-hidden">
             <div className="p-6 pb-0">
               <div className="flex justify-between items-start">
                 <h2 

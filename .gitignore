@@ -25,7 +25,6 @@ build/
 
 # Environment variables
 .env*.local
-.env
 
 # Debug files
 .debug/
@@ -93,3 +92,4 @@ pnpm-lock.yaml
 # Optional: Exclude local development tools
 .vscode/
 .idea/
+config.bat

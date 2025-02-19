@@ -3,7 +3,7 @@
 export default function Footer() {
   return (
     <footer className="w-full bg-white py-6 px-5 mt-10 border-t">
-      <div className="max-w-md mx-auto flex items-center justify-between">
+      <div className="max-w-md mx-auto flex items-center justify-center gap-7">
         {/* Copyright */}
         <div className="text-black text-[14px]">
           © 2025 Origino
