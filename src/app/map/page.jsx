@@ -35,7 +35,7 @@ function MapContent() {
 
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/satellite-streets-v12',
+      style: 'mapbox://styles/mapbox/satellite-v9',
       center: coordinates,
       zoom: 15
     });
@@ -98,7 +98,8 @@ function MapContent() {
           .setHTML(`
             <div class="popup-content">
               <h3>${stop.properties.title}</h3>
-              <p>${stop.properties.description}</p>
+              <p>${stop.properties.description}ddddd</p>
+              fff
             </div>
           `);
 
