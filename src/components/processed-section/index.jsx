@@ -35,9 +35,22 @@ const ProcessedSection = () => {
     setShowStories(true);
   };
 
+  const getLocationText = (section) => {
+    switch(section) {
+      case 'picked':
+        return 'Northwest of Iznik Lake, Bursa, Turkiye';
+      case 'pressed':
+        return 'Miras Olive Mill, Bursa, Turkiye';
+      case 'packed':
+        return 'Biziz Foods, Bursa, Turkiye';
+      default:
+        return '';
+    }
+  };
+
   const handleLocationClick = (section) => {
-    // Navigate to map with section parameter
-    router.push(`/map?section=${section}`);
+    const locationText = getLocationText(section);
+    router.push(`/map?section=${section}&location=${encodeURIComponent(locationText)}`);
   };
 
   return (

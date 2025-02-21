@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { journeyStops } from './journeyStops';
@@ -13,14 +13,15 @@ function MapContent() {
   const mapContainer = useRef(null);
   const map = useRef(null);
   const searchParams = useSearchParams();
-  const section = searchParams.get('section');
+  const locationText = searchParams.get('location');
+  const router = useRouter();
 
   useEffect(() => {
     if (map.current) return;
 
     // Find the coordinates for the selected section
     const stop = journeyStops.features.find(
-      feature => feature.properties.stop === section
+      feature => feature.properties.stop === locationText
     );
 
     let coordinates;
@@ -136,16 +137,71 @@ function MapContent() {
         });
       }
     });
-  }, [section]);
+  }, [locationText]);
+
+  const handleClose = () => {
+    router.back(); // This will navigate to the previous page
+  };
 
   return (
-    <div className="map-container">
-      <div ref={mapContainer} className="map" />
+    <div className="page-container">
+      <div className="close-button-container">
+        <button onClick={handleClose} className="close-button">×</button>
+      </div>
+      <div className="header">
+        <h1>{locationText || 'Location Map'}</h1>
+      </div>
+      <div className="map-container">
+        <div ref={mapContainer} className="map" />
+      </div>
       <style jsx>{`
-        .map-container {
+        .page-container {
           width: 100%;
           height: 100vh;
-          position: relative;
+          display: flex;
+          flex-direction: column;
+        }
+        .close-button-container {
+          padding: 10px;
+          display: flex;
+          justify-content: flex-end;
+          margin-bottom: 0;
+          margin-top: 10px;
+        }
+        .close-button {
+          background: none;
+          border: none;
+          font-size: 28px;
+          cursor: pointer;
+          padding: 0;
+          color: #666;
+          transition: color 0.2s ease;
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .close-button:hover {
+          color: #00000;
+        }
+        .header {
+          padding: 0px 20px 20px 30px;
+          background-color: white;
+          margin-top: 0;
+        }
+        .header h1 {
+          margin: 0;
+          font-size: 32px;
+          text-align: left;
+          font-weight: 700;
+        }
+        .map-container {
+          flex: 1;
+          width: calc(100% - 20px);
+          height: calc(80vh - 20px);
+          padding: 0 10px 30px 30px;
+          marginBottom: 50px
         }
         .map {
           width: 100%;
