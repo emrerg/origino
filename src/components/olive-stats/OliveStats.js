@@ -31,7 +31,7 @@ export default function OliveStats() {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto">
+    <div className="w-full max-w-md mx-auto ">
       {/* Free Acidity Section */}
       <div className="w-full">
         <button
@@ -66,11 +66,11 @@ export default function OliveStats() {
         {isAcidityOpen && (
           <div
             id="acidity-content"
-            className="bg-[#F5F5F5] px-6 py-4"
+            className="bg-[#F5F5F5] px-6 py-14"
             role="region"
             aria-label="Free Acidity Details"
           >
-            <h3 className="text-2xl mb-12">The less the better...</h3>
+            <h3 className="text-xl mb-12">The less the better...</h3>
             <div className="relative pl-[70px]">
               {/* Vertical Line */}
               <div
@@ -259,11 +259,11 @@ export default function OliveStats() {
         {isPolyphenolsOpen && (
           <div
             id="polyphenols-content"
-            className="bg-[#F5F5F5] p-6 "
+            className="bg-[#F5F5F5] p-6  py-12"
             role="region"
             aria-label="Polyphenols Details"
           >
-            <h3 className="text-2xl">The more the better...</h3>
+            <h3 className="text-xl">The more the better...</h3>
             <p className="text-base text-[#666666] mb-12">
               Measured as milligrams in 1 kg
             </p>
@@ -333,16 +333,24 @@ export default function OliveStats() {
                 </div>
 
                 <div className="flex items-start">
-                  <span className="absolute left-0 text-xl whitespace-nowrap">
+                  <span className="absolute left-0 text-xl whitespace-nowrap" style={{ top: "308px" }}>
                     0<span className="text-sm">mg/lt</span>
                   </span>
-                  <div className="w-4 h-[2px] bg-[#000000] relative -left-[1px] top-3" />
+                  <div className="w-4 h-[2px] bg-[#000000] relative -left-[1px]  top-[190px]" />
                   <div className="ml-6">
                     <p className="text-base text-[#FFB800] font-semibold">
                       Most boutique
                       <br />
                       olive oils
                     </p>
+
+                    <p className="text-base text-[#EF3E25] py-14 font-semibold">
+                    Most supermarket
+                    
+                      <br />
+                      olive oils
+                    </p>
+
                   </div>
                 </div>
               </div>

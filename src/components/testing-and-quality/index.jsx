@@ -27,22 +27,20 @@ export default function TestingQuality() {
       <div className="w-full bg-white px-5">
         <div className="max-w-[640px] mx-auto">
           <div 
-            className="relative w-full -5 "
+            className="relative w-full h-[385px]"
             role="i"
             aria-label="Olive branches with olives in grayscale"
           >
             <Image
               src={testQuality}
               alt="Decorative olive branches with olives"
-             
-              className="w-[353px] h-[393px]"
+              className="w-[353px] h-[393px] absolute -top-4"
               priority
             />
-         
           </div>
 
           <div className="px-4 pt-12 pb-5 space-y-10 my-5 bg-[#F5F5F5]">
-            <h2 className="text-[40px] leading-[40px] font-semibold text-black">
+            <h2 className="text-[40px] leading-[40px] font-[500] text-black">
               How do you distinguish quality olive oil from others?
             </h2>
 
@@ -51,15 +49,15 @@ export default function TestingQuality() {
                 Two measurable values:
               </p>
               <p className="text-[20px] leading-3 text-black">
-                <span className="font-semibold">Free acidity</span>
+                <span className="font-[500]">Free acidity</span>
                 <span className="font-normal"> and </span>
-                <span className="font-semibold">Polyphenols</span>
+                <span className="font-[500]">Polyphenols</span>
               </p>
             </div>
 
             <button 
               onClick={handlePdfView}
-              className="inline-flex justify-end w-full  border-t-[1px] border-t-white pt-4  items-end gap-3 text-[18px] leading-6 text-black font-semibold transition-opacity"
+              className="inline-flex justify-end w-full  border-t-[1px] border-t-white pt-4  items-end gap-3 text-[18px] leading-6 text-black font-[500] transition-opacity"
               aria-label="Review test results document"
             >
               <span>Review test results</span>

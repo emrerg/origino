@@ -20,7 +20,7 @@ export default function HeroSection() {
         <Image 
           src={hithere} 
           alt="background pattern" 
-          className="absolute top-0 right-0 w-auto h-full object-cover"
+          className="absolute top-0 right-0  w-auto h-full object-cover"
         />
       </div>
 
@@ -30,7 +30,7 @@ export default function HeroSection() {
       <div className="bg-white rounded-lg p-8 max-w-md w-full space-y-4 relative  flex flex-col justify-between h-[598px] ">
         <div>
 
-        <h1 className="text-[100px] leading-[80px] font-medium tracking-tight">
+        <h1 className="text-[100px] leading-[80px]  mb-6 font-medium tracking-tight">
           Hi there!
         </h1>
         <p className="text-[32px] leading-[32px] font-medium">

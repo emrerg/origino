@@ -42,7 +42,7 @@ const ProcessedSection = () => {
       case 'pressed':
         return 'Miras Olive Mill, Bursa, Turkiye';
       case 'packed':
-        return 'Biziz Foods, Bursa, Turkiye';
+        return 'Biziz Foods Ltd, Bursa, Turkiye';
       default:
         return '';
     }
@@ -55,7 +55,7 @@ const ProcessedSection = () => {
 
   return (
     <>
-      <div className="w-full max-w-full  mx-auto px-4 pt-4 pb-10  bg-[#008c28] ">
+      <div className="w-full max-w-full  mx-auto px-4 pt-4 pb-16  bg-[#008c28] ">
         {/* Picked Section */}
         <div className="mb-1  overflow-hidden">
           <div
@@ -76,14 +76,14 @@ const ProcessedSection = () => {
             <div className="bg-[#006837] p-6 ">
               <div className="space-y-4 text-[#59E631]">
                 <div>
-                  <h3 className="text-lg opacity-70 text-[#59E631]  ">
+                  <h3 className="text-lg opacity-70 text-[#59E631] font-[500]  ">
                     HARVEST DATE
                   </h3>
-                  <p className="text-2xl text-white ">November 8th, 2023</p>
+                  <p className="text-xl text-white ">November 8th, 2023</p>
                 </div>
                 <div>
-                  <h3 className="text-lg opacity-70 text-[#59E631]">GROVE LOCATION</h3>
-                  <p className="text-2xl flex items-start text-white justify-between">
+                  <h3 className="text-lg opacity-70 text-[#59E631] font-[500]">GROVE LOCATION</h3>
+                  <p className="text-xl flex items-start text-white justify-between">
                     Northwest of Iznik Lake, Bursa, Turkiye
                     <div 
                       className="mt-2 cursor-pointer" 
@@ -98,10 +98,10 @@ const ProcessedSection = () => {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg opacity-70 text-[#59E631]  ">
+                  <h3 className="text-lg opacity-70 text-[#59E631] font-[500]  ">
                     HEAD CULTIVATOR
                   </h3>
-                  <p className="text-2xl text-white  ">
+                  <p className="text-xl text-white  ">
                     Turker Yalcinkaya (42)
                   </p>
                 </div>
@@ -208,7 +208,7 @@ const ProcessedSection = () => {
                 <div>
                   <h3 className="text-lg opacity-70">PACK LOCATION</h3>
                   <p className="text-2xl flex items-start text-white justify-between">
-                    Biziz Foods, Bursa, Turkiye
+                    Biziz Foods Ltd, Bursa, Turkiye
                     <div 
                       className="mt-2 cursor-pointer"
                       onClick={() => handleLocationClick('packed')}

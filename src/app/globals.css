@@ -2,9 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Neue Haas Grotesk Display Pro';
+  src: url('/fonts/NeueHaasDisplayPro-Regular.woff2') format('woff2'),
+       url('/fonts/NeueHaasDisplayPro-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Haas Grotesk Display Pro';
+  src: url('/fonts/NeueHaasDisplayPro-Medium.woff2') format('woff2'),
+       url('/fonts/NeueHaasDisplayPro-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Haas Grotesk Display Pro';
+  src: url('/fonts/NeueHaasDisplayPro-Bold.woff2') format('woff2'),
+       url('/fonts/NeueHaasDisplayPro-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-neue-haas: 'Neue Haas Grotesk Display Pro', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,7 +45,16 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-neue-haas);
+}
+
+html,
+body {
+  font-family: var(--font-neue-haas);
+}
+
+* {
+  font-family: inherit;
 }
 
 /* Custom styles for Stories component */

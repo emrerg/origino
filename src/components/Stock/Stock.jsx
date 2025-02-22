@@ -25,7 +25,7 @@ export default function BuyInStock() {
       </div>
 
       {/* CTA Button */}
-      <button className="rounded-full border-2 border-[#00bf63] bg-white px-6 py-2.5 text-sm font-medium text-[#00bf63] transition-colors ">
+      <button className="rounded-full border-2 border-[#006837] bg-white px-6 py-2.5 text-sm font-medium text-[#006837] transition-colors ">
         OR BUY WHILE IN STOCK
       </button>
     </Link>

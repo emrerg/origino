@@ -5,8 +5,8 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { journeyStops } from './journeyStops';
+import Cross from "@/components/Images/cross.svg";
 
-// Initialize Mapbox access token
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
 function MapContent() {
@@ -19,7 +19,6 @@ function MapContent() {
   useEffect(() => {
     if (map.current) return;
 
-    // Find the coordinates for the selected section
     const stop = journeyStops.features.find(
       feature => feature.properties.stop === locationText
     );
@@ -28,23 +27,48 @@ function MapContent() {
     if (stop) {
       coordinates = stop.geometry.type === 'Point' 
         ? stop.geometry.coordinates
-        : stop.geometry.coordinates[0][0]; // For polygon, take first point
+        : stop.geometry.coordinates[0][0];
     } else {
-      // Default coordinates if section not found
       coordinates = [29.0600, 40.1828];
     }
 
+    // Initialize map with custom style
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/satellite-streets-v12',
+      style: 'mapbox://styles/mapbox/satellite-v9',
       center: coordinates,
       zoom: 15
     });
 
-    // Add navigation controls
-    map.current.addControl(new mapboxgl.NavigationControl());
-
     map.current.on('load', () => {
+      // Adjust night vision effect for darker green
+      map.current.setPaintProperty('satellite', 'raster-saturation', 2);
+      map.current.setPaintProperty('satellite', 'raster-contrast', 0.5);
+      map.current.setPaintProperty('satellite', 'raster-brightness-max', 0.5);
+      map.current.setPaintProperty('satellite', 'raster-brightness-min', 0.2);
+      
+      // Intensify green tint
+      map.current.setPaintProperty('satellite', 'raster-hue-rotate', 140);
+      map.current.setPaintProperty('satellite', 'raster-color-mix', [
+        'interpolate',
+        ['linear'],
+        ['zoom'],
+        0,
+        ['rgba', 0, 255, 0, 1],
+        22,
+        ['rgba', 0, 255, 0, 1]
+      ]);
+
+      // Change overlay to dark green instead of black
+      map.current.addLayer({
+        'id': 'night-overlay',
+        'type': 'background',
+        'paint': {
+          'background-color': '#003300',
+          'background-opacity': 0.3
+        }
+      });
+
       // Add marker for point locations
       if (stop && stop.geometry.type === 'Point') {
         const el = document.createElement('div');
@@ -77,7 +101,7 @@ function MapContent() {
           source: 'grove',
           paint: {
             'fill-color': '#00FF00',
-            'fill-opacity': 0.3
+            'fill-opacity': 0.5 
           }
         });
 
@@ -107,7 +131,6 @@ function MapContent() {
         map.current.on('mouseenter', 'grove-fill', (e) => {
           map.current.getCanvas().style.cursor = 'pointer';
           
-          // Get the center of the polygon for popup placement
           const bounds = new mapboxgl.LngLatBounds();
           stop.geometry.coordinates[0].forEach(coord => {
             bounds.extend(coord);
@@ -117,13 +140,11 @@ function MapContent() {
             .addTo(map.current);
         });
 
-        // Remove popup on mouse leave
         map.current.on('mouseleave', 'grove-fill', () => {
           map.current.getCanvas().style.cursor = '';
           popup.remove();
         });
 
-        // Add click handler for polygon
         map.current.on('click', 'grove-fill', () => {
           const bounds = new mapboxgl.LngLatBounds();
           stop.geometry.coordinates[0].forEach(coord => {
@@ -137,16 +158,21 @@ function MapContent() {
         });
       }
     });
+
+    // Add navigation controls
+    map.current.addControl(new mapboxgl.NavigationControl());
   }, [locationText]);
 
   const handleClose = () => {
-    router.back(); // This will navigate to the previous page
+    router.back();
   };
 
   return (
     <div className="page-container">
       <div className="close-button-container">
-        <button onClick={handleClose} className="close-button">×</button>
+        <button onClick={handleClose} className="close-button mt-4">
+          <Cross width={24} height={24} />
+        </button>
       </div>
       <div className="header">
         <h1>{locationText || 'Location Map'}</h1>
@@ -171,9 +197,8 @@ function MapContent() {
         .close-button {
           background: none;
           border: none;
-          font-size: 28px;
           cursor: pointer;
-          padding: 0;
+          padding-right: 15px;
           color: #666;
           transition: color 0.2s ease;
           width: 40px;
@@ -183,29 +208,33 @@ function MapContent() {
           justify-content: center;
         }
         .close-button:hover {
-          color: #00000;
+          color: #000000;
         }
         .header {
           padding: 0px 20px 20px 30px;
           background-color: white;
           margin-top: 0;
+          width: 80%
         }
         .header h1 {
           margin: 0;
           font-size: 32px;
           text-align: left;
-          font-weight: 700;
+          font-weight: 600;
+          font-family: var(--font-neue-haas);
         }
         .map-container {
           flex: 1;
           width: calc(100% - 20px);
           height: calc(80vh - 20px);
           padding: 0 10px 30px 30px;
-          marginBottom: 50px
+          border-radius: 0 0 8px 8px;
+          overflow: hidden;
         }
         .map {
           width: 100%;
           height: 100%;
+          border-radius: 0 0 8px 8px;
         }
         :global(.custom-marker) {
           background-image: url('/marker-icon.png');
@@ -233,6 +262,9 @@ function MapContent() {
         :global(.mapboxgl-popup-content) {
           padding: 15px;
           border-radius: 8px;
+        }
+        :global(.mapboxgl-canvas-container) {
+          border-radius: 0 0 8px 8px;
         }
       `}</style>
     </div>
