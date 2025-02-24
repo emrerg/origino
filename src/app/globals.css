@@ -62,33 +62,6 @@
   --processed-body: #ffffff;
 }
 
-[data-theme="dark"],
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Dark theme variables */
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    
-    /* Surface colors */
-    --surface-1: #0a0a0a;
-    --surface-2: #1f2937;
-    --surface-3: #374151;
-    
-    /* Text colors */
-    --text-1: #ededed;
-    --text-2: #d1d5db;
-    --text-3: #9ca3af;
-
-    /* ProcessedSection theme colors - dark mode */
-    --processed-bg: #004225;
-    --processed-section-bg: #003015;
-    --processed-content-bg: #004225;
-    --processed-text: #7dff59;
-    --processed-heading: #7dff59;
-    --processed-body: #ededed;
-  }
-}
-
 body {
   color: var(--text-1);
   background: var(--background);
