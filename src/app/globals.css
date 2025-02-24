@@ -52,25 +52,14 @@
   --text-1: #171717;
   --text-2: #374151;
   --text-3: #6B7280;
-}
 
-[data-theme="dark"],
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Dark theme variables */
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    
-    /* Surface colors */
-    --surface-1: #0a0a0a;
-    --surface-2: #1f2937;
-    --surface-3: #374151;
-    
-    /* Text colors */
-    --text-1: #ededed;
-    --text-2: #d1d5db;
-    --text-3: #9ca3af;
-  }
+  /* ProcessedSection theme colors */
+  --processed-bg: #008c28;
+  --processed-section-bg: #004225;
+  --processed-content-bg: #006837;
+  --processed-text: #59E631;
+  --processed-heading: #59E631;
+  --processed-body: #ffffff;
 }
 
 body {
