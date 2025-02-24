@@ -52,6 +52,14 @@
   --text-1: #171717;
   --text-2: #374151;
   --text-3: #6B7280;
+
+  /* ProcessedSection theme colors */
+  --processed-bg: #008c28;
+  --processed-section-bg: #004225;
+  --processed-content-bg: #006837;
+  --processed-text: #59E631;
+  --processed-heading: #59E631;
+  --processed-body: #ffffff;
 }
 
 [data-theme="dark"],
@@ -70,6 +78,14 @@
     --text-1: #ededed;
     --text-2: #d1d5db;
     --text-3: #9ca3af;
+
+    /* ProcessedSection theme colors - dark mode */
+    --processed-bg: #004225;
+    --processed-section-bg: #003015;
+    --processed-content-bg: #004225;
+    --processed-text: #7dff59;
+    --processed-heading: #7dff59;
+    --processed-body: #ededed;
   }
 }
 
