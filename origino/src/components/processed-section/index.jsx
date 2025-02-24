@@ -258,13 +258,7 @@ const ProcessedSection = () => {
                   </h3>
                   <p className="text-2xl text-white  ">Food-grade tin, with minimum plastic contact, eliminating oxygen and light exposure. </p>
                 </div>
-                <button
-                  className="w-full text-end  border-t-[1px]  pt-5 flex items-center text-[18px] leading-6 font-medium  justify-end gap-4 border-t-[#008c28] text-lg hover:opacity-80 transition-opacity"
-                  onClick={() => handleShowStories("pressed")}
-                >
-                  See the pressing stories
-                  <FaArrowRight className="text-[#59E631]" />
-                </button>
+           
               </div>
             </div>
           )}
