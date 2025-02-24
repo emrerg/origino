@@ -30,6 +30,7 @@ const testScenarios = [
 ]
 
 console.log('Accessibility Test Checklist:')
+
 testScenarios.forEach(({ component, tests }) => {
   console.log(`\n${component}:`)
   tests.forEach((test, index) => {
