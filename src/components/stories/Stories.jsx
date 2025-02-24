@@ -222,6 +222,7 @@ export default function Stories({ section = 'picked', onClose }) {
             src={currentReel?.src}
             playsInline
             muted
+            controls={false}
             preload="auto"
             onEnded={handleVideoEnd}
             onError={(e) => {

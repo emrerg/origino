@@ -30,20 +30,51 @@
 }
 
 :root {
+  /* Light theme variables */
   --background: #ffffff;
   --foreground: #171717;
   --font-neue-haas: 'Neue Haas Grotesk Display Pro', sans-serif;
+  
+  /* Common theme variables */
+  --primary: #007AFF;
+  --secondary: #6B7280;
+  --accent: #0EA5E9;
+  --success: #22C55E;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  
+  /* Surface colors */
+  --surface-1: #ffffff;
+  --surface-2: #f3f4f6;
+  --surface-3: #e5e7eb;
+  
+  /* Text colors */
+  --text-1: #171717;
+  --text-2: #374151;
+  --text-3: #6B7280;
 }
 
+[data-theme="dark"],
 @media (prefers-color-scheme: dark) {
   :root {
+    /* Dark theme variables */
     --background: #0a0a0a;
     --foreground: #ededed;
+    
+    /* Surface colors */
+    --surface-1: #0a0a0a;
+    --surface-2: #1f2937;
+    --surface-3: #374151;
+    
+    /* Text colors */
+    --text-1: #ededed;
+    --text-2: #d1d5db;
+    --text-3: #9ca3af;
   }
 }
 
 body {
-  color: var(--foreground);
+  color: var(--text-1);
   background: var(--background);
   font-family: var(--font-neue-haas);
 }
