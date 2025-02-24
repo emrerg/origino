@@ -52,9 +52,15 @@
   --text-1: #171717;
   --text-2: #374151;
   --text-3: #6B7280;
+
+  /* Brand colors - consistent across themes */
+  --brand-green-light: #59E631;
+  --brand-green-dark: #008c28;
+  --brand-green-darker: #006837;
+  --brand-green-darkest: #004225;
 }
 
-[data-theme="dark"],
+/* Dark theme styles */
 @media (prefers-color-scheme: dark) {
   :root {
     /* Dark theme variables */
@@ -67,10 +73,34 @@
     --surface-3: #374151;
     
     /* Text colors */
-    --text-1: #ededed;
-    --text-2: #d1d5db;
-    --text-3: #9ca3af;
+    --text-1: #ffffff;
+    --text-2: #e5e7eb;
+    --text-3: #d1d5db;
+
+    /* Brand colors remain the same in dark mode */
+    --brand-green-light: #59E631;
+    --brand-green-dark: #008c28;
+    --brand-green-darker: #006837;
+    --brand-green-darkest: #004225;
   }
+}
+
+/* Manual dark mode override */
+[data-theme="dark"] {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --surface-1: #0a0a0a;
+  --surface-2: #1f2937;
+  --surface-3: #374151;
+  --text-1: #ffffff;
+  --text-2: #e5e7eb;
+  --text-3: #d1d5db;
+
+  /* Brand colors remain the same in dark mode */
+  --brand-green-light: #59E631;
+  --brand-green-dark: #008c28;
+  --brand-green-darker: #006837;
+  --brand-green-darkest: #004225;
 }
 
 body {
