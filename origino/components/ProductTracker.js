@@ -5,8 +5,9 @@ export default function ProductTracker() {
     <div className={styles.container}>
       <div className={styles.header}>
         <h1>Hi there!</h1>
-        <p>Your Origino® finally has reached its final destination.</p>
-        <p>And it's been an adventurous journey...</p>
+        
+        <p className="text-2xl">Your Origino® finally has reached its final destination.</p>
+        <p className="text-2xl">And it's been an adventurous journey...</p>
       </div>
 
       <div className={styles.section}>

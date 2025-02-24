@@ -8,7 +8,7 @@ const AcidityContent = ({ isAcidityOpen }) => {
   return (
     <div
       id="acidity-content"
-      className="bg-[#F5F5F5] px-6 pb-24 pt-8"
+      className="bg-[#F5F5F5] pl-0 pb-24 pt-8"
       role="region"
       aria-label="Free Acidity Details"
     >
@@ -21,13 +21,13 @@ const AcidityContent = ({ isAcidityOpen }) => {
               "linear-gradient(180deg, #4AFF00 0%, #FFB800 50%, #FF0000 100%)",
           }}
         />
-        <div className="space-y-8 ml-1">
+        <div className="space-y-8 ml-0 ">
           {/* 0% Marking */}
           <div className="flex items-start">
             <span className="absolute left-[59px] -top-3 text-xl w-29 h-16 font-normal">
               0%
             </span>
-            <div className="w-4 h-[2px] bg-[#000000] relative left-[47px] top-0" />
+            <div className="w-4 h-[2px] bg-[#000000] relative left-[50px] top-0" />
           </div>
 
           {/* 0.35% Marking */}
@@ -35,7 +35,7 @@ const AcidityContent = ({ isAcidityOpen }) => {
             <span className="absolute left-[59px] text-xl w-29 h-16 font-normal">
               0.35%
             </span>
-            <div className="w-4 h-[2px] bg-[#000000] relative left-[47px] top-3" />
+            <div className="w-4 h-[2px] bg-[#000000] relative left-[50px] top-3" />
             <div className="absolute w-[29px] h-[2px] bg-black opacity-10 left-[135px] top-[46px]" />
           </div>
 
@@ -44,9 +44,9 @@ const AcidityContent = ({ isAcidityOpen }) => {
             <span className="absolute left-[59px] text-xl w-29 h-16 font-normal">
               0.4%
             </span>
-            <div className="w-4 h-[2px] bg-[#000000] relative left-[47px] top-3" />
+            <div className="w-4 h-[2px] bg-[#000000] relative left-[50px] top-3" />
             <div className="absolute w-[29px] h-[2px] bg-black opacity-10 left-[135px] top-[79px]" />
-            <div className="ml-24">
+            <div className="ml-20 pl-2">
               <Origino className = "absolute top-[37px]" />
             </div>
           </div>

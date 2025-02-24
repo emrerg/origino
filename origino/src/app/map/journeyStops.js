@@ -66,6 +66,22 @@ export const journeyStops = {
         "type": "Polygon"
       },
       "id": "ed1c893e3e2896ea7752f3463298ea4d"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Biziz Foods Ltd",
+        "description": "Olive oil facility in Bursa, Turkiye",
+        "stop": "Biziz Foods Ltd, Bursa, Turkiye"
+      },
+      "geometry": {
+        "coordinates": [
+          28.866167,
+          40.333245
+        ],
+        "type": "Point"
+      },
+      "id": "unique_id_for_biziz_foods"
     }
   ],
   "type": "FeatureCollection"

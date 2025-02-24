@@ -1,12 +1,14 @@
 "use client";
 
+import Origino from "@/components/Images/origino.svg";
+
 const PolyphenolsContent = ({ isPolyphenolsOpen }) => {
   if (!isPolyphenolsOpen) return null;
 
   return (
     <div
       id="polyphenols-content"
-      className="bg-[#F5F5F5] p-6 py-12"
+      className="bg-[#F5F5F5]  pl-8 py-12"
       role="region"
       aria-label="Polyphenols Details"
     >
@@ -52,9 +54,10 @@ const PolyphenolsContent = ({ isPolyphenolsOpen }) => {
               className="absolute w-[29px] h-[2px] bg-black opacity-10"
               style={{ left: "95px", top: "12px" }}
             />
-            <div className="ml-7">
-              <span className="text-xl font-serif">origino</span>
+             <div className="ml-4 pl-2">
+              <Origino className = "absolute " />
             </div>
+      
           </div>
 
           <div className="flex items-start">
@@ -64,7 +67,7 @@ const PolyphenolsContent = ({ isPolyphenolsOpen }) => {
             <div className="w-4 h-[2px] bg-[#000000] relative -left-[1px] top-3" />
             <div
               className="absolute w-[29px] h-[2px] bg-black opacity-10"
-              style={{ left: "95px", top: "72px" }}
+              style={{ left: "95px", top: "46px" }}
             />
             <div className="ml-6">
               <p className="text-base font-semibold">

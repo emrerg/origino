@@ -27,7 +27,7 @@ export default function StorageMainLayout() {
       <Link
         href="/storage"
         onClick={handleStorageClick}
-        className="inline-flex items-center justify-end font-[500]  border-t-[1px] py-3 border-t-white w-full text-[#D4E631] leading-[24px] transition-colors"
+        className="inline-flex items-center justify-end font-[500]  border-t-[1px] pt-4 border-t-white w-full text-[#D4E631] leading-[24px] transition-colors mt-2"
       >
         Storage Tips
         <ArrowRight className="ml-2 h-5 w-5" />

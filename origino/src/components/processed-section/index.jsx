@@ -105,13 +105,13 @@ const ProcessedSection = () => {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg opacity-70 text-[#59E631] font-[500]  ">
+                  <h3 className="text-lg opacity-70 text-[#59E631]  ">
                     HEAD CULTIVATOR
                   </h3>
                   <p className="text-xl text-white  ">Turker Yalcinkaya (42)</p>
                 </div>
                 <button
-                  className="w-full text-end py-4 border-t-[1px]  flex items-center text-[18px] leading-6 font-medium  justify-end gap-4 border-t-[#008c28] text-lg hover:opacity-80 transition-opacity"
+                  className="w-full text-end pt-5 border-t-[1px]  flex items-center   text-[18px] leading-6 font-medium  justify-end gap-4 border-t-[#008c28] text-lg hover:opacity-80 transition-opacity"
                   onClick={() => handleShowStories("picked")}
                 >
                   See the picking stories
@@ -146,14 +146,20 @@ const ProcessedSection = () => {
                   <h3 className="text-lg opacity-70 text-[#59E631]  ">
                     PRESS DATE
                   </h3>
-                  <p className="text-2xl text-white ">November 10th, 2023</p>
+                  <p className="text-2xl text-white ">November 8th, 2023</p>
                 </div>
                 <div>
-                  <h3 className="text-lg opacity-70 text-[#59E631]">
-                    PRESS LOCATION
+                <div>
+                  <h3 className="text-lg opacity-70 text-[#59E631]  ">
+                  TIME BETWEEN PICKING AND PRESSING
                   </h3>
-                  <p className="text-2xl flex items-start text-white justify-between">
-                    Miras Olive Mill, Bursa, Turkiye
+                  <p className="text-2xl  mb-2 text-white ">&lt;12 hours</p>
+                </div>
+                  <h3 className="text-lg opacity-70 text-[#59E631]">
+                    MILL LOCATION
+                  </h3>
+                  <p className="text-2xl flex items-start  mb-2 text-white justify-between">
+                    Miras Olive Oil Mill
                     <div
                       className="mt-2 cursor-pointer"
                       onClick={() => handleLocationClick("pressed")}
@@ -165,6 +171,26 @@ const ProcessedSection = () => {
                       />
                     </div>
                   </p>
+
+                  <h3 className="text-lg opacity-70 text-[#59E631]  ">
+                 PRESSING TEMPERATURE
+                  </h3>
+                  <p className="text-2xl text-white  mb-2">24C (COLD PRESSED)</p>
+
+
+                  <h3 className="text-lg opacity-70 text-[#59E631] ">
+                DISTANCE TRAVELLED FROM GROVE
+                  </h3>
+                  <p className="text-2xl  mb-2 text-white ">5.8 KM</p>
+
+
+                  <h3 className="text-lg opacity-70 text-[#59E631] mb-2  ">
+                HEAD MILLER
+                  </h3>
+                  <p className="text-2xl text-white ">SEMIH AYDIN(78)</p>
+
+
+
                 </div>
                 <div>
                   <h3 className="text-lg opacity-70 text-[#59E631]  ">
@@ -173,7 +199,7 @@ const ProcessedSection = () => {
                   <p className="text-2xl text-white  ">First Cold Press</p>
                 </div>
                 <button
-                  className="w-full text-end py-4 border-t-[1px]  flex items-center text-[18px] leading-6 font-medium  justify-end gap-4 border-t-[#008c28] text-lg hover:opacity-80 transition-opacity"
+                  className="w-full text-end  border-t-[1px] pt-5  flex items-center text-[18px] leading-6 font-medium  justify-end gap-4 border-t-[#008c28] text-lg hover:opacity-80 transition-opacity"
                   onClick={() => handleShowStories("pressed")}
                 >
                   See the pressing stories
@@ -208,12 +234,12 @@ const ProcessedSection = () => {
                   <h3 className="text-lg opacity-70 text-[#59E631]  ">
                     PACK DATE
                   </h3>
-                  <p className="text-2xl text-white ">November 12th, 2023</p>
+                  <p className="text-2xl text-white ">FEBRUARY 2024</p>
                 </div>
                 <div>
-                  <h3 className="text-lg opacity-70">PACK LOCATION</h3>
+                  <h3 className="text-lg opacity-70">PACK BY</h3>
                   <p className="text-2xl flex items-start text-white justify-between">
-                    Biziz Foods Ltd, Bursa, Turkiye
+                    Biziz Foods Ltd
                     <div
                       className="mt-2 cursor-pointer"
                       onClick={() => handleLocationClick("packed")}
@@ -230,14 +256,15 @@ const ProcessedSection = () => {
                   <h3 className="text-lg opacity-70 text-[#59E631]  ">
                     PACKAGING TYPE
                   </h3>
-                  <p className="text-2xl text-white  ">Glass Bottle</p>
+                  <p className="text-2xl text-white  ">Food-grade tin, with minimum plastic contact, eliminating oxygen and light exposure. </p>
                 </div>
-                {/* <button
-                  className="w-full text-end py-4 text-lg hover:opacity-80  border-t  border-[#006837]  transition-opacity"
-                
+                <button
+                  className="w-full text-end  border-t-[1px]  pt-5 flex items-center text-[18px] leading-6 font-medium  justify-end gap-4 border-t-[#008c28] text-lg hover:opacity-80 transition-opacity"
+                  onClick={() => handleShowStories("pressed")}
                 >
-                  See the packing stories →
-                </button> */}
+                  See the pressing stories
+                  <FaArrowRight className="text-[#59E631]" />
+                </button>
               </div>
             </div>
           )}

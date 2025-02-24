@@ -32,10 +32,10 @@ export default function HeroSection() {
                 Your Origino® finally has reached its final destination.
               </p>
             </div>
-            <div className="flex items-center gap-5 max-w-[263px] text-[#29BA00] pt-[100px] text-[24px] leading-[24px] font-medium ">
-              <ArrowDown className="w-12 h-12" />
-              <p className="text-lg">
-                And it&apos;s been an adventurous journey...
+            <div className="flex items-center gap-5  text-[#29BA00] pt-[100px] text-[24px] leading-[24px] font-medium ">
+              <ArrowDown className="w-16 h-16" />
+              <p className="text-xl">
+                And it&apos;s been an <span>adventurous journey...</span>
               </p>
             </div>
           </div>
