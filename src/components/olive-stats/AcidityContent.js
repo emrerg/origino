@@ -45,7 +45,7 @@ const AcidityContent = ({ isAcidityOpen }) => {
               0.4%
             </span>
             <div className="w-4 h-[2px] bg-[#000000] relative left-[52px] top-1.5" />
-            <div className="absolute w-[29px] h-[2px] bg-black opacity-10 left-[135px] top-[79px]" />
+            <div className="absolute w-[29px] h-[2px] bg-black opacity-10 left-[135px] top-[74px]" />
             <div className="ml-20 pl-2">
               <Origino className = "absolute top-[37px]" />
             </div>
