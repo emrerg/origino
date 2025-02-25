@@ -39,7 +39,7 @@ const PolyphenolsContent = ({ isPolyphenolsOpen }) => {
           className="absolute left-24 top-0 bottom-0 w-[2px]"
           style={{
             background:
-              "linear-gradient(180deg, #4AFF00 0%, #FFB800 50%, #FF0000 100%)",
+              "linear-gradient(180deg, #6CC24A 0%, #FFC400 35%, #FF4D4D 60%, #FF4D4D 100%)",
           }}
         />
 
