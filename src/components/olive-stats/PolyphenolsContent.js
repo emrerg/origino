@@ -68,7 +68,7 @@ const PolyphenolsContent = ({ isPolyphenolsOpen }) => {
               className="absolute w-[29px] h-[2px] bg-black opacity-10 "
               style={{ left: "95px", top: "110px" }}
             />
-            <div className="ml-6 pt-10">
+            <div className="ml-6 pt-10 relative top-3">
               <p className=" text-base font-semibold ">
                 Required value to
                 <br />

@@ -61,10 +61,10 @@ const AcidityContent = ({ isAcidityOpen }) => {
             <div className="absolute w-[10px] h-[2px] bg-black opacity-10 left-[149px] top-[122px]" />
             <div className="absolute w-[19px] h-[2px] bg-black opacity-10 left-[129px] top-[141px]" />
             <div className="ml-6">
-              <p className="w-[201px] h-[24px] font-semibold relative top-[-33px] ml-20">
+              <p className="w-[201px] h-[24px] font-semibold relative top-[-38px] ml-20">
                 Premium Quality
               </p>
-              <p className="w-[201px] h-[20px] font-semibold relative top-[-18px] ml-20">
+              <p className="w-[201px] h-[20px] font-semibold relative top-[-27px] ml-20">
                 Most boutique
                 <br />
                 olive oils
@@ -74,7 +74,7 @@ const AcidityContent = ({ isAcidityOpen }) => {
 
           {/* 0.8% Marking */}
           <div className="flex items-start">
-            <span className="absolute top-[157px] left-[59px] text-xl">
+            <span className="absolute top-[137px] left-[59px] text-xl">
               0.8%
             </span>
             <div className="w-4 h-[2px] bg-[#000000] absolute left-[122px] top-[150px]" />
@@ -84,7 +84,7 @@ const AcidityContent = ({ isAcidityOpen }) => {
             <div className="absolute w-[10px] h-[2px] bg-black opacity-10 left-[151px] top-[248px]" />
             <div className="absolute w-[19px] h-[2px] bg-black opacity-10 left-[132px] top-[289px]" />
             <div className="ml-6">
-              <p className="w-[201px] h-[24px] font-semibold relative top-[-20px] ml-20">
+              <p className="w-[201px] h-[24px] font-semibold relative top-[-30px] ml-20">
                 Required for "Extra
                 <br />
                 Virgin" label
@@ -94,10 +94,10 @@ const AcidityContent = ({ isAcidityOpen }) => {
 
           {/* 2% Marking */}
           <div className="flex items-start">
-            <span className="absolute top-[237px] left-[70px] text-xl">2%</span>
+            <span className="absolute top-[215px] left-[70px] text-xl">2%</span>
             <div className="w-4 h-[2px] bg-[#000000] absolute left-[122px] top-[225px] z-10" />
             <div className="ml-6">
-              <p className="w-[201px] h-[24px] font-semibold relative top-[2px] ml-20">
+              <p className="w-[201px] h-[24px] font-semibold relative top-[-7px] ml-20">
                 Most supermarket
                 <br />
                 olive oils

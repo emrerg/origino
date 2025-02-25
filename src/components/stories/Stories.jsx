@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef, useEffect, useCallback } from "react"
+import { useState, useRef, useEffect } from "react"
 import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { event } from '@/lib/gtag'
@@ -96,27 +96,14 @@ export default function Stories({ section = 'picked', onClose }) {
   const [error, setError] = useState(null)
   const videoRef = useRef(null)
   const progressInterval = useRef(null)
-  const [preloadedVideos, setPreloadedVideos] = useState({})
-  const nextVideoRef = useRef(null)
 
   const reels = videoSets[section] || []
 
-  const preloadNextVideo = useCallback(() => {
-    if (currentIndex < reels.length - 1) {
-      const nextVideo = reels[currentIndex + 1]
-      if (nextVideo && !preloadedVideos[nextVideo.id]) {
-        nextVideoRef.current = new Audio(nextVideo.src)
-        nextVideoRef.current.preload = 'auto'
-        setPreloadedVideos(prev => ({ ...prev, [nextVideo.id]: true }))
-      }
-    }
-  }, [currentIndex, reels, preloadedVideos])
-
   useEffect(() => {
     if (!videoSets[section]) {
-      console.error(`No videos found for section: ${section}`)
-      setError(`No videos available for ${section} section`)
-      return
+      console.error(`No videos found for section: ${section}`);
+      setError(`No videos available for ${section} section`);
+      return;
     }
 
     const loadAndPlayVideo = async () => {
@@ -125,16 +112,17 @@ export default function Stories({ section = 'picked', onClose }) {
           setIsLoading(true)
           setError(null)
 
+          // Reset video
           videoRef.current.currentTime = 0
-          videoRef.current.preload = 'auto'
-          videoRef.current.setAttribute('playsinline', '')
-          
+          await videoRef.current.load()
+
+          // Try to play
           await videoRef.current.play()
           setIsLoading(false)
           updateProgress()
-          
         } catch (error) {
           console.error("Video playback failed:", error)
+          setError("Failed to play video")
           setIsLoading(false)
         }
       }
@@ -219,9 +207,8 @@ export default function Stories({ section = 'picked', onClose }) {
           {isLoading && (
             <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-white flex justify-center items-center">
-  <div className="w-8 h-8 border-4 border-t-transparent border-white rounded-full animate-spin"></div>
-</div>
-
+            <div className="w-8 h-8 border-4 border-t-transparent border-white rounded-full animate-spin"></div>
+           </div>
             </div>
           )}
           
@@ -239,20 +226,14 @@ export default function Stories({ section = 'picked', onClose }) {
             muted
             controls={false}
             preload="auto"
-            poster={currentReel?.src + '?thumb=1'}
             onEnded={handleVideoEnd}
             onError={(e) => {
               console.error("Video error:", e)
+              setError("Failed to load video")
               setIsLoading(false)
             }}
             onLoadStart={() => setIsLoading(true)}
             onLoadedData={() => setIsLoading(false)}
-            style={{
-              objectFit: 'cover',
-              width: '100%',
-              height: '100%',
-              backgroundColor: 'black',
-            }}
           />
 
           <div className="absolute inset-0 flex items-center justify-between">
