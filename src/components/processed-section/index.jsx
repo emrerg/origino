@@ -78,7 +78,7 @@ const ProcessedSection = () => {
             )}
           </div>
           {openAccordion === "picked" && (
-            <div className="bg-[#006837] font-semibold p-6 ">
+            <div className="bg-[#006837]  p-6 ">
               <div className="space-y-4 text-[#59E631]">
                 <div>
                   <h3 className="text-lg opacity-70 text-[#59E631]  ">
@@ -123,7 +123,7 @@ const ProcessedSection = () => {
         </div>
 
         {/* Pressed Section */}
-        <div className="mb-1  font-semibold overflow-hidden">
+        <div className="mb-1 overflow-hidden">
           <div
             className={`bg-[#004225] p-6 cursor-pointer flex items-center justify-between ${openAccordion === "pressed" ? "" : ""}`}
             onClick={() => toggleAccordion("pressed")}
@@ -211,7 +211,7 @@ const ProcessedSection = () => {
         </div>
 
         {/* Packed Section */}
-        <div className=" font-semibold overflow-hidden">
+        <div className="overflow-hidden">
           <div
             className={`bg-[#004225] p-6 cursor-pointer flex items-center justify-between ${openAccordion === "packed" ? "" : ""}`}
             onClick={() => toggleAccordion("packed")}
