@@ -12,22 +12,22 @@ const AcidityContent = ({ isAcidityOpen }) => {
       role="region"
       aria-label="Free Acidity Details"
     >
-      <h3 className="text-xl mb-12">The less the better...</h3>
+      <h3 className="text-xl mb-12 ml-7">The less the better...</h3>
       <div className="relative pl-[70px]">
-        <div
-          className="absolute left-32 top-0 bottom-0 w-[2px] h-[300px]"
-          style={{
-            background:
-              "linear-gradient(180deg, #0062FF 0%, #4AFF00 35%, #FFB800 65%, #FF0000 100%)",
-          }}
-        />
+      <div className="absolute left-32 top-0 bottom-0 w-[4px] h-[300px]">
+      <div className="w-full h-[75px] bg-[#2892EF]" />
+      <div className="w-full h-[75px] bg-[#86CA46]" />
+      <div className="w-full h-[75px] bg-[#FBBF12]" />
+      <div className="w-full h-[75px] bg-[#EF3E25]" />
+      </div>
+
         <div className="space-y-8 ml-0 ">
           {/* 0% Marking */}
           <div className="flex items-start">
             <span className="absolute left-[59px] -top-3 text-xl w-29 h-16 font-normal">
               0%
             </span>
-            <div className="w-4 h-[2px] bg-[#000000] relative left-[50px] top-0" />
+            <div className="w-4 h-[2px] bg-[#000000] relative left-[52px] top-0" />
           </div>
 
           {/* 0.35% Marking */}
@@ -35,7 +35,7 @@ const AcidityContent = ({ isAcidityOpen }) => {
             <span className="absolute left-[59px] text-xl w-29 h-16 font-normal">
               0.35%
             </span>
-            <div className="w-4 h-[2px] bg-[#000000] relative left-[50px] top-3" />
+            <div className="w-4 h-[2px] bg-[#000000] relative left-[52px] top-3" />
             <div className="absolute w-[29px] h-[2px] bg-black opacity-10 left-[135px] top-[46px]" />
           </div>
 
@@ -44,8 +44,8 @@ const AcidityContent = ({ isAcidityOpen }) => {
             <span className="absolute left-[59px] text-xl w-29 h-16 font-normal">
               0.4%
             </span>
-            <div className="w-4 h-[2px] bg-[#000000] relative left-[50px] top-3" />
-            <div className="absolute w-[29px] h-[2px] bg-black opacity-10 left-[135px] top-[79px]" />
+            <div className="w-4 h-[2px] bg-[#000000] relative left-[52px] top-1.5" />
+            <div className="absolute w-[29px] h-[2px] bg-black opacity-10 left-[135px] top-[74px]" />
             <div className="ml-20 pl-2">
               <Origino className = "absolute top-[37px]" />
             </div>
@@ -54,7 +54,7 @@ const AcidityContent = ({ isAcidityOpen }) => {
           {/* Rest of the markings... */}
           {/* Premium Quality Section */}
           <div className="flex items-start mb-2">
-            <div className="w-4 h-[2px] bg-[#000000] relative left-[47px] top-[-10px]" />
+            {/* <div className="w-4 h-[2px] bg-[#000000] relative left-[47px] top-[-10px]" /> */}
             <div className="absolute w-[29px] h-[2px] bg-black opacity-10 left-[135px] top-[46px]" />
             <div className="absolute w-[19px] h-[2px] bg-black opacity-10 left-[129px] top-[103px]" />
             <div className="absolute w-[2px] h-[40px] bg-black opacity-10 left-[148px] top-[103px]" />
@@ -77,7 +77,7 @@ const AcidityContent = ({ isAcidityOpen }) => {
             <span className="absolute top-[157px] left-[59px] text-xl">
               0.8%
             </span>
-            <div className="w-4 h-[2px] bg-[#000000] absolute left-[121px] top-[170px]" />
+            <div className="w-4 h-[2px] bg-[#000000] absolute left-[122px] top-[150px]" />
             <div className="absolute w-[29px] h-[2px] bg-black opacity-10 left-[129px] top-[170px]" />
             <div className="absolute w-[19px] h-[2px] bg-black opacity-10 left-[131px] top-[215px]" />
             <div className="absolute w-[2px] h-[75px] bg-black opacity-10 left-[150px] top-[215px]" />
@@ -95,7 +95,7 @@ const AcidityContent = ({ isAcidityOpen }) => {
           {/* 2% Marking */}
           <div className="flex items-start">
             <span className="absolute top-[237px] left-[70px] text-xl">2%</span>
-            <div className="w-4 h-[2px] bg-[#000000] absolute left-[121px] top-[249px] z-10" />
+            <div className="w-4 h-[2px] bg-[#000000] absolute left-[122px] top-[225px] z-10" />
             <div className="ml-6">
               <p className="w-[201px] h-[24px] font-semibold relative top-[2px] ml-20">
                 Most supermarket
