@@ -43,7 +43,7 @@ export default function StorageGuide() {
 
           {/* Temperature Section */}
           <div className="space-y-2">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1">
               <Thermometer className="w-10 h-10 text-[#D4E631]" />
               <h2 className="text-[48px] leading-[64px] tracking-tight  font-semibold">Temperature</h2>
             </div>

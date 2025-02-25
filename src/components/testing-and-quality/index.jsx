@@ -23,8 +23,8 @@ export default function TestingQuality() {
 
   return (
     <>
-      <div className="w-full bg-white px-5">
-        <div className="max-w-[640px] mx-auto">
+      <div className="w-full bg-white px-5 ">
+        <div className="max-w-[640px] mx-auto ">
           <div
             className="relative w-full h-[385px]"
             role="i"
@@ -38,7 +38,7 @@ export default function TestingQuality() {
             />
           </div>
 
-          <div className="px-4 pt-12 pb-5 space-y-10 my-5 bg-[#F5F5F5]">
+          <div className="px-4 pt-12 pb-5 space-y-10 my-10 bg-[#F5F5F5]">
             <h2 className="text-[40px] leading-[40px] font-[500] text-black">
               How do you distinguish quality olive oil from others?
             </h2>

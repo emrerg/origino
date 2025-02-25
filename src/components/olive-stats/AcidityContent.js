@@ -18,7 +18,7 @@ const AcidityContent = ({ isAcidityOpen }) => {
           className="absolute left-32 top-0 bottom-0 w-[2px] h-[300px]"
           style={{
             background:
-              "linear-gradient(180deg, #4AFF00 0%, #FFB800 50%, #FF0000 100%)",
+              "linear-gradient(180deg, #0062FF 0%, #4AFF00 35%, #FFB800 65%, #FF0000 100%)",
           }}
         />
         <div className="space-y-8 ml-0 ">
