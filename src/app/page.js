@@ -33,21 +33,23 @@ export default function HomePage() {
 
   return (
     <>
-      <HeroSection />
-      <ProcessedSection />
-      <TestingQuality />
+    <div className="max-w-[100vw] overflow-x-hidden">
+  <HeroSection />
+  <ProcessedSection />
+  <TestingQuality />
 
-      <div className="px-5 mt-5">
-        <OliveStats />
-      </div>
-      <div className=" mt-5 flex justify-center items-center">
-        <StorageMainLayout />
-      </div>
-      <div className="mt-10">
-        <BuyInStock />
-      </div>
+  <div className="max-w-7xl mx-auto px-5 mt-5">
+    <OliveStats />
+  </div>
+  <div className="mt-5 flex justify-center items-center">
+    <StorageMainLayout />
+  </div>
+  <div className="mt-10">
+    <BuyInStock />
+  </div>
+  <Footer />
+</div>
 
-      <Footer />
     </>
   );
 }

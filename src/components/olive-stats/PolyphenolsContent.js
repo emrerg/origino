@@ -63,13 +63,13 @@ const PolyphenolsContent = ({ isPolyphenolsOpen }) => {
             <span className="absolute left-0 text-xl whitespace-nowrap top-[100px]">
               250<span className="text-sm">mg/kg</span>
             </span>
-            <div className="w-4 h-[2px] bg-[#000000] relative -left-[0.5px] top-[76px]" />
+            <div className="w-4 h-[2px] bg-[#000000] relative -left-[0.5px] top-[73px]" />
             <div
               className="absolute w-[29px] h-[2px] bg-black opacity-10 "
-              style={{ left: "95px", top: "110px" }}
+              style={{ left: "95px", top: "107px" }}
             />
-            <div className="ml-6 pt-10 relative top-3">
-              <p className=" text-base font-semibold ">
+            <div className="ml-6 pt-10 relative top-3 ">
+              <p className=" font-semibold text-[14px]">
                 Required value to
                 <br />
                 claim health benefits
@@ -84,15 +84,15 @@ const PolyphenolsContent = ({ isPolyphenolsOpen }) => {
             >
               0<span className="text-sm">mg/lt</span>
             </span>
-            <div className="w-4 h-[2px] bg-[#000000] relative left-[-0.5px] top-[192px]" />
+            <div className="w-4 h-[2px] bg-[#000000] relative left-[-0.5px] top-[182px]" />
             <div className="ml-6">
-              <p className="text-base text-[#FFB800] font-semibold">
+              <p className="text-[14px]  text-[#FFB800] font-semibold">
                 Most boutique
                 <br />
                 olive oils
               </p>
 
-              <p className="text-base text-[#EF3E25] py-14 font-semibold">
+              <p className="text-[14px] text-[#EF3E25] py-14 font-semibold">
                 Most supermarket
                 <br />
                 olive oils

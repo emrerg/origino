@@ -16,7 +16,7 @@ const AcidityContent = ({ isAcidityOpen }) => {
       <div className="relative pl-[70px]">
       <div className="absolute left-32 top-0 bottom-0 w-[4px] h-[300px]">
       <div className="w-full h-[75px] bg-[#2892EF]" />
-      <div className="w-full h-[75px] bg-[#86CA46]" />
+      <div className="w-full h-[97px] bg-[#86CA46]" />
       <div className="w-full h-[75px] bg-[#FBBF12]" />
       <div className="w-full h-[75px] bg-[#EF3E25]" />
       </div>
@@ -54,17 +54,17 @@ const AcidityContent = ({ isAcidityOpen }) => {
           {/* Rest of the markings... */}
           {/* Premium Quality Section */}
           <div className="flex items-start mb-2">
-            {/* <div className="w-4 h-[2px] bg-[#000000] relative left-[47px] top-[-10px]" /> */}
+             {/* <div className="w-4 h-[2px] bg-[#000000] relative left-[47px] top-[-10px]" />  */}
             <div className="absolute w-[29px] h-[2px] bg-black opacity-10 left-[135px] top-[46px]" />
-            <div className="absolute w-[19px] h-[2px] bg-black opacity-10 left-[129px] top-[103px]" />
-            <div className="absolute w-[2px] h-[40px] bg-black opacity-10 left-[148px] top-[103px]" />
+            <div className="absolute w-[19px] h-[2px] bg-black opacity-10 left-[129px] top-[83px]" />
+            <div className="absolute w-[2px] h-[80px] bg-black opacity-10 left-[148px] top-[83px]" /> 
             <div className="absolute w-[10px] h-[2px] bg-black opacity-10 left-[149px] top-[122px]" />
-            <div className="absolute w-[19px] h-[2px] bg-black opacity-10 left-[129px] top-[141px]" />
+            <div className="absolute w-[19px] h-[2px] bg-black opacity-10 left-[129px] top-[161px]" />
             <div className="ml-6">
-              <p className="w-[201px] h-[24px] font-semibold relative top-[-38px] ml-20">
+              <p className="w-[201px] h-[24px] font-semibold text-[14px] relative top-[-38px] ml-20">
                 Premium Quality
               </p>
-              <p className="w-[201px] h-[20px] font-semibold relative top-[-27px] ml-20">
+              <p className="w-[201px] h-[20px] text-[14px] font-semibold relative top-[-27px] ml-20">
                 Most boutique
                 <br />
                 olive oils
@@ -74,17 +74,17 @@ const AcidityContent = ({ isAcidityOpen }) => {
 
           {/* 0.8% Marking */}
           <div className="flex items-start">
-            <span className="absolute top-[137px] left-[59px] text-xl">
+            <span className="absolute top-[157px] left-[59px] text-xl">
               0.8%
             </span>
-            <div className="w-4 h-[2px] bg-[#000000] absolute left-[122px] top-[150px]" />
+            <div className="w-4 h-[2px] bg-[#000000] absolute left-[122px] top-[170px]" />
             <div className="absolute w-[29px] h-[2px] bg-black opacity-10 left-[129px] top-[170px]" />
             <div className="absolute w-[19px] h-[2px] bg-black opacity-10 left-[131px] top-[215px]" />
             <div className="absolute w-[2px] h-[75px] bg-black opacity-10 left-[150px] top-[215px]" />
             <div className="absolute w-[10px] h-[2px] bg-black opacity-10 left-[151px] top-[248px]" />
             <div className="absolute w-[19px] h-[2px] bg-black opacity-10 left-[132px] top-[289px]" />
             <div className="ml-6">
-              <p className="w-[201px] h-[24px] font-semibold relative top-[-30px] ml-20">
+              <p className="w-[201px] h-[24px] text-[14px] font-semibold relative top-[-30px] ml-20">
                 Required for "Extra
                 <br />
                 Virgin" label
@@ -94,10 +94,10 @@ const AcidityContent = ({ isAcidityOpen }) => {
 
           {/* 2% Marking */}
           <div className="flex items-start">
-            <span className="absolute top-[215px] left-[70px] text-xl">2%</span>
-            <div className="w-4 h-[2px] bg-[#000000] absolute left-[122px] top-[225px] z-10" />
+            <span className="absolute top-[235px] left-[70px] text-xl">2%</span>
+            <div className="w-4 h-[2px] bg-[#000000] absolute left-[122px] top-[245px] z-10" />
             <div className="ml-6">
-              <p className="w-[201px] h-[24px] font-semibold relative top-[-7px] ml-20">
+              <p className="w-[201px] h-[24px] text-[14px] font-semibold relative top-[-7px] ml-20">
                 Most supermarket
                 <br />
                 olive oils
