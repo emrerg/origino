@@ -21,12 +21,13 @@ import { event } from '@/lib/gtag'
 const videoSets = {
   picked: [
     {
-      id: "1",
+      id: "4",
       type: "video",
-      src: "https://origino-journey.s3.us-east-2.amazonaws.com/picking-videos/picking-video-2.MOV",
+      src: "https://origino-journey.s3.us-east-2.amazonaws.com/picking-videos/picking-video-5.MOV",
       title: "Picked",
       location: "Northwest of Iznik Lake, Bursa, Turkiye"
     },
+    
     {
       id: "2",
       type: "video",
@@ -42,12 +43,13 @@ const videoSets = {
       location: "Northwest of Iznik Lake, Bursa, Turkiye"
     },
     {
-      id: "4",
+      id: "1",
       type: "video",
-      src: "https://origino-journey.s3.us-east-2.amazonaws.com/picking-videos/picking-video-5.MOV",
+      src: "https://origino-journey.s3.us-east-2.amazonaws.com/picking-videos/picking-video-2.MOV",
       title: "Picked",
       location: "Northwest of Iznik Lake, Bursa, Turkiye"
-    }
+    },
+  
   ],
   pressed: [
     {

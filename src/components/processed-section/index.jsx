@@ -193,15 +193,7 @@ const ProcessedSection = () => {
                   </h3>
                   <p className="text-xl text-white text-[20px] ">SEMIH AYDIN(78)</p>
 
-
-
                 </div>
-                {/* <div>
-                  <h3 className="text-lg opacity-70 text-[#59E631]  text-[16px] font-semibold">
-                    PRESS METHOD
-                  </h3>
-                  <p className="text-xl text-white text-[20px] font-semibold">First Cold Press</p>
-                </div> */}
                 <button
                   className="w-full text-end  border-t-[1px] pt-5  flex items-center text-[18px] leading-6 font-medium  justify-end gap-4 border-t-[#008c28] text-lg hover:opacity-80 transition-opacity"
                   onClick={() => handleShowStories("pressed")}
@@ -238,7 +230,7 @@ const ProcessedSection = () => {
                   <h3 className="text-lg opacity-70 text-[#59E631]  text-[16px] ">
                   PACKING DATE
                   </h3>
-                  <p className="text-xl text-white text-[20px] ">FEBRUARY 2024</p>
+                  <p className="text-xl text-white text-[20px] ">February 2024</p>
                 </div>
                 <div>
                   <h3 className="text-lg opacity-70 text-[16px] ">PACKED BY</h3>
