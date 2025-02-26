@@ -24,6 +24,7 @@ const ProcessedSection = () => {
 
   const toggleAccordion = (section) => {
     if (openAccordion === section) {
+      // Close the currently open accordion
       if (section === "picked") {
         events.pickedAccordionClosed();
       } else if (section === "pressed") {
@@ -33,10 +34,18 @@ const ProcessedSection = () => {
       }
       setOpenAccordion(null); 
     } else {
+      // Open the selected accordion
+      if (section === "picked") {
+        events.pickedAccordionExpanded();
+      } else if (section === "pressed") {
+        events.pressedAccordionOpen();
+      } else if (section === "packed") {
+        events.packedAccordionExpanded();
+      }
       setOpenAccordion(section);
-      events.pressedAccordionOpen();
     }
   };
+  
   
   const handleShowStories = (section) => {
     setCurrentSection(section);
