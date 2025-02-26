@@ -23,19 +23,35 @@ const ProcessedSection = () => {
   const [currentSection, setCurrentSection] = useState(null);
 
   const toggleAccordion = (section) => {
-    if (section === "picked") {
-      events.pickedAccordionClosed();
-    } else if (section === "pressed") {
-      events.pressedAccordionClosed();
-    } else if (section === "packed") {
-      events.packedAccordionClosed();
+    if (openAccordion === section) {
+      // Close the currently open accordion
+      if (section === "picked") {
+        events.pickedAccordionClosed();
+      } else if (section === "pressed") {
+        events.pressedAccordionClosed();
+      } else if (section === "packed") {
+        events.packedAccordionClosed();
+      }
+      setOpenAccordion(null); 
+    } else {
+      // Open the selected accordion
+      if (section === "picked") {
+        events.pickedAccordionExpanded();
+      } else if (section === "pressed") {
+        events.pressedAccordionOpen();
+      } else if (section === "packed") {
+        events.packedAccordionExpanded();
+      }
+      setOpenAccordion(section);
     }
-    setOpenAccordion(openAccordion === section ? null : section);
   };
-
+  
+  
   const handleShowStories = (section) => {
     setCurrentSection(section);
     setShowStories(true);
+
+    events.pressedStoriesClicked();
   };
 
   const getLocationText = (section) => {
@@ -51,20 +67,28 @@ const ProcessedSection = () => {
     }
   };
 
-  const handleLocationClick = (section) => {
+  const handleLocationClick = (section) => {  
+    if (section === "picked") {
+      events.pickedLocationClicked();
+    } else if (section === "pressed") {
+      events.pressedLocationClicked();
+    } else if (section === "packed") {
+      events.packedLocationClicked();
+    }
     const locationText = getLocationText(section);
     router.push(
       `/map?section=${section}&location=${encodeURIComponent(locationText)}`
     );
   };
+  
 
   return (
     <>
-      <div className="w-full max-w-full  mx-auto px-4 pt-4 pb-16  bg-[#008c28] ">
+      <div className="w-full max-w-full  mx-auto px-4  pb-16  bg-[#008c28] ">
         {/* Picked Section */}
         <div className="mb-1  overflow-hidden">
           <div
-            className={`bg-[#004225] p-6 cursor-pointer flex items-center justify-between ${openAccordion === "picked" ? "" : ""}`}
+            className={`bg-[#00532C] p-6 cursor-pointer flex items-center justify-between ${openAccordion === "picked" ? "" : ""}`}
             onClick={() => toggleAccordion("picked")}
           >
             <div className="flex items-center gap-4">
@@ -78,19 +102,22 @@ const ProcessedSection = () => {
             )}
           </div>
           {openAccordion === "picked" && (
-            <div className="bg-[#006837]  p-6 ">
+            <div className="bg-[#006837]  ">
               <div className="space-y-4 text-[#59E631]">
+                <div className="p-6">
+
+              
                 <div>
-                  <h3 className="text-lg opacity-70 text-[#59E631]  ">
+                  <h3 className="text-lg opacity-70 text-[#59E631]  text-[16px] ">
                     HARVEST DATE
                   </h3>
-                  <p className="text-xl text-white ">November 8th, 2023</p>
+                  <p className="text-xl text-white text-[20px] ">November 8th, 2023</p>
                 </div>
                 <div>
-                  <h3 className="text-lg opacity-70 text-[#59E631]">
+                  <h3 className="text-lg opacity-70 text-[#59E631] text-[16px] ">
                     GROVE LOCATION
                   </h3>
-                  <p className="text-xl flex items-start text-white justify-between">
+                  <p className="text-[20px] flex items-start text-white justify-between ">
                     Northwest of Iznik Lake, Bursa, Turkiye
                     <div
                       className="mt-1 cursor-pointer"
@@ -105,13 +132,14 @@ const ProcessedSection = () => {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg opacity-70 text-[#59E631]  ">
+                  <h3 className="text-lg opacity-70 text-[#59E631]  text-[16px] ">
                     HEAD CULTIVATOR
                   </h3>
-                  <p className="text-xl text-white  ">Turker Yalcinkaya (42)</p>
+                  <p className="text-xl text-white text-[20px] ">Turker Yalcinkaya (42)</p>
+                </div>
                 </div>
                 <button
-                  className="w-full text-end pt-5 border-t-[1px]  flex items-center   text-[18px] leading-6 font-medium  justify-end gap-4 border-t-[#008c28] text-lg hover:opacity-80 transition-opacity"
+                  className="w-full p-6 text-end pt-5 border-t-[1px] flex items-center   text-[18px] leading-6 font-medium  justify-end gap-4 border-t-[#008c28] text-lg hover:opacity-80 transition-opacity"
                   onClick={() => handleShowStories("picked")}
                 >
                   See the picking stories
@@ -125,7 +153,7 @@ const ProcessedSection = () => {
         {/* Pressed Section */}
         <div className="mb-1 overflow-hidden">
           <div
-            className={`bg-[#004225] p-6 cursor-pointer flex items-center justify-between ${openAccordion === "pressed" ? "" : ""}`}
+            className={`bg-[#00532C] p-6 cursor-pointer flex items-center justify-between ${openAccordion === "pressed" ? "" : ""}`}
             onClick={() => toggleAccordion("pressed")}
           >
             <div className="flex items-center gap-4">
@@ -143,22 +171,22 @@ const ProcessedSection = () => {
             <div className="bg-[#006837] p-6 rounded-b-lg">
               <div className="space-y-4 text-[#59E631]">
                 <div>
-                  <h3 className="text-lg opacity-70 text-[#59E631]  ">
-                    PRESS DATE
+                  <h3 className="text-lg opacity-70 text-[#59E631] text-[16px]  ">
+                    PRESSING DATE
                   </h3>
-                  <p className="text-xl text-white ">November 8th, 2023</p>
+                  <p className="text-xl text-white text-[20px]">November 8th, 2023</p>
                 </div>
                 <div>
                 <div>
-                  <h3 className="text-lg opacity-70 text-[#59E631]  ">
-                  TIME BETWEEN PICKING AND PRESSING
+                  <h3 className="text-lg opacity-70 text-[#59E631]  text-[16px]">
+                  TIME BETWEEN PICKING & PRESSING
                   </h3>
-                  <p className="text-xl  mb-2 text-white ">&lt;12 hours</p>
+                  <p className="text-xl  mb-2 text-white  text-[20px] ">&lt;12 hours</p>
                 </div>
-                  <h3 className="text-lg opacity-70 text-[#59E631]">
+                  <h3 className="text-lg opacity-70 text-[#59E631] text-[16px] ">
                     MILL LOCATION
                   </h3>
-                  <p className="text-xl flex items-start  mb-2 text-white justify-between">
+                  <p className="text-xl flex items-start  mb-2 text-white justify-between text-[20px] ">
                     Miras Olive Oil Mill
                     <div
                       className="mt-2 cursor-pointer"
@@ -172,31 +200,23 @@ const ProcessedSection = () => {
                     </div>
                   </p>
 
-                  <h3 className="text-lg opacity-70 text-[#59E631]  ">
-                 PRESSING TEMPERATURE
+                  <h3 className="text-lg opacity-70 text-[#59E631]  text-[16px] ">
+                  DISTANCE TRAVELLED FROM GROVE
                   </h3>
-                  <p className="text-xl text-white  mb-2">24C (COLD PRESSED)</p>
+                  <p className="text-xl text-white  mb-2 text-[20px] ">5.8 Km</p>
 
 
-                  <h3 className="text-lg opacity-70 text-[#59E631] ">
-                DISTANCE TRAVELLED FROM GROVE
+                  <h3 className="text-lg opacity-70 text-[#59E631] text-[16px]">
+                   PRESSING TEMPERATURE
                   </h3>
-                  <p className="text-xl  mb-2 text-white ">5.8 KM</p>
+                  <p className="text-xl  mb-2 text-white text-[20px]">24C (Cold Pressed)</p>
 
 
-                  <h3 className="text-lg opacity-70 text-[#59E631] ">
+                  <h3 className="text-lg opacity-70 text-[#59E631] text-[16px]">
                 HEAD MILLER
                   </h3>
-                  <p className="text-xl text-white ">SEMIH AYDIN(78)</p>
+                  <p className="text-xl text-white text-[20px] ">SEMIH AYDIN(78)</p>
 
-
-
-                </div>
-                <div>
-                  <h3 className="text-lg opacity-70 text-[#59E631]  ">
-                    PRESS METHOD
-                  </h3>
-                  <p className="text-xl text-white  ">First Cold Press</p>
                 </div>
                 <button
                   className="w-full text-end  border-t-[1px] pt-5  flex items-center text-[18px] leading-6 font-medium  justify-end gap-4 border-t-[#008c28] text-lg hover:opacity-80 transition-opacity"
@@ -213,7 +233,7 @@ const ProcessedSection = () => {
         {/* Packed Section */}
         <div className="overflow-hidden">
           <div
-            className={`bg-[#004225] p-6 cursor-pointer flex items-center justify-between ${openAccordion === "packed" ? "" : ""}`}
+            className={`bg-[#00532C] p-6 cursor-pointer flex items-center justify-between ${openAccordion === "packed" ? "" : ""}`}
             onClick={() => toggleAccordion("packed")}
           >
             <div className="flex items-center gap-4">
@@ -231,14 +251,14 @@ const ProcessedSection = () => {
             <div className="bg-[#006837] p-6 rounded-b-lg">
               <div className="space-y-4 text-[#59E631]">
                 <div>
-                  <h3 className="text-lg opacity-70 text-[#59E631]  ">
-                    PACK DATE
+                  <h3 className="text-lg opacity-70 text-[#59E631]  text-[16px] ">
+                  PACKING DATE
                   </h3>
-                  <p className="text-xl text-white ">FEBRUARY 2024</p>
+                  <p className="text-xl text-white text-[20px] ">February 2024</p>
                 </div>
                 <div>
-                  <h3 className="text-lg opacity-70">PACK BY</h3>
-                  <p className="text-xl flex items-start text-white justify-between">
+                  <h3 className="text-lg opacity-70 text-[16px] ">PACKED BY</h3>
+                  <p className="text-xl flex items-start text-white justify-between text-[20px] ">
                     Biziz Foods Ltd
                     <div
                       className="mt-2 cursor-pointer"
@@ -253,10 +273,10 @@ const ProcessedSection = () => {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg opacity-70 text-[#59E631]  ">
-                    PACKAGING TYPE
+                  <h3 className="text-lg opacity-70 text-[#59E631]  text-[16px]">
+                  PACKING DETAILS
                   </h3>
-                  <p className="text-xl text-white  ">Food-grade tin, with minimum plastic contact, eliminating oxygen and light exposure. </p>
+                  <p className=" text-xl text-white text-[20px] ">Food-grade tin, with minimum plastic contact, eliminating oxygen and light exposure. </p>
                 </div>
            
               </div>
@@ -268,7 +288,10 @@ const ProcessedSection = () => {
       {showStories && (
         <Stories
           section={currentSection}
-          onClose={() => setShowStories(false)}
+          onClose={() => {setShowStories(false)
+            events.pressedStoriesClosed();
+          }}
+          
         />
       )}
     </>

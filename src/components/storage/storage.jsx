@@ -2,6 +2,7 @@ import { Circle, Sun, Thermometer, Wind } from "lucide-react";
 import { X } from "lucide-react";
 import Link from "next/link";
 export default function StorageGuide() {
+  
   return (
     <div className="bg-black text-white p-6 max-w-md mx-auto">
       <Link href="/">
