@@ -32,6 +32,7 @@ export const events = {
   pickedStoriesClosed: () => trackEvent('picked_stories_closed'),
   pressedAccordionExpanded: () => trackEvent('pressed_accordion_expanded'),
   pressedAccordionClosed: () => trackEvent('pressed_accordion_closed'),
+  pressedAccordionOpen: () => trackEvent('pressed_accordion_open'),
   pressedLocationClicked: () => trackEvent('pressed_location_clicked'),
   pressedStoriesClicked: () => trackEvent('pressed_stories_clicked'),
   pressedStoriesClosed: () => trackEvent('pressed_stories_closed'),

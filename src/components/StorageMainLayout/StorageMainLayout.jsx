@@ -8,6 +8,7 @@ export default function StorageMainLayout() {
   const handleStorageClick = () => {
     // Store the current scroll position before navigating
     sessionStorage.setItem('returnToStorage', 'true');
+    events.storageTipsClicked();
   };
 
   return (

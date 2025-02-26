@@ -5,6 +5,9 @@ import harvast from "../Images/buy-harvast.png";
 import stock from "../Images/stock.png";
 
 export default function BuyInStock() {
+  const handleClick=()=>{
+    events.buyClicked();
+  }
   return (
     <>
      <div className="relative flex justify-center items-center w-full">
@@ -22,7 +25,7 @@ export default function BuyInStock() {
             priority
           />
         </div>
-        <button className="rounded-full border-2 border-[#006837] bg-white px-6 py-2.5 text-xl font-medium text-[#006837] transition-colors ">
+        <button className="rounded-full border-2 border-[#006837] bg-white px-6 py-2.5 text-xl font-medium text-[#006837] transition-colors "    onClick={handleClick}>
           OR BUY WHILE IN STOCK
         </button>
       </Link>

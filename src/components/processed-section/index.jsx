@@ -23,19 +23,26 @@ const ProcessedSection = () => {
   const [currentSection, setCurrentSection] = useState(null);
 
   const toggleAccordion = (section) => {
-    if (section === "picked") {
-      events.pickedAccordionClosed();
-    } else if (section === "pressed") {
-      events.pressedAccordionClosed();
-    } else if (section === "packed") {
-      events.packedAccordionClosed();
+    if (openAccordion === section) {
+      if (section === "picked") {
+        events.pickedAccordionClosed();
+      } else if (section === "pressed") {
+        events.pressedAccordionClosed();
+      } else if (section === "packed") {
+        events.packedAccordionClosed();
+      }
+      setOpenAccordion(null); 
+    } else {
+      setOpenAccordion(section);
+      events.pressedAccordionOpen();
     }
-    setOpenAccordion(openAccordion === section ? null : section);
   };
-
+  
   const handleShowStories = (section) => {
     setCurrentSection(section);
     setShowStories(true);
+
+    events.pressedStoriesClicked();
   };
 
   const getLocationText = (section) => {
@@ -51,12 +58,20 @@ const ProcessedSection = () => {
     }
   };
 
-  const handleLocationClick = (section) => {
+  const handleLocationClick = (section) => {  
+    if (section === "picked") {
+      events.pickedLocationClicked();
+    } else if (section === "pressed") {
+      events.pressedLocationClicked();
+    } else if (section === "packed") {
+      events.packedLocationClicked();
+    }
     const locationText = getLocationText(section);
     router.push(
       `/map?section=${section}&location=${encodeURIComponent(locationText)}`
     );
   };
+  
 
   return (
     <>
@@ -264,7 +279,10 @@ const ProcessedSection = () => {
       {showStories && (
         <Stories
           section={currentSection}
-          onClose={() => setShowStories(false)}
+          onClose={() => {setShowStories(false)
+            events.pressedStoriesClosed();
+          }}
+          
         />
       )}
     </>
