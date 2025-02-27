@@ -23,7 +23,8 @@ export default function HeroSection() {
         </div>
 
         <div className="pt-[160px]">
-          <div className="bg-white rounded-lg p-8 max-w-md w-full space-y-4 relative  flex flex-col justify-between h-[598px] ">
+        <div className="bg-white rounded-t-lg p-8 max-w-md w-full space-y-4 relative flex flex-col justify-between h-[598px]">
+
             <div>
               <h1 className="text-[100px] leading-[80px]  mb-6 font-medium tracking-tight">
                 Hi there!
