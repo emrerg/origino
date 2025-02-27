@@ -1,14 +1,15 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
+import { events } from '@/lib/gtag';
 
 export default function StorageMainLayout() {
   const router = useRouter();
 
   const handleStorageClick = () => {
-    // Store the current scroll position before navigating
-    sessionStorage.setItem('returnToStorage', 'true');
+    console.log("Storage Tips Clicked");
     events.storageTipsClicked();
+    sessionStorage.setItem('returnToStorage', 'true');
   };
 
   return (
@@ -20,7 +21,9 @@ export default function StorageMainLayout() {
             <span className="block">rage?</span>
           </h1>
           <p className="text-[#D4E631] text-[32px] font-[500] leading-[32px] mt-2 max-w-[285px]">
-            What are the most appropriate storage conditions?
+          <div className="text-[#D4E631]  text-[32px] leading-[32px] font-medium">
+          What are the most appropriate storage conditions?
+          </div>
           </p>
         </div>
       </div>

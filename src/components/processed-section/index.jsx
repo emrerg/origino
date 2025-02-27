@@ -46,11 +46,9 @@ const ProcessedSection = () => {
     }
   };
   
-  
   const handleShowStories = (section) => {
     setCurrentSection(section);
     setShowStories(true);
-
     events.pressedStoriesClicked();
   };
 
@@ -81,12 +79,11 @@ const ProcessedSection = () => {
     );
   };
   
-
   return (
     <>
-      <div className="w-full max-w-full  mx-auto px-4  pb-16  bg-[#008c28] ">
+      <div className="w-full max-w-full mx-auto px-4 pb-16 bg-[#008c28]">
         {/* Picked Section */}
-        <div className="mb-1  overflow-hidden">
+        <div className="mb-1 overflow-hidden">
           <div
             className={`bg-[#00532C] p-6 cursor-pointer flex items-center justify-between ${openAccordion === "picked" ? "" : ""}`}
             onClick={() => toggleAccordion("picked")}
@@ -102,44 +99,42 @@ const ProcessedSection = () => {
             )}
           </div>
           {openAccordion === "picked" && (
-            <div className="bg-[#006837]  ">
+            <div className="bg-[#006837]">
               <div className="space-y-4 text-[#59E631]">
-                <div className="p-6">
-
-              
-                <div>
-                  <h3 className="text-lg opacity-70 text-[#59E631]  text-[16px] ">
-                    HARVEST DATE
-                  </h3>
-                  <p className="text-xl text-white text-[20px] ">November 8th, 2023</p>
-                </div>
-                <div>
-                  <h3 className="text-lg opacity-70 text-[#59E631] text-[16px] ">
-                    GROVE LOCATION
-                  </h3>
-                  <p className="text-[20px] flex items-start text-white justify-between ">
-                    Northwest of Iznik Lake, Bursa, Turkiye
-                    <div
-                      className="mt-1 cursor-pointer"
-                      onClick={() => handleLocationClick("picked")}
-                    >
-                      <IoChevronForwardSharp
-                        className="text-[#59E631]"
-                        fill="#59E631"
-                        size={20}
-                      />
-                    </div>
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-lg opacity-70 text-[#59E631]  text-[16px] ">
-                    HEAD CULTIVATOR
-                  </h3>
-                  <p className="text-xl text-white text-[20px] ">Turker Yalcinkaya (42)</p>
-                </div>
+                <div className="p-6 space-y-4">
+                  <div>
+                    <h3 className="text-lg opacity-70 text-[#59E631] text-[16px]">
+                      HARVEST DATE
+                    </h3>
+                    <p className="text-xl text-white text-[20px]">November 8th, 2023</p>
+                  </div>
+                  <div>
+                    <h3 className="text-lg opacity-70 text-[#59E631] text-[16px]">
+                      GROVE LOCATION
+                    </h3>
+                    <p className="text-[20px] flex items-start text-white justify-between">
+                      Northwest of Iznik Lake, Bursa, Turkiye
+                      <div
+                        className="mt-1 cursor-pointer"
+                        onClick={() => handleLocationClick("picked")}
+                      >
+                        <IoChevronForwardSharp
+                          className="text-[#59E631]"
+                          fill="#59E631"
+                          size={20}
+                        />
+                      </div>
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="text-lg opacity-70 text-[#59E631] text-[16px]">
+                      HEAD CULTIVATOR
+                    </h3>
+                    <p className="text-xl text-white text-[20px]">Turker Yalcinkaya (42)</p>
+                  </div>
                 </div>
                 <button
-                  className="w-full p-6 text-end pt-5 border-t-[1px] flex items-center   text-[18px] leading-6 font-medium  justify-end gap-4 border-t-[#008c28] text-lg hover:opacity-80 transition-opacity"
+                  className="w-full p-6 text-end pt-5 border-t-[1px] flex items-center text-[18px] leading-6 font-medium justify-end gap-4 border-t-[#008c28] text-lg hover:opacity-80 transition-opacity"
                   onClick={() => handleShowStories("picked")}
                 >
                   See the picking stories
@@ -157,8 +152,7 @@ const ProcessedSection = () => {
             onClick={() => toggleAccordion("pressed")}
           >
             <div className="flex items-center gap-4">
-              <Image src={pressed} alt="picked" className="w-8 h-8" />
-
+              <Image src={pressed} alt="pressed" className="w-8 h-8" />
               <h2 className="text-[#59E631] text-2xl font-semibold">Pressed</h2>
             </div>
             {openAccordion === "pressed" ? (
@@ -169,24 +163,24 @@ const ProcessedSection = () => {
           </div>
           {openAccordion === "pressed" && (
             <div className="bg-[#006837] rounded-b-lg">
-              <div className="space-y-4 p-6  text-[#59E631]">
-                <div>
-                  <h3 className="text-lg opacity-70 text-[#59E631] text-[16px]  ">
+              <div className="space-y-4 p-6 text-[#59E631]">
+                <div className="mb-5">
+                  <h3 className="text-lg opacity-70 text-[#59E631] text-[16px]">
                     PRESSING DATE
                   </h3>
-                  <p className="text-xl text-white text-[20px]">November 8th, 2023</p>
+                  <p className="text-xl text-white text-[20px] -mb-2">November 8th, 2023</p>
                 </div>
                 <div>
-                <div>
-                  <h3 className="text-lg opacity-70 text-[#59E631]  text-[16px]">
-                  TIME BETWEEN PICKING & PRESSING
+                  <h3 className="text-lg opacity-70 text-[#59E631] text-[16px]">
+                    TIME BETWEEN PICKING & PRESSING
                   </h3>
-                  <p className="text-xl  mb-2 text-white  text-[20px] ">&lt;12 hours</p>
+                  <p className="text-xl mb-2 text-white text-[20px]">&lt;12 hours</p>
                 </div>
-                  <h3 className="text-lg opacity-70 text-[#59E631] text-[16px] ">
+                <div>
+                  <h3 className="text-lg opacity-70 text-[#59E631] text-[16px]">
                     MILL LOCATION
                   </h3>
-                  <p className="text-xl flex items-start  mb-2 text-white justify-between text-[20px] ">
+                  <p className="text-xl flex items-start mb-2 text-white justify-between text-[20px]">
                     Miras Olive Oil Mill
                     <div
                       className="mt-2 cursor-pointer"
@@ -199,34 +193,33 @@ const ProcessedSection = () => {
                       />
                     </div>
                   </p>
-
-                  <h3 className="text-lg opacity-70 text-[#59E631]  text-[16px] ">
-                  DISTANCE TRAVELLED FROM GROVE
-                  </h3>
-                  <p className="text-xl text-white  mb-2 text-[20px] ">5.8 Km</p>
-
-
-                  <h3 className="text-lg opacity-70 text-[#59E631] text-[16px]">
-                   PRESSING TEMPERATURE
-                  </h3>
-                  <p className="text-xl  mb-2 text-white text-[20px]">24C (Cold Pressed)</p>
-
-
-                  <h3 className="text-lg opacity-70 text-[#59E631] text-[16px]">
-                HEAD MILLER
-                  </h3>
-                  <p className="text-xl text-white text-[20px] ">Semih Aydin(78)</p>
-
                 </div>
-             
+                <div>
+                  <h3 className="text-lg opacity-70 text-[#59E631] text-[16px]">
+                    DISTANCE TRAVELLED FROM GROVE
+                  </h3>
+                  <p className="text-xl text-white mb-2 text-[20px]">5.8 Km</p>
+                </div>
+                <div>
+                  <h3 className="text-lg opacity-70 text-[#59E631] text-[16px]">
+                    PRESSING TEMPERATURE
+                  </h3>
+                  <p className="text-xl mb-2 text-white text-[20px]">24C (Cold Pressed)</p>
+                </div>
+                <div>
+                  <h3 className="text-lg opacity-70 text-[#59E631] text-[16px]">
+                    HEAD MILLER
+                  </h3>
+                  <p className="text-xl text-white text-[20px]">Semih Aydin (78)</p>
+                </div>
               </div>
               <button
-                  className="text-[#59E631] p-6 w-full text-end  border-t-[1px] pt-5  flex items-center text-[18px] leading-6 font-medium  justify-end gap-4 border-t-[#008c28] text-lg hover:opacity-80 transition-opacity"
-                  onClick={() => handleShowStories("pressed")}
-                >
-                  See the pressing stories
-                  <FaArrowRight className="text-[#59E631]" />
-                </button>
+                className="text-[#59E631] p-6 w-full text-end border-t-[1px] pt-5 flex items-center text-[18px] leading-6 font-medium justify-end gap-4 border-t-[#008c28] text-lg hover:opacity-80 transition-opacity"
+                onClick={() => handleShowStories("pressed")}
+              >
+                See the pressing stories
+                <FaArrowRight className="text-[#59E631]" />
+              </button>
             </div>
           )}
         </div>
@@ -239,7 +232,6 @@ const ProcessedSection = () => {
           >
             <div className="flex items-center gap-4">
               <Image src={packed} alt="packed" className="w-8 h-8" />
-
               <h2 className="text-[#59E631] text-2xl font-semibold">Packed</h2>
             </div>
             {openAccordion === "packed" ? (
@@ -252,14 +244,14 @@ const ProcessedSection = () => {
             <div className="bg-[#006837] p-6 rounded-b-lg">
               <div className="space-y-4 text-[#59E631]">
                 <div>
-                  <h3 className="text-lg opacity-70 text-[#59E631]  text-[16px] ">
-                  PACKING DATE
+                  <h3 className="text-lg opacity-70 text-[#59E631] text-[16px]">
+                    PACKING DATE
                   </h3>
-                  <p className="text-xl text-white text-[20px] ">February 2024</p>
+                  <p className="text-xl text-white text-[20px]">February 2024</p>
                 </div>
                 <div>
-                  <h3 className="text-lg opacity-70 text-[16px] ">PACKED BY</h3>
-                  <p className="text-xl flex items-start text-white justify-between text-[20px] ">
+                  <h3 className="text-lg opacity-70 text-[16px]">PACKED BY</h3>
+                  <p className="text-xl flex items-start text-white justify-between text-[20px]">
                     Biziz Foods Ltd
                     <div
                       className="mt-2 cursor-pointer"
@@ -274,12 +266,13 @@ const ProcessedSection = () => {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg opacity-70 text-[#59E631]  text-[16px]">
-                  PACKING DETAILS
+                  <h3 className="text-lg opacity-70 text-[#59E631] text-[16px]">
+                    PACKING DETAILS
                   </h3>
-                  <p className=" text-xl text-white text-[20px] ">Food-grade tin, with minimum plastic contact, eliminating oxygen and light exposure. </p>
+                  <p className="text-xl text-white text-[20px]">
+                    Food-grade tin, with minimum plastic contact, eliminating oxygen and light exposure.
+                  </p>
                 </div>
-           
               </div>
             </div>
           )}
@@ -289,10 +282,10 @@ const ProcessedSection = () => {
       {showStories && (
         <Stories
           section={currentSection}
-          onClose={() => {setShowStories(false)
+          onClose={() => {
+            setShowStories(false);
             events.pressedStoriesClosed();
           }}
-          
         />
       )}
     </>

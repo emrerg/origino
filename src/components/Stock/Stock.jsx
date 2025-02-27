@@ -1,31 +1,33 @@
 import Image from "next/image";
 import Link from "next/link";
+import { events } from '@/lib/gtag';
 
 import harvast from "../Images/buy-harvast.png";
 import stock from "../Images/stock.png";
 
 export default function BuyInStock() {
-  const handleClick=()=>{
+  const handleClick = () => {
     events.buyClicked();
-  }
+  };
+
   return (
     <>
-     <div className="relative flex justify-center items-center w-full">
+      <div className="relative flex justify-center items-center w-full">
         <Image src={harvast} alt="Origino Olive Oil" className="w-full" />
         <button className="absolute bottom-4 bg-green-800 text-white py-3 px-7 rounded-full font-bold shadow-md hover:bg-green-900 transition duration-300">
           RESERVE
-         </button>
-       </div>
-      <Link href="https://origino.co.uk/products/origino-750ml-bottle?variant=50125260947800" className="group flex flex-col items-center gap-6 p-4">
+        </button>
+      </div>
+      <Link href="https://origino.co.uk/products/origino-750ml-bottle?variant=50125260947800" className="group flex flex-col items-center gap-6 p-4" target="_blank">
         <div className="relative my-5 w-[200px] transition-transform duration-300 group-hover:scale-105">
           <Image
             src={stock}
             alt="Origino Olive Oil"
-            className="object-cover h-[329px] "
+            className="object-cover h-[329px]"
             priority
           />
         </div>
-        <button className="rounded-full border-2 border-[#006837] bg-white px-6 py-2.5 text-xl font-medium text-[#006837] transition-colors "    onClick={handleClick}>
+        <button className="rounded-full border-2 border-[#006837] bg-white px-6 py-2.5 text-xl font-medium text-[#006837] transition-colors" onClick={handleClick}>
           OR BUY WHILE IN STOCK
         </button>
       </Link>

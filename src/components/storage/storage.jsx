@@ -1,15 +1,26 @@
+'use client';
+
 import { Circle, Sun, Thermometer, Wind } from "lucide-react";
 import { X } from "lucide-react";
 import Link from "next/link";
+import { events } from '@/lib/gtag';
+import { useRouter } from 'next/navigation';
+
 export default function StorageGuide() {
-  
+  const router = useRouter();
+
+  const handleClose = () => {
+    console.log("Storage Tips Closed");
+    events.storageTipsClosed();
+    router.push('/');
+  };
+
   return (
     <div className="bg-black text-white p-6 max-w-md mx-auto">
-      <Link href="/">
-        <div className="absolute top-10   cursor-pointer right-10">
-          <X className="w-6 h-6 text-white" />
-        </div>
-      </Link>
+      <div className="absolute top-10 cursor-pointer right-10" onClick={handleClose}>
+        <X className="w-6 h-6 text-white" />
+      </div>
+
       <div className="space-y-8">
         <div className="space-y-2">
           <h1 className="text-[100px] font-semibold leading-[80px] tracking-tight">
@@ -17,9 +28,9 @@ export default function StorageGuide() {
             <br />
             rage?
           </h1>
-          <p className="text-[#D4E631]  text-[32px] leading-[32px] font-medium">
+          <div className="text-[#D4E631] text-[32px] leading-[32px] font-medium">
             What are the most appropriate storage conditions?
-          </p>
+          </div>
         </div>
 
         <div className="space-y-8">
