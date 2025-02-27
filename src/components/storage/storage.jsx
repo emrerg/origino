@@ -18,7 +18,7 @@ export default function StorageGuide() {
   return (
     <div className="bg-black text-white p-6 max-w-md mx-auto">
       <div className="absolute top-10 cursor-pointer right-10" onClick={handleClose}>
-        <X className="w-6 h-6 text-white" />
+        <X className="w-8 h-8 text-white" />
       </div>
 
       <div className="space-y-8 mt-10">
