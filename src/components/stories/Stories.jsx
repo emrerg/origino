@@ -27,7 +27,6 @@ const videoSets = {
       title: "Picked",
       location: "Northwest of Iznik Lake, Bursa, Turkiye"
     },
-    
     {
       id: "2",
       type: "video",
@@ -49,7 +48,6 @@ const videoSets = {
       title: "Picked",
       location: "Northwest of Iznik Lake, Bursa, Turkiye"
     },
-  
   ],
   pressed: [
     {
@@ -98,49 +96,66 @@ export default function Stories({ section = 'picked', onClose }) {
   const [error, setError] = useState(null)
   const videoRef = useRef(null)
   const progressInterval = useRef(null)
+  const abortControllerRef = useRef(new AbortController())
 
   const reels = videoSets[section] || []
 
   useEffect(() => {
     if (!videoSets[section]) {
-      console.error(`No videos found for section: ${section}`);
-      setError(`No videos available for ${section} section`);
-      return;
+      console.error(`No videos found for section: ${section}`)
+      setError(`No videos available for ${section} section`)
+      return
     }
 
     const loadAndPlayVideo = async () => {
-      if (videoRef.current) {
-        try {
-          setIsLoading(true)
-          setError(null)
+      // Abort previous operations
+      abortControllerRef.current.abort()
+      const newAbortController = new AbortController()
+      abortControllerRef.current = newAbortController
+      const { signal } = newAbortController
 
-          // Reset video
-          videoRef.current.currentTime = 0
-          await videoRef.current.load()
+      try {
+        setIsLoading(true)
+        setError(null)
+        
+        if (!videoRef.current) return
 
-          // Try to play
-          await videoRef.current.play()
-          setIsLoading(false)
-          updateProgress()
-        } catch (error) {
-          console.error("Video playback failed:", error)
-          setError("Failed to play video")
-          setIsLoading(false)
-        }
+        // Reset video element
+        videoRef.current.pause()
+        videoRef.current.currentTime = 0
+        videoRef.current.src = reels[currentIndex].src
+        videoRef.current.load()
+
+        // Use abortable promise pattern
+        const playPromise = videoRef.current.play()
+        signal.addEventListener('abort', () => {
+          if (videoRef.current) videoRef.current.pause()
+          playPromise.catch(() => {})
+        })
+
+        await playPromise
+        
+        if (signal.aborted) return
+        
+        setIsLoading(false)
+        updateProgress()
+      } catch (error) {
+        if (signal.aborted) return
+        console.error("Video playback failed:", error)
+        setError("Failed to play video")
+        setIsLoading(false)
       }
     }
 
     loadAndPlayVideo()
 
     return () => {
+      abortControllerRef.current.abort()
       if (progressInterval.current) {
         clearInterval(progressInterval.current)
       }
-      if (videoRef.current) {
-        videoRef.current.pause()
-      }
     }
-  }, [currentIndex, section])
+  }, [currentIndex, section, reels])
 
   const updateProgress = () => {
     if (progressInterval.current) {
@@ -148,7 +163,7 @@ export default function Stories({ section = 'picked', onClose }) {
     }
 
     progressInterval.current = setInterval(() => {
-      if (videoRef.current) {
+      if (videoRef.current && !isLoading) {
         try {
           const currentTime = videoRef.current.currentTime
           const duration = videoRef.current.duration
@@ -179,6 +194,7 @@ export default function Stories({ section = 'picked', onClose }) {
   }
 
   const handleClose = () => {
+    abortControllerRef.current.abort()
     if (videoRef.current) {
       videoRef.current.pause()
     }
@@ -208,9 +224,9 @@ export default function Stories({ section = 'picked', onClose }) {
         <div className="relative w-full h-full">
           {isLoading && (
             <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-white flex justify-center items-center">
-            <div className="w-8 h-8 border-4 border-t-transparent border-white rounded-full animate-spin"></div>
-           </div>
+              <div className="text-white flex justify-center items-center">
+                <div className="w-8 h-8 border-4 border-t-transparent border-white rounded-full animate-spin"></div>
+              </div>
             </div>
           )}
           
@@ -223,18 +239,17 @@ export default function Stories({ section = 'picked', onClose }) {
           <video
             ref={videoRef}
             className="w-full h-full object-cover"
-            src={currentReel?.src}
             playsInline
             muted
             controls={false}
             preload="auto"
             onEnded={handleVideoEnd}
             onError={(e) => {
+              if (e.target.error.code === MediaError.MEDIA_ERR_ABORTED) return
               console.error("Video error:", e)
               setError("Failed to load video")
               setIsLoading(false)
             }}
-            onLoadStart={() => setIsLoading(true)}
             onLoadedData={() => setIsLoading(false)}
           />
 
@@ -289,4 +304,3 @@ export default function Stories({ section = 'picked', onClose }) {
     </div>
   )
 }
-
