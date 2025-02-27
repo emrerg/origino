@@ -23,7 +23,8 @@ export default function HeroSection() {
         </div>
 
         <div className="pt-[160px]">
-          <div className="bg-white rounded-lg p-8 max-w-md w-full space-y-4 relative  flex flex-col justify-between h-[598px] ">
+        <div className="bg-white rounded-t-lg p-8 max-w-md w-full space-y-4 relative flex flex-col justify-between h-[598px]">
+
             <div>
               <h1 className="text-[100px] leading-[80px]  mb-6 font-medium tracking-tight">
                 Hi there!
@@ -33,7 +34,7 @@ export default function HeroSection() {
               </p>
             </div>
             <div className="flex items-center gap-5  text-[#29BA00] pt-[100px] text-[24px] leading-[24px] font-medium ">
-              <ArrowDown className=" w-16 h-16 mb-5"color="#006837" />
+              <ArrowDown className=" w-16 h-16 mb-2"color="#006837" />
               <p className="text-xl">
                 And it&apos;s been an <span>adventurous journey...</span>
               </p>
