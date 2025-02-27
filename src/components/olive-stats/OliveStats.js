@@ -3,6 +3,7 @@
 import { ChevronUp } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import { event } from '@/lib/gtag'; // Make sure this import is correct
 
 import AcidityContent from "./AcidityContent";
 import PolyphenolsContent from "./PolyphenolsContent";
@@ -13,6 +14,23 @@ const OliveStats = () => {
   const [isAcidityOpen, setAcidityOpen] = useState(true);
   const [isPolyphenolsOpen, setPolyphenolsOpen] = useState(true);
 
+  const handleToggle = (section) => {
+    if (section === 'freeAcidity') {
+      // Trigger event based on accordion state
+      event({
+        action: isAcidityOpen ? "free_acidity_accordion_closed" : "free_acidity_accordion_expanded",
+        category: "Olive Stats",
+        label: "Free Acidity Section",
+      });
+    } else if (section === 'polyphenols') {
+      event({
+        action: isPolyphenolsOpen ? "polyphenols_accordion_closed" : "polyphenols_accordion_expanded",
+        category: "Olive Stats",
+        label: "Polyphenols Section",
+      });
+    }
+  };
+
   return (
     <div className="w-full max-w-md mx-auto">
       {/* Acidity Section */}
@@ -20,7 +38,7 @@ const OliveStats = () => {
         <button
           onClick={() => {
             setAcidityOpen(!isAcidityOpen);
-            handleStatToggle("acidity", !isAcidityOpen);
+            handleToggle('freeAcidity');
           }}
           className="w-full bg-[#0000FF] min-h-[90px] text-white py-4 px-6 flex items-center justify-between"
           aria-expanded={isAcidityOpen}
@@ -54,7 +72,7 @@ const OliveStats = () => {
         <button
           onClick={() => {
             setPolyphenolsOpen(!isPolyphenolsOpen);
-            handleStatToggle("polyphenols", !isPolyphenolsOpen);
+            handleToggle('polyphenols');
           }}
           className="w-full bg-[#0000FF] text-white min-h-[90px] py-4 px-6 flex items-center justify-between"
           aria-expanded={isPolyphenolsOpen}
