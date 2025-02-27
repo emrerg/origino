@@ -21,7 +21,7 @@ export default function StorageGuide() {
         <X className="w-6 h-6 text-white" />
       </div>
 
-      <div className="space-y-8">
+      <div className="space-y-8 mt-10">
         <div className="space-y-2">
           <h1 className="text-[100px] font-semibold leading-[80px] tracking-tight">
             Sto

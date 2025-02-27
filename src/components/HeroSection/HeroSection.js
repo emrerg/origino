@@ -22,7 +22,7 @@ export default function HeroSection() {
           />
         </div>
 
-        <div className="pt-[160px]">
+        <div className="pt-[100px]">
         <div className="bg-white rounded-t-lg p-8 max-w-md w-full space-y-4 relative flex flex-col justify-between h-[598px]">
 
             <div>

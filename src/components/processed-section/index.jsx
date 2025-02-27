@@ -164,7 +164,7 @@ const ProcessedSection = () => {
           {openAccordion === "pressed" && (
             <div className="bg-[#006837] rounded-b-lg">
               <div className="space-y-4 p-6 text-[#59E631]">
-                <div className="mb-5">
+                <div className="mb-2">
                   <h3 className="text-lg opacity-70 text-[#59E631] text-[16px]">
                     PRESSING DATE
                   </h3>
