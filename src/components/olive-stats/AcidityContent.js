@@ -24,7 +24,7 @@ const AcidityContent = ({ isAcidityOpen }) => {
         <div className="space-y-8 ml-0 ">
           {/* 0% Marking */}
           <div className="flex items-start">
-            <span className="absolute left-[59px] -top-3 text-xl w-29 h-16 font-normal">
+            <span className="absolute left-[75px] -top-3 text-xl w-29 h-16 font-normal">
               0%
             </span>
             <div className="w-4 h-[2px] bg-[#000000] relative left-[52px] top-0" />
@@ -32,7 +32,7 @@ const AcidityContent = ({ isAcidityOpen }) => {
 
           {/* 0.35% Marking */}
           <div className="flex items-start mb-2">
-            <span className="absolute left-[59px] text-xl w-29 h-16 font-normal">
+            <span className="absolute left-[49px] text-xl w-29 h-16 top-[30px] font-normal">
               0.35%
             </span>
             <div className="w-4 h-[2px] bg-[#000000] relative left-[52px] top-3" />
@@ -41,7 +41,7 @@ const AcidityContent = ({ isAcidityOpen }) => {
 
           {/* 0.4% Marking with Origino */}
           <div className="flex items-start mb-2">
-            <span className="absolute left-[59px] text-xl w-29 h-16 font-normal">
+            <span className="absolute left-[59px] text-xl w-29 top-[60px] h-16 font-normal">
               0.4%
             </span>
             <div className="w-4 h-[2px] bg-[#000000] relative left-[52px] top-1.5" />

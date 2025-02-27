@@ -168,8 +168,8 @@ const ProcessedSection = () => {
             )}
           </div>
           {openAccordion === "pressed" && (
-            <div className="bg-[#006837] p-6 rounded-b-lg">
-              <div className="space-y-4 text-[#59E631]">
+            <div className="bg-[#006837] rounded-b-lg">
+              <div className="space-y-4 p-6  text-[#59E631]">
                 <div>
                   <h3 className="text-lg opacity-70 text-[#59E631] text-[16px]  ">
                     PRESSING DATE
@@ -215,17 +215,18 @@ const ProcessedSection = () => {
                   <h3 className="text-lg opacity-70 text-[#59E631] text-[16px]">
                 HEAD MILLER
                   </h3>
-                  <p className="text-xl text-white text-[20px] ">SEMIH AYDIN(78)</p>
+                  <p className="text-xl text-white text-[20px] ">Semih Aydin(78)</p>
 
                 </div>
-                <button
-                  className="w-full text-end  border-t-[1px] pt-5  flex items-center text-[18px] leading-6 font-medium  justify-end gap-4 border-t-[#008c28] text-lg hover:opacity-80 transition-opacity"
+             
+              </div>
+              <button
+                  className="text-[#59E631] p-6 w-full text-end  border-t-[1px] pt-5  flex items-center text-[18px] leading-6 font-medium  justify-end gap-4 border-t-[#008c28] text-lg hover:opacity-80 transition-opacity"
                   onClick={() => handleShowStories("pressed")}
                 >
                   See the pressing stories
                   <FaArrowRight className="text-[#59E631]" />
                 </button>
-              </div>
             </div>
           )}
         </div>

@@ -45,16 +45,16 @@ const PolyphenolsContent = ({ isPolyphenolsOpen }) => {
         {/* Data Points */}
         <div className="space-y-8">
           <div className="flex items-start">
-            <span className="absolute left-0 text-xl whitespace-nowrap">
+            <span className="absolute left-0 top-[23px] text-xl whitespace-nowrap">
               280<span className="text-sm">mg/kg</span>
             </span>
-            <div className="w-4 h-[2px] bg-[#000000] relative -left-[1px] top-3" />
+            <div className="w-4 h-[2px] bg-[#000000] relative -left-[1px] top-10" />
             <div
               className="absolute w-[29px] h-[2px] bg-black opacity-10"
-              style={{ left: "95px", top: "12px" }}
+              style={{ left: "95px", top: "40px" }}
             />
              <div className="ml-4 pl-2">
-              <Origino className = "absolute " />
+              <Origino className = "top-[30px] absolute " />
             </div>
       
           </div>
@@ -79,7 +79,7 @@ const PolyphenolsContent = ({ isPolyphenolsOpen }) => {
 
           <div className="flex items-start">
             <span
-              className="absolute left-0 text-xl whitespace-nowrap"
+              className="absolute left-6  text-xl whitespace-nowrap"
               style={{ top: "308px" }}
             >
               0<span className="text-sm">mg/lt</span>

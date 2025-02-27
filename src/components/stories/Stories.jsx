@@ -4,7 +4,8 @@ import { useState, useRef, useEffect } from "react"
 import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { event } from '@/lib/gtag'
-
+import Image from "next/image"
+import reelsLogo from '@/components/Images/reels-Logo.png'
 /**
  * @typedef {Object} Reel
  * @property {string} id
@@ -27,6 +28,7 @@ const videoSets = {
       title: "Picked",
       location: "Northwest of Iznik Lake, Bursa, Turkiye"
     },
+    
     {
       id: "2",
       type: "video",
@@ -48,6 +50,7 @@ const videoSets = {
       title: "Picked",
       location: "Northwest of Iznik Lake, Bursa, Turkiye"
     },
+  
   ],
   pressed: [
     {
@@ -96,66 +99,49 @@ export default function Stories({ section = 'picked', onClose }) {
   const [error, setError] = useState(null)
   const videoRef = useRef(null)
   const progressInterval = useRef(null)
-  const abortControllerRef = useRef(new AbortController())
 
   const reels = videoSets[section] || []
 
   useEffect(() => {
     if (!videoSets[section]) {
-      console.error(`No videos found for section: ${section}`)
-      setError(`No videos available for ${section} section`)
-      return
+      console.error(`No videos found for section: ${section}`);
+      setError(`No videos available for ${section} section`);
+      return;
     }
 
     const loadAndPlayVideo = async () => {
-      // Abort previous operations
-      abortControllerRef.current.abort()
-      const newAbortController = new AbortController()
-      abortControllerRef.current = newAbortController
-      const { signal } = newAbortController
+      if (videoRef.current) {
+        try {
+          setIsLoading(true)
+          setError(null)
 
-      try {
-        setIsLoading(true)
-        setError(null)
-        
-        if (!videoRef.current) return
+          // Reset video
+          videoRef.current.currentTime = 0
+          await videoRef.current.load()
 
-        // Reset video element
-        videoRef.current.pause()
-        videoRef.current.currentTime = 0
-        videoRef.current.src = reels[currentIndex].src
-        videoRef.current.load()
-
-        // Use abortable promise pattern
-        const playPromise = videoRef.current.play()
-        signal.addEventListener('abort', () => {
-          if (videoRef.current) videoRef.current.pause()
-          playPromise.catch(() => {})
-        })
-
-        await playPromise
-        
-        if (signal.aborted) return
-        
-        setIsLoading(false)
-        updateProgress()
-      } catch (error) {
-        if (signal.aborted) return
-        console.error("Video playback failed:", error)
-        setError("Failed to play video")
-        setIsLoading(false)
+          // Try to play
+          await videoRef.current.play()
+          setIsLoading(false)
+          updateProgress()
+        } catch (error) {
+          console.error("Video playback failed:", error)
+          // setError("Failed to play video")
+          setIsLoading(false)
+        }
       }
     }
 
     loadAndPlayVideo()
 
     return () => {
-      abortControllerRef.current.abort()
       if (progressInterval.current) {
         clearInterval(progressInterval.current)
       }
+      if (videoRef.current) {
+        videoRef.current.pause()
+      }
     }
-  }, [currentIndex, section, reels])
+  }, [currentIndex, section])
 
   const updateProgress = () => {
     if (progressInterval.current) {
@@ -163,7 +149,7 @@ export default function Stories({ section = 'picked', onClose }) {
     }
 
     progressInterval.current = setInterval(() => {
-      if (videoRef.current && !isLoading) {
+      if (videoRef.current) {
         try {
           const currentTime = videoRef.current.currentTime
           const duration = videoRef.current.duration
@@ -194,7 +180,6 @@ export default function Stories({ section = 'picked', onClose }) {
   }
 
   const handleClose = () => {
-    abortControllerRef.current.abort()
     if (videoRef.current) {
       videoRef.current.pause()
     }
@@ -239,17 +224,18 @@ export default function Stories({ section = 'picked', onClose }) {
           <video
             ref={videoRef}
             className="w-full h-full object-cover"
+            src={currentReel?.src}
             playsInline
             muted
             controls={false}
             preload="auto"
             onEnded={handleVideoEnd}
             onError={(e) => {
-              if (e.target.error.code === MediaError.MEDIA_ERR_ABORTED) return
               console.error("Video error:", e)
-              setError("Failed to load video")
+              // setError("Failed to load video")
               setIsLoading(false)
             }}
+            onLoadStart={() => setIsLoading(true)}
             onLoadedData={() => setIsLoading(false)}
           />
 
@@ -268,19 +254,10 @@ export default function Stories({ section = 'picked', onClose }) {
 
           <div className="absolute bottom-0 left-0 right-0 p-4 space-y-4">
             <div className="inline-flex items-center">
-              <div className="bg-black/50 backdrop-blur-sm rounded-lg px-4 py-2 flex items-center space-x-2">
-                {currentReel?.title === "Picked" && (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                )}
-                {currentReel?.title === "Pressed" && (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8" />
-                  </svg>
-                )}
-                <span className="text-white">
-                  {currentReel?.title} - {currentReel?.location}
+              <div className="  rounded-lg px-4 py-2 flex items-center space-x-2">
+                <Image src={reelsLogo} alt="Reels Logo" width={25} height={25} className="mb-1"/>
+                <span className="text-white font-semibold text-[24px] ">
+                  {currentReel?.title} 
                 </span>
               </div>
             </div>
@@ -304,3 +281,4 @@ export default function Stories({ section = 'picked', onClose }) {
     </div>
   )
 }
+

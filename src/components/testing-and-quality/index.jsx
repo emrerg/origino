@@ -38,7 +38,8 @@ export default function TestingQuality() {
             />
           </div>
 
-          <div className="px-4 pt-12 pb-5 space-y-10 my-10 bg-[#F5F5F5]">
+          <div className=" pt-12 pb-5 space-y-10 my-10 bg-[#F5F5F5]">
+            <div className="px-4">
             <h2 className="text-[40px] leading-[40px] font-[500] text-black">
               How do you distinguish quality olive oil from others?
             </h2>
@@ -53,10 +54,12 @@ export default function TestingQuality() {
                 <span className="font-[500]">Polyphenols</span>
               </p>
             </div>
+            </div>
+          
 
             <button
               onClick={handlePdfView}
-              className="inline-flex justify-end w-full  border-t-[1px] border-t-white pt-4  items-end gap-3 text-[18px] leading-6 text-black font-[500] transition-opacity"
+              className="inline-flex justify-end w-full px-4 border-t-[1px] border-t-white pt-4  items-end gap-3 text-[18px] leading-6 text-black font-[500] transition-opacity"
               aria-label="Review test results document"
             >
               <span>Review test results</span>
