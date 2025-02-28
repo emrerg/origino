@@ -9,12 +9,17 @@ export default function BuyInStock() {
   const handleClick = () => {
     events.buyClicked();
   };
+  const handleReserveClicked=()=>{
+    window.open('https://bc8uvfdustf.typeform.com/to/eswUQcGp', '_blank')
+    events.reserveClicked();
+  }
 
   return (
     <>
       <div className="relative flex justify-center items-center w-full">
         <Image src={harvast} alt="Origino Olive Oil" className="w-full" />
-        <button className="absolute bottom-4 bg-green-800 text-white py-3 px-7 rounded-full font-bold shadow-md hover:bg-green-900 transition duration-300">
+       
+        <button className="absolute bottom-4 bg-green-800 text-white py-3 px-7 rounded-full font-bold shadow-md hover:bg-green-900 transition duration-300"  onClick={handleReserveClicked}>
           RESERVE
         </button>
       </div>
